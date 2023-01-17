@@ -18,7 +18,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
             codeBuilder.InsertCodeToFile(
 $@"<?php
 /**
- * Plugin Name: TestPlugin
+ * Plugin Name: {info.Name}
  */
 ", $"{Path.Combine( Path.Combine("WordPress", info.Name), info.Name)}");
         }
