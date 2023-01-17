@@ -9,8 +9,10 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
 {
     [Export(typeof(IWPPluginConceptCodeGenerator))]
     [ExportMetadata(MefProvider.Implements, typeof(WPPluginInfo))]
-    public class WPPluginInfoCodeGenerator : IWPPluginConceptCodeGenerator
+    public class WPPluginCodeGenerator : IWPPluginConceptCodeGenerator
     {
+        public static readonly CsTag<WPPluginInfo> BodyTag = "Body";
+
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
             var info = (WPPluginInfo)conceptInfo;
@@ -21,8 +23,10 @@ $@"<?php
  * Plugin Name: {info.Name}
  */
 
- // Exit if accessed directly
- defined( 'ABSPATH' ) || exit;
+// Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
+
+{BodyTag.Evaluate(info)}
 ", $"{Path.Combine( Path.Combine("WordPress", info.Name), info.Name)}");
         }
     }

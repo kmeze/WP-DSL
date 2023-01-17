@@ -1,4 +1,8 @@
 WPPlugin TestPlugin
 {
-
+    Entity TestEntity
+    {
+        ShortString title;
+        Integer count;
+    }
 }
