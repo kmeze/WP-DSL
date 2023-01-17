@@ -9,7 +9,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
 {
     [Export(typeof(IWPPluginConceptCodeGenerator))]
     [ExportMetadata(MefProvider.Implements, typeof(WPPluginInfo))]
-    public class WPPluginInfoCodeGenerator : IWPPluginConceptCodeGenerator
+    public class WPPluginCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public static readonly CsTag<WPPluginInfo> BodyTag = "Body";
 
