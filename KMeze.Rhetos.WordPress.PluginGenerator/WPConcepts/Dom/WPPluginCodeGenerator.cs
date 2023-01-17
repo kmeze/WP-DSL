@@ -20,6 +20,9 @@ $@"<?php
 /**
  * Plugin Name: {info.Name}
  */
+
+ // Exit if accessed directly
+ defined( 'ABSPATH' ) || exit;
 ", $"{Path.Combine( Path.Combine("WordPress", info.Name), info.Name)}");
         }
     }
