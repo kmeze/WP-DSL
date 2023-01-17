@@ -23,8 +23,8 @@ $@"<?php
  * Plugin Name: {info.Name}
  */
 
- // Exit if accessed directly
- defined( 'ABSPATH' ) || exit;
+// Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
 
 {BodyTag.Evaluate(info)}
 ", $"{Path.Combine( Path.Combine("WordPress", info.Name), info.Name)}");
