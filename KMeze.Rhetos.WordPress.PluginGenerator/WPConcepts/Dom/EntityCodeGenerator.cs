@@ -116,7 +116,6 @@ add_action( 'rest_api_init', function () {{
 
     ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationTag, info.WPPlugin);
-
         }
     }
 }
