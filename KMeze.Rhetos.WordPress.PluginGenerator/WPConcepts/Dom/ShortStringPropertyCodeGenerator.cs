@@ -20,12 +20,12 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
             codeBuilder.InsertCode(snippet, EntityCodeGenerator.PropertyTag, info.Entity);
 
             snippet = $@",{info.Name} VARCHAR(256)
-                ";
-                        codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnTag, info.Entity);
+                        ";
+            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnTag, info.Entity);
 
             snippet = $@"$entity->{info.Name} = $row->{info.Name};
-                ";
-                        codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnMapTag, info.Entity);
+            ";
+            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnMapTag, info.Entity);
         }
     }
 }
