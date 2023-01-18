@@ -82,7 +82,7 @@ class {info.Name}_REST_Controller {{
     }}
 
     public function put_item( $request ) {{
-        return new WP_Error( 'rest_endpoint_not_implemented', esc_html__( 'Endpoint is not implemented.', '{info.WPPlugin.Name}' ), array( 'status' => '500' ) );
+        return ( new {info.WPPlugin.Name}_Repository() )->update_{info.Name}($request->get_param( 'id' ), $request->get_json_params());
     }}
 
     public function delete_item( $request ) {{
@@ -116,7 +116,10 @@ add_action( 'rest_api_init', function () {{
         return $wpdb->insert_id;
     }}
 
-    public function update_{info.Name}( int $id ) {{
+    public function update_{info.Name}( int $id,  array $data) {{
+	    global $wpdb;
+	    $table_name = $wpdb->prefix . '{info.Name}';
+	    $wpdb->update($table_name, $data, array( 'id' => $id ));
     }}
 
     public function delete_{info.Name}( int $id ) {{
