@@ -86,7 +86,7 @@ class {info.Name}_REST_Controller {{
     }}
 
     public function delete_item( $request ) {{
-        return new WP_Error( 'rest_endpoint_not_implemented', esc_html__( 'Endpoint is not implemented.', '{info.WPPlugin.Name}' ), array( 'status' => '500' ) );
+        return ( new {info.WPPlugin.Name}_Repository() )->delete_{info.Name}($request->get_param( 'id' ));
     }}
 }}
 
@@ -123,6 +123,9 @@ add_action( 'rest_api_init', function () {{
     }}
 
     public function delete_{info.Name}( int $id ) {{
+	    global $wpdb;
+	    $table_name = $wpdb->prefix . '{info.Name}';
+	    $wpdb->delete($table_name, array( 'id' => $id ));
     }}
 
     ";
