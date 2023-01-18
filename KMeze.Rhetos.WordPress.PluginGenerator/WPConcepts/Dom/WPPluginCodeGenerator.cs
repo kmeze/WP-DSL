@@ -12,6 +12,9 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
     public class WPPluginCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public static readonly CsTag<WPPluginInfo> BodyTag = "Body";
+        public static readonly CsTag<WPPluginInfo> RepositoryMethodTag = "RepositoryMethod";
+        public static readonly CsTag<WPPluginInfo> ActivationTag = "Activation";
+        public static readonly CsTag<WPPluginInfo> DeactivationTag = "Deactivation";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -27,6 +30,23 @@ $@"<?php
 defined( 'ABSPATH' ) || exit;
 
 {BodyTag.Evaluate(info)}
+
+class {info.Name}_Repository {{
+    {RepositoryMethodTag.Evaluate(info)}
+}}
+
+register_activation_hook( __FILE__, function () {{
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    global $wpdb;
+
+    {ActivationTag.Evaluate(info)}
+}} );
+
+register_deactivation_hook( __FILE__, function () {{
+    global $wpdb;
+
+    {DeactivationTag.Evaluate(info)}
+}} );
 ", $"{Path.Combine( Path.Combine("WordPress", info.Name), info.Name)}");
         }
     }
