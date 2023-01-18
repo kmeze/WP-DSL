@@ -70,11 +70,9 @@ class {info.Name}_REST_Controller {{
     }}
 
     public function get_items( $request ): array {{
-	    $result = ( new {info.WPPlugin.Name}_Repository() )->select_{info.Name}();
-
 	    return array_map( function ( $row ) {{
 	        return $this->prepare_item_for_response( $row );
-	    }}, $result );
+	    }}, ( new {info.WPPlugin.Name}_Repository() )->select_{info.Name}() );
     }}
 
     public function get_item( $request ) {{
