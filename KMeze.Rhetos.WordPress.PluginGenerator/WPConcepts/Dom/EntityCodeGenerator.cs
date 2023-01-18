@@ -13,6 +13,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
     {
         public static readonly CsTag<EntityInfo> PropertyTag = "Property";
         public static readonly CsTag<EntityInfo> ColumnTag = "Column";
+        public static readonly CsTag<EntityInfo> ColumnMapTag = "ColumnMap";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -65,6 +66,7 @@ class {info.Name}_REST_Controller {{
 	    return array_map( function ( $row ) {{
 			$entity = new {info.Name}();
 			$entity->id = (int) $row->ID;
+			{ColumnMapTag.Evaluate(info)}
 		    return $entity;
 	    }}, $result );
     }}
