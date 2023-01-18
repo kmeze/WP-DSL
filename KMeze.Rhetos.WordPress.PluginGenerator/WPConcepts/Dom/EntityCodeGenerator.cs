@@ -61,20 +61,24 @@ class {info.Name}_REST_Controller {{
         return true;
     }}
 
+    private function prepare_item_for_response( $row ) {{
+        $entity     = new {info.Name}();
+        $entity->id = (int) $row->ID;
+        {ColumnMapTag.Evaluate(info)}
+
+        return $entity;
+    }}
+
     public function get_items( $request ): array {{
 	    $result = ( new {info.WPPlugin.Name}_Repository() )->select_{info.Name}();
 
 	    return array_map( function ( $row ) {{
-			$entity     = new {info.Name}();
-			$entity->id = (int) $row->ID;
-			{ColumnMapTag.Evaluate(info)}
-
-		    return $entity;
+	        return $this->prepare_item_for_response( $row );
 	    }}, $result );
     }}
 
     public function get_item( $request ) {{
-        return ( new {info.WPPlugin.Name}_Repository() )->select_{info.Name}_by_ID( $request->get_param( 'id' ) );
+        return $this->prepare_item_for_response( ( new {info.WPPlugin.Name}_Repository() )->select_{info.Name}_by_ID( $request->get_param( 'id' ) ) );
     }}
 
     public function post_item( $request ) {{
