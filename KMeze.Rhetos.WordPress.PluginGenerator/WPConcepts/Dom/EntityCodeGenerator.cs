@@ -61,12 +61,14 @@ class {info.Name}_REST_Controller {{
         return true;
     }}
 
-    public function get_items( $request ) {{
-	    $result = (new TestPlugin_Repository())->select_{info.Name}();
+    public function get_items( $request ): array {{
+	    $result = ( new TestPlugin_Repository() )->select_{info.Name}();
+
 	    return array_map( function ( $row ) {{
-			$entity = new {info.Name}();
+			$entity     = new {info.Name}();
 			$entity->id = (int) $row->ID;
 			{ColumnMapTag.Evaluate(info)}
+
 		    return $entity;
 	    }}, $result );
     }}
@@ -96,22 +98,23 @@ add_action( 'rest_api_init', function () {{
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
 
-            snippet = $@"public function select_{info.Name} () {{
+            snippet = $@"public function select_{info.Name}() {{
         global $wpdb;
         $table_name = $wpdb->prefix . '{info.Name}';
+
         return $wpdb->get_results( ""SELECT * FROM {{$table_name}};"" );
     }}
 
-    public function select_{info.Name}_by_ID (int $id) {{
+    public function select_{info.Name}_by_ID( int $id ) {{
     }}
 
-    public function insert_{info.Name} (int $id) {{
+    public function insert_{info.Name}( int $id ) {{
     }}
 
-    public function update_{info.Name}_by_Id (int $id) {{
+    public function update_{info.Name}( int $id ) {{
     }}
 
-    public function delete_{info.Name} (int $id) {{
+    public function delete_{info.Name}( int $id ) {{
     }}
 
     ";
