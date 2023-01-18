@@ -61,32 +61,34 @@ class {info.Name}_REST_Controller {{
         return true;
     }}
 
+    private function prepare_item_for_response( $row ) {{
+        $entity     = new {info.Name}();
+        $entity->id = (int) $row->ID;
+        {ColumnMapTag.Evaluate(info)}
+
+        return $entity;
+    }}
+
     public function get_items( $request ): array {{
-	    $result = ( new TestPlugin_Repository() )->select_{info.Name}();
-
 	    return array_map( function ( $row ) {{
-			$entity     = new {info.Name}();
-			$entity->id = (int) $row->ID;
-			{ColumnMapTag.Evaluate(info)}
-
-		    return $entity;
-	    }}, $result );
+	        return $this->prepare_item_for_response( $row );
+	    }}, ( new {info.WPPlugin.Name}_Repository() )->select_{info.Name}() );
     }}
 
     public function get_item( $request ) {{
-        return new WP_Error( 'rest_endpoint_not_implemented', esc_html__( 'Endpoint is not implemented.', '{info.WPPlugin.Name}' ), array( 'status' => '500' ) );
+        return $this->prepare_item_for_response( ( new {info.WPPlugin.Name}_Repository() )->select_{info.Name}_by_ID( $request->get_param( 'id' ) ) );
     }}
 
     public function post_item( $request ) {{
-        return new WP_Error( 'rest_endpoint_not_implemented', esc_html__( 'Endpoint is not implemented.', '{info.WPPlugin.Name}' ), array( 'status' => '500' ) );
+        return ( new {info.WPPlugin.Name}_Repository() )->insert_{info.Name}( $request->get_json_params() );
     }}
 
     public function put_item( $request ) {{
-        return new WP_Error( 'rest_endpoint_not_implemented', esc_html__( 'Endpoint is not implemented.', '{info.WPPlugin.Name}' ), array( 'status' => '500' ) );
+        return ( new {info.WPPlugin.Name}_Repository() )->update_{info.Name}( $request->get_param( 'id' ), $request->get_json_params() );
     }}
 
     public function delete_item( $request ) {{
-        return new WP_Error( 'rest_endpoint_not_implemented', esc_html__( 'Endpoint is not implemented.', '{info.WPPlugin.Name}' ), array( 'status' => '500' ) );
+        return ( new {info.WPPlugin.Name}_Repository() )->delete_{info.Name}( $request->get_param( 'id' ) );
     }}
 }}
 
@@ -106,15 +108,30 @@ add_action( 'rest_api_init', function () {{
     }}
 
     public function select_{info.Name}_by_ID( int $id ) {{
+        global $wpdb;
+        $table_name = $wpdb->prefix . '{info.Name}';
+
+        return $wpdb->get_row(""SELECT * FROM {{$table_name}} WHERE ID={{$id}};"");
     }}
 
-    public function insert_{info.Name}( int $id ) {{
+    public function insert_{info.Name}( array $data ) {{
+        global $wpdb;
+        $table_name = $wpdb->prefix . '{info.Name}';
+        $wpdb->insert( $table_name, $data );
+
+        return $wpdb->insert_id;
     }}
 
-    public function update_{info.Name}( int $id ) {{
+    public function update_{info.Name}( int $id, array $data ) {{
+	    global $wpdb;
+	    $table_name = $wpdb->prefix . '{info.Name}';
+	    $wpdb->update( $table_name, $data, array( 'id' => $id ) );
     }}
 
     public function delete_{info.Name}( int $id ) {{
+	    global $wpdb;
+	    $table_name = $wpdb->prefix . '{info.Name}';
+	    $wpdb->delete( $table_name, array( 'id' => $id ) );
     }}
 
     ";
