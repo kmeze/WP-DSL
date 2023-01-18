@@ -87,6 +87,24 @@ add_action( 'rest_api_init', function () {{
 
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+
+            snippet = $@"public function select_{info.Name} () {{
+    }}
+
+    public function select_{info.Name}_by_ID (int $id) {{
+    }}
+
+    public function insert_{info.Name} (int $id) {{
+    }}
+
+    public function update_{info.Name}_by_Id (int $id) {{
+    }}
+
+    public function delete_{info.Name} (int $id) {{
+    }}
+
+    ";
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.RepositoryMethodTag, info.WPPlugin);
         }
     }
 }

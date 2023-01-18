@@ -12,6 +12,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
     public class WPPluginCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public static readonly CsTag<WPPluginInfo> BodyTag = "Body";
+        public static readonly CsTag<WPPluginInfo> RepositoryMethodTag = "RepositoryMethod";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -27,6 +28,10 @@ $@"<?php
 defined( 'ABSPATH' ) || exit;
 
 {BodyTag.Evaluate(info)}
+
+class {info.Name}_Repository {{
+    {RepositoryMethodTag.Evaluate(info)}
+}}
 ", $"{Path.Combine( Path.Combine("WordPress", info.Name), info.Name)}");
         }
     }
