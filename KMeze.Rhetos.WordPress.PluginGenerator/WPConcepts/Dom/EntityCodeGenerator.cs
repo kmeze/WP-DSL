@@ -12,6 +12,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
     public class EntityCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public static readonly CsTag<EntityInfo> PropertyTag = "Property";
+        public static readonly CsTag<EntityInfo> ColumnTag = "Column";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -105,6 +106,17 @@ add_action( 'rest_api_init', function () {{
 
     ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.RepositoryMethodTag, info.WPPlugin);
+
+            snippet = $@"$table_name = $wpdb->prefix . '{info.Name}';
+    dbDelta( ""CREATE TABLE {{$table_name}} (
+                        ID BIGINT(20) NOT NULL AUTO_INCREMENT
+                        {ColumnTag.Evaluate(info)}
+                        ,PRIMARY KEY  (ID)
+                        ) {{$wpdb->get_charset_collate()}};"" );
+
+    ";
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationTag, info.WPPlugin);
+
         }
     }
 }
