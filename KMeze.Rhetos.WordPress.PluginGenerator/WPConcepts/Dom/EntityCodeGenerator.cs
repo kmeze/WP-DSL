@@ -82,15 +82,15 @@ class {info.Name}_REST_Controller {{
     }}
 
     public function post_item( $request ) {{
-        return ( new {info.WPPlugin.Name}_Repository() )->insert_{info.Name}($request->get_json_params());
+        return ( new {info.WPPlugin.Name}_Repository() )->insert_{info.Name}( $request->get_json_params() );
     }}
 
     public function put_item( $request ) {{
-        return ( new {info.WPPlugin.Name}_Repository() )->update_{info.Name}($request->get_param( 'id' ), $request->get_json_params());
+        return ( new {info.WPPlugin.Name}_Repository() )->update_{info.Name}( $request->get_param( 'id' ), $request->get_json_params() );
     }}
 
     public function delete_item( $request ) {{
-        return ( new {info.WPPlugin.Name}_Repository() )->delete_{info.Name}($request->get_param( 'id' ));
+        return ( new {info.WPPlugin.Name}_Repository() )->delete_{info.Name}( $request->get_param( 'id' ) );
     }}
 }}
 
