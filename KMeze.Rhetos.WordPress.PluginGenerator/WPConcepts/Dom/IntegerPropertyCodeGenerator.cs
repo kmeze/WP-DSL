@@ -18,6 +18,14 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
             string snippet = $@"public ?int ${info.Name} = null;
     ";
             codeBuilder.InsertCode(snippet, EntityCodeGenerator.PropertyTag, info.Entity);
+
+            snippet = $@",{info.Name} INTEGER
+                        ";
+            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnTag, info.Entity);
+
+            snippet = $@"$entity->{info.Name} = is_null($row->{info.Name}) ? null : (int) $row->{info.Name};
+            ";
+            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnMapTag, info.Entity);
         }
     }
 }
