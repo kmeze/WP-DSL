@@ -61,7 +61,12 @@ class {info.Name}_REST_Controller {{
     }}
 
     public function get_items( $request ) {{
-	    return new WP_Error( 'rest_endpoint_not_implemented', esc_html__( 'Endpoint is not implemented.', '{info.WPPlugin.Name}' ), array( 'status' => '500' ) );
+	    $result = (new TestPlugin_Repository())->select_{info.Name}();
+	    return array_map( function ( $row ) {{
+			$entity = new {info.Name}();
+			$entity->id = (int) $row->ID;
+		    return $entity;
+	    }}, $result );
     }}
 
     public function get_item( $request ) {{
@@ -90,6 +95,9 @@ add_action( 'rest_api_init', function () {{
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
 
             snippet = $@"public function select_{info.Name} () {{
+        global $wpdb;
+        $table_name = $wpdb->prefix . '{info.Name}';
+        return $wpdb->get_results( ""SELECT * FROM {{$table_name}};"" );
     }}
 
     public function select_{info.Name}_by_ID (int $id) {{
