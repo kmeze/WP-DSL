@@ -62,7 +62,7 @@ class {info.Name}_REST_Controller {{
     }}
 
     public function get_items( $request ): array {{
-	    $result = ( new TestPlugin_Repository() )->select_{info.Name}();
+	    $result = ( new {info.WPPlugin.Name}_Repository() )->select_{info.Name}();
 
 	    return array_map( function ( $row ) {{
 			$entity     = new {info.Name}();
