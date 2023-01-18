@@ -111,21 +111,21 @@ add_action( 'rest_api_init', function () {{
     public function insert_{info.Name}( array $data ) {{
         global $wpdb;
         $table_name = $wpdb->prefix . '{info.Name}';
-        $wpdb->insert($table_name, $data);
+        $wpdb->insert( $table_name, $data );
 
         return $wpdb->insert_id;
     }}
 
-    public function update_{info.Name}( int $id,  array $data) {{
+    public function update_{info.Name}( int $id, array $data ) {{
 	    global $wpdb;
 	    $table_name = $wpdb->prefix . '{info.Name}';
-	    $wpdb->update($table_name, $data, array( 'id' => $id ));
+	    $wpdb->update( $table_name, $data, array( 'id' => $id ) );
     }}
 
     public function delete_{info.Name}( int $id ) {{
 	    global $wpdb;
 	    $table_name = $wpdb->prefix . '{info.Name}';
-	    $wpdb->delete($table_name, array( 'id' => $id ));
+	    $wpdb->delete( $table_name, array( 'id' => $id ) );
     }}
 
     ";
