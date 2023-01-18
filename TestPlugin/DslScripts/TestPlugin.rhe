@@ -2,6 +2,8 @@ WPPlugin TestPlugin
 {
     Entity TestEntity
     {
+        DropOnDeactivate;
+
         ShortString title;
         Integer count;
     }
