@@ -11,7 +11,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
     [ExportMetadata(MefProvider.Implements, typeof(EntityInfo))]
     public class EntityCodeGenerator : IWPPluginConceptCodeGenerator
     {
-        public static readonly CsTag<EntityInfo> PropertyTag = "Property";
+        public static readonly CsTag<EntityInfo> ClassPropertyTag = "ClassProperty";
         public static readonly CsTag<EntityInfo> ColumnTag = "Column";
         public static readonly CsTag<EntityInfo> ColumnMapTag = "ColumnMap";
         public static readonly CsTag<EntityInfo> KeyMapTag = "KeyMap";
@@ -24,7 +24,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
             // Generate entity class
             string snippet = $@"class {info.WPPlugin.Name}_{info.Name} {{
     public ?int $id = null;
-    {PropertyTag.Evaluate(info)}
+    {ClassPropertyTag.Evaluate(info)}
 }}
 
 ";

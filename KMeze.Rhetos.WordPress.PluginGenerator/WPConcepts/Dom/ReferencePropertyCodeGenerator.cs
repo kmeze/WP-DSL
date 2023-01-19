@@ -17,7 +17,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
 
             string snippet = $@"public ?int ${info.Name}_id = null;
     ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.PropertyTag, info.Entity);
+            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ClassPropertyTag, info.Entity);
 
             snippet = $@",{info.Name}_id BIGINT(20) DEFAULT NULL
                         ";
