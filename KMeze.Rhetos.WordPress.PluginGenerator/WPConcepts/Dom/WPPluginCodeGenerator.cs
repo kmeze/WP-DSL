@@ -39,8 +39,6 @@ register_activation_hook( __FILE__, function () {{
 }} );
 
 register_deactivation_hook( __FILE__, function () {{
-    global $wpdb;
-
     {DeactivationHookTag.Evaluate(info)}
 }} );
 
