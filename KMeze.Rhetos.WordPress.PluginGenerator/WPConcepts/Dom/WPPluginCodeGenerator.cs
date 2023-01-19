@@ -44,7 +44,7 @@ register_uninstall_hook( __FILE__, '{info.Name}_uninstall' );
 
 function {info.Name}_uninstall () {{
     {UninstallHookTag.Evaluate(info)}
-}}", $"{Path.Combine( Path.Combine("WordPress", info.Name), info.Name)}");
+}}", $"{Path.Combine(Path.Combine("WordPress", info.Name), info.Name)}");
         }
     }
 }

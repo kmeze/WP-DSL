@@ -13,14 +13,14 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
     {
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
-             var info = (ActionInfo)conceptInfo;
+            var info = (ActionInfo)conceptInfo;
 
-             string snippet = $@"function {info.WPPlugin.Name}_{info.Name} () {{
+            string snippet = $@"function {info.WPPlugin.Name}_{info.Name} () {{
     {info.Script}
 }}
 
 ";
-             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
         }
     }
 }

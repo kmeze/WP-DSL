@@ -31,7 +31,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
 
             // Generate entity repository
-            snippet =$@"class {info.WPPlugin.Name}_{info.Name}_Repository {{
+            snippet = $@"class {info.WPPlugin.Name}_{info.Name}_Repository {{
     public function select_{info.Name}() {{
         global $wpdb;
         $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
