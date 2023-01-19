@@ -6,6 +6,8 @@ WPPlugin TestPlugin
 
         ShortString title;
         Integer count;
+
+        Authorization TestPlugin.PublicAccess;
     }
 
     Entity TestChildEntity
@@ -15,4 +17,6 @@ WPPlugin TestPlugin
         ShortString child_title;
         Reference parent TestPlugin.TestEntity;
     }
+
+    Action PublicAccess 'return true;';
 }
