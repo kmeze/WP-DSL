@@ -12,7 +12,6 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
     public class WPPluginCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public static readonly CsTag<WPPluginInfo> BodyTag = "PluginBody";
-        public static readonly CsTag<WPPluginInfo> RepositoryMethodTag = "RepositoryMethod";
         public static readonly CsTag<WPPluginInfo> ActivationTag = "ActivationHook";
         public static readonly CsTag<WPPluginInfo> DeactivationTag = "DeactivationHook";
         public static readonly CsTag<WPPluginInfo> UninstallTag = "UninstallHook";
@@ -31,10 +30,6 @@ $@"<?php
 defined( 'ABSPATH' ) || exit;
 
 {BodyTag.Evaluate(info)}
-
-class {info.Name}_Repository {{
-    {RepositoryMethodTag.Evaluate(info)}
-}}
 
 register_activation_hook( __FILE__, function () {{
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );

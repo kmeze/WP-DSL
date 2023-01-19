@@ -21,12 +21,57 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
         {
             var info = (EntityInfo)conceptInfo;
 
-            string snippet = $@"class {info.Name} {{
+            // Generate entity class
+            string snippet = $@"class {info.WPPlugin.Name}_{info.Name} {{
     public ?int $id = null;
     {PropertyTag.Evaluate(info)}
 }}
 
-class {info.Name}_REST_Controller {{
+";
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+
+            // Generate entity repository
+            snippet =$@"class {info.WPPlugin.Name}_{info.Name}_Repository {{
+    public function select_{info.Name}() {{
+        global $wpdb;
+        $table_name = $wpdb->prefix . '{info.Name}';
+
+        return $wpdb->get_results( ""SELECT * FROM {{$table_name}};"" );
+    }}
+
+    public function select_{info.Name}_by_ID( int $id ) {{
+        global $wpdb;
+        $table_name = $wpdb->prefix . '{info.Name}';
+
+        return $wpdb->get_row(""SELECT * FROM {{$table_name}} WHERE ID={{$id}};"");
+    }}
+
+    public function insert_{info.Name}( array $data ) {{
+        global $wpdb;
+        $table_name = $wpdb->prefix . '{info.Name}';
+        $wpdb->insert( $table_name, $data );
+
+        return $wpdb->insert_id;
+    }}
+
+    public function update_{info.Name}( int $id, array $data ) {{
+	    global $wpdb;
+	    $table_name = $wpdb->prefix . '{info.Name}';
+	    $wpdb->update( $table_name, $data, array( 'id' => $id ) );
+    }}
+
+    public function delete_{info.Name}( int $id ) {{
+	    global $wpdb;
+	    $table_name = $wpdb->prefix . '{info.Name}';
+	    $wpdb->delete( $table_name, array( 'id' => $id ) );
+    }}
+}}
+
+";
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+
+            // Generate entity REST controller and register routes
+            snippet = $@"class {info.WPPlugin.Name}_{info.Name}_REST_Controller {{
     public function register_routes() {{
         register_rest_route( '{info.WPPlugin.Name}/v1', '/{info.Name}', array(
             'methods'             => 'GET',
@@ -66,7 +111,7 @@ class {info.Name}_REST_Controller {{
     }}
 
     private function prepare_item_for_response( $row ) {{
-        $entity     = new {info.Name}();
+        $entity     = new {info.WPPlugin.Name}_{info.Name}();
         $entity->id = (int) $row->ID;
         {ColumnMapTag.Evaluate(info)}
 
@@ -76,70 +121,33 @@ class {info.Name}_REST_Controller {{
     public function get_items( $request ): array {{
 	    return array_map( function ( $row ) {{
 	        return $this->prepare_item_for_response( $row );
-	    }}, ( new {info.WPPlugin.Name}_Repository() )->select_{info.Name}() );
+	    }}, ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->select_{info.Name}() );
     }}
 
     public function get_item( $request ) {{
-        return $this->prepare_item_for_response( ( new {info.WPPlugin.Name}_Repository() )->select_{info.Name}_by_ID( $request->get_param( 'id' ) ) );
+        return $this->prepare_item_for_response( ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->select_{info.Name}_by_ID( $request->get_param( 'id' ) ) );
     }}
 
     public function post_item( $request ) {{
-        return ( new {info.WPPlugin.Name}_Repository() )->insert_{info.Name}( $request->get_json_params() );
+        return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->insert_{info.Name}( $request->get_json_params() );
     }}
 
     public function put_item( $request ) {{
-        return ( new {info.WPPlugin.Name}_Repository() )->update_{info.Name}( $request->get_param( 'id' ), $request->get_json_params() );
+        return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->update_{info.Name}( $request->get_param( 'id' ), $request->get_json_params() );
     }}
 
     public function delete_item( $request ) {{
-        return ( new {info.WPPlugin.Name}_Repository() )->delete_{info.Name}( $request->get_param( 'id' ) );
+        return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->delete_{info.Name}( $request->get_param( 'id' ) );
     }}
 }}
 
 add_action( 'rest_api_init', function () {{
-    $controller = new {info.Name}_REST_Controller();
+    $controller = new {info.WPPlugin.Name}_{info.Name}_REST_Controller();
     $controller->register_routes();
 }} );
 
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
-
-            snippet = $@"public function select_{info.Name}() {{
-        global $wpdb;
-        $table_name = $wpdb->prefix . '{info.Name}';
-
-        return $wpdb->get_results( ""SELECT * FROM {{$table_name}};"" );
-    }}
-
-    public function select_{info.Name}_by_ID( int $id ) {{
-        global $wpdb;
-        $table_name = $wpdb->prefix . '{info.Name}';
-
-        return $wpdb->get_row(""SELECT * FROM {{$table_name}} WHERE ID={{$id}};"");
-    }}
-
-    public function insert_{info.Name}( array $data ) {{
-        global $wpdb;
-        $table_name = $wpdb->prefix . '{info.Name}';
-        $wpdb->insert( $table_name, $data );
-
-        return $wpdb->insert_id;
-    }}
-
-    public function update_{info.Name}( int $id, array $data ) {{
-	    global $wpdb;
-	    $table_name = $wpdb->prefix . '{info.Name}';
-	    $wpdb->update( $table_name, $data, array( 'id' => $id ) );
-    }}
-
-    public function delete_{info.Name}( int $id ) {{
-	    global $wpdb;
-	    $table_name = $wpdb->prefix . '{info.Name}';
-	    $wpdb->delete( $table_name, array( 'id' => $id ) );
-    }}
-
-    ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.RepositoryMethodTag, info.WPPlugin);
 
             snippet = $@"$table_name = $wpdb->prefix . '{info.Name}';
     dbDelta( ""CREATE TABLE {{$table_name}} (
