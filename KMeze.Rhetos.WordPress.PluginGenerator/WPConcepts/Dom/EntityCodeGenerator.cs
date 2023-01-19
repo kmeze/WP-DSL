@@ -14,6 +14,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
         public static readonly CsTag<EntityInfo> PropertyTag = "Property";
         public static readonly CsTag<EntityInfo> ColumnTag = "Column";
         public static readonly CsTag<EntityInfo> ColumnMapTag = "ColumnMap";
+        public static readonly CsTag<EntityInfo> KeyMapTag = "KeyMap";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -142,6 +143,7 @@ add_action( 'rest_api_init', function () {{
                         ID BIGINT(20) NOT NULL AUTO_INCREMENT
                         {ColumnTag.Evaluate(info)}
                         ,PRIMARY KEY  (ID)
+                        {KeyMapTag.Evaluate(info)}
                         ) {{$wpdb->get_charset_collate()}};"" );
 
     ";
