@@ -24,7 +24,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
             codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnTag, info.Entity);
 
             snippet = $@"$entity->{info.Name} = is_null($row->{info.Name}) ? null : (int) $row->{info.Name};
-            ";
+        ";
             codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnMapTag, info.Entity);
         }
     }
