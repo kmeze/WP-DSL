@@ -18,6 +18,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
              string snippet = $@"function {info.WPPlugin.Name}_{info.Name} () {{
     {info.Script}
 }}
+
 ";
              codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
         }
