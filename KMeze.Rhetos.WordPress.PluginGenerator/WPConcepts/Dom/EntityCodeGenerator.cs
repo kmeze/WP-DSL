@@ -158,7 +158,7 @@ add_action( 'rest_api_init', function () {{
                         ) {{$wpdb->get_charset_collate()}};"" );
 
     ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationHookTag, info.WPPlugin);
         }
     }
 }

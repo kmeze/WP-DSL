@@ -19,7 +19,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
     $wpdb->query( ""DROP TABLE IF EXISTS {{$table_name}}"" );
 
     ";
-                codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DeactivationTag, info.Entity.WPPlugin);
+                codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DeactivationHookTag, info.Entity.WPPlugin);
             }
     }
 }
