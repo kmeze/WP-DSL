@@ -43,7 +43,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
         global $wpdb;
         $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
 
-        return $wpdb->get_row(""SELECT * FROM {{$table_name}} WHERE ID={{$id}};"");
+        return $wpdb->get_row( ""SELECT * FROM {{$table_name}} WHERE ID={{$id}};"" );
     }}
 
     public function insert_{info.Name}( array $data ) {{

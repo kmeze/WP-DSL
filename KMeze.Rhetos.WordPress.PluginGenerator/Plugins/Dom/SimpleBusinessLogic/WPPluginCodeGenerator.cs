@@ -42,7 +42,7 @@ register_deactivation_hook( __FILE__, function () {{
 // NOTE: register_uninstall_hook callback cannot be anonymous function
 register_uninstall_hook( __FILE__, '{info.Name}_uninstall' );
 
-function {info.Name}_uninstall () {{
+function {info.Name}_uninstall() {{
     {UninstallHookTag.Evaluate(info)}
 }}", $"{Path.Combine(Path.Combine("WordPress", info.Name), info.Name)}");
         }

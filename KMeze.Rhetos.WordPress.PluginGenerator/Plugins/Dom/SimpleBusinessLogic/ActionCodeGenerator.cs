@@ -15,7 +15,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
         {
             var info = (ActionInfo)conceptInfo;
 
-            string snippet = $@"function {info.WPPlugin.Name}_{info.Name} () {{
+            string snippet = $@"function {info.WPPlugin.Name}_{info.Name}() {{
     {info.Script}
 }}
 
