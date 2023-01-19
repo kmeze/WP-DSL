@@ -44,7 +44,7 @@ register_deactivation_hook( __FILE__, function () {{
     {DeactivationTag.Evaluate(info)}
 }} );
 
-// NOTE: register_uninstall_hook callback cannot be anonymus function
+// NOTE: register_uninstall_hook callback cannot be anonymous function
 register_uninstall_hook( __FILE__, '{info.Name}_uninstall' );
 
 function {info.Name}_uninstall () {{
