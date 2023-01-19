@@ -32,9 +32,6 @@ defined( 'ABSPATH' ) || exit;
 {BodyTag.Evaluate(info)}
 
 register_activation_hook( __FILE__, function () {{
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    global $wpdb;
-
     {ActivationHookTag.Evaluate(info)}
 }} );
 

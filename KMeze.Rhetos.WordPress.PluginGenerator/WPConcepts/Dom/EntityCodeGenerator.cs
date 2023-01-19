@@ -149,7 +149,9 @@ add_action( 'rest_api_init', function () {{
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
 
-            snippet = $@"$table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
+            snippet = $@"require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    global $wpdb;
+    $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
     dbDelta( ""CREATE TABLE {{$table_name}} (
                         ID BIGINT(20) NOT NULL AUTO_INCREMENT
                         {ColumnTag.Evaluate(info)}
