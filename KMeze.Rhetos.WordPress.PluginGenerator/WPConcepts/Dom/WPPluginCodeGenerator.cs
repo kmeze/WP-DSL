@@ -11,10 +11,10 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
     [ExportMetadata(MefProvider.Implements, typeof(WPPluginInfo))]
     public class WPPluginCodeGenerator : IWPPluginConceptCodeGenerator
     {
-        public static readonly CsTag<WPPluginInfo> BodyTag = "Body";
+        public static readonly CsTag<WPPluginInfo> BodyTag = "PluginBody";
         public static readonly CsTag<WPPluginInfo> RepositoryMethodTag = "RepositoryMethod";
-        public static readonly CsTag<WPPluginInfo> ActivationTag = "Activation";
-        public static readonly CsTag<WPPluginInfo> DeactivationTag = "Deactivation";
+        public static readonly CsTag<WPPluginInfo> ActivationTag = "ActivationHook";
+        public static readonly CsTag<WPPluginInfo> DeactivationTag = "DeactivationHook";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
