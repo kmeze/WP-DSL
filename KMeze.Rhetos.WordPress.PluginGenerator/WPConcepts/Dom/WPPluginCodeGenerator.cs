@@ -15,6 +15,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
         public static readonly CsTag<WPPluginInfo> RepositoryMethodTag = "RepositoryMethod";
         public static readonly CsTag<WPPluginInfo> ActivationTag = "ActivationHook";
         public static readonly CsTag<WPPluginInfo> DeactivationTag = "DeactivationHook";
+        public static readonly CsTag<WPPluginInfo> UninstallTag = "UninstallHook";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -46,7 +47,14 @@ register_deactivation_hook( __FILE__, function () {{
     global $wpdb;
 
     {DeactivationTag.Evaluate(info)}
-}} );", $"{Path.Combine( Path.Combine("WordPress", info.Name), info.Name)}");
+}} );
+
+// NOTE: register_uninstall_hook callback cannot be anonymus function
+register_uninstall_hook( __FILE__, '{info.Name}_uninstall' );
+
+function {info.Name}_uninstall () {{
+    {UninstallTag.Evaluate(info)}
+}}", $"{Path.Combine( Path.Combine("WordPress", info.Name), info.Name)}");
         }
     }
 }
