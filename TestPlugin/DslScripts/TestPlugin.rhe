@@ -7,4 +7,12 @@ WPPlugin TestPlugin
         ShortString title;
         Integer count;
     }
+
+    Entity TestChildEntity
+    {
+        // DropOnDeactivate;
+
+        ShortString child_title;
+        Reference parent TestPlugin.TestEntity;
+    }
 }
