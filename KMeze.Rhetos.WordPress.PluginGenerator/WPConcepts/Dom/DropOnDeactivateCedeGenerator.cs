@@ -15,7 +15,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
             {
                 var info = (DropOnDeactivateInfo)conceptInfo;
 
-                string snippet = $@"$table_name = $wpdb->prefix . '{info.Entity.Name}';
+                string snippet = $@"$table_name = $wpdb->prefix . '{info.Entity.WPPlugin.Name}_{info.Entity.Name}';
     $wpdb->query( ""DROP TABLE IF EXISTS {{$table_name}}"" );
 
     ";
