@@ -25,29 +25,31 @@ development.
 Following is DSL script example that demos some features.
 
 ```
-// Let's start by creating MyPlugin.php file using WPPlugin concept
 WPPlugin MyPlugin
 {
-  // Create Non-Post Type entity (PHP class, database table, REST endpoints)
   Entity TestEntity
   {
-    // Set some entity properties and generates columns in database table
     ShortString Title;
     Integer     Count;
   
-    // Set permission check callback for REST endpoints. Callback code is set in Action concept bellow.
     Authorization MyPlugin.AllowPublic;
   
-    // Drop custom table from database on plugin activation. Delete or comment line below to preserve table.
     DropOnDeactivate;
   }
     
-  // The Action concept bellow creates function AllowPublic() in main plugin file that is used for permission check callback by REST endpoints.
   Action AllowPublic 'return true;';
 }
 ```
 
-After running build following code is created.
+Some script explanations for beginning:
+
+1. We started with `WPPlugin` keyword to generate MyPlugin.php file.
+2. `Entity` keyword will create Non-Post Type entity (PHP class, database table, REST endpoints) together with its properties (using ShortString and Integer keywords).
+3. In `Authorization` keyword we set permission check callback for REST endpoints. Callback code is set in Action keyword bellow.
+4. `DropOnDeactivate` drops custom table from database on plugin deactivation. Delete or comment that line preserve table.
+5. The `Action` keyword creates `MyPlugin_AllowPublic() { return true; };` function in main plugin file that is used for permission check callback by REST endpoints.
+
+After running build following PHP code is created. And it is quite of code for simple script above that doesn't have to be written (and debugged) manually;
 
 ```php
 <?php
