@@ -46,8 +46,7 @@ register_deactivation_hook( __FILE__, function () {{
     global $wpdb;
 
     {DeactivationTag.Evaluate(info)}
-}} );
-", $"{Path.Combine( Path.Combine("WordPress", info.Name), info.Name)}");
+}} );", $"{Path.Combine( Path.Combine("WordPress", info.Name), info.Name)}");
         }
     }
 }
