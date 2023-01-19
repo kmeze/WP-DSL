@@ -11,10 +11,10 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
     [ExportMetadata(MefProvider.Implements, typeof(WPPluginInfo))]
     public class WPPluginCodeGenerator : IWPPluginConceptCodeGenerator
     {
-        public static readonly CsTag<WPPluginInfo> BodyTag = "Body";
-        public static readonly CsTag<WPPluginInfo> RepositoryMethodTag = "RepositoryMethod";
-        public static readonly CsTag<WPPluginInfo> ActivationTag = "Activation";
-        public static readonly CsTag<WPPluginInfo> DeactivationTag = "Deactivation";
+        public static readonly CsTag<WPPluginInfo> BodyTag = "PluginBody";
+        public static readonly CsTag<WPPluginInfo> ActivationHookTag = "ActivationHook";
+        public static readonly CsTag<WPPluginInfo> DeactivationHookTag = "DeactivationHook";
+        public static readonly CsTag<WPPluginInfo> UninstallHookTag = "UninstallHook";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -31,23 +31,20 @@ defined( 'ABSPATH' ) || exit;
 
 {BodyTag.Evaluate(info)}
 
-class {info.Name}_Repository {{
-    {RepositoryMethodTag.Evaluate(info)}
-}}
-
 register_activation_hook( __FILE__, function () {{
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    global $wpdb;
-
-    {ActivationTag.Evaluate(info)}
+    {ActivationHookTag.Evaluate(info)}
 }} );
 
 register_deactivation_hook( __FILE__, function () {{
-    global $wpdb;
-
-    {DeactivationTag.Evaluate(info)}
+    {DeactivationHookTag.Evaluate(info)}
 }} );
-", $"{Path.Combine( Path.Combine("WordPress", info.Name), info.Name)}");
+
+// NOTE: register_uninstall_hook callback cannot be anonymous function
+register_uninstall_hook( __FILE__, '{info.Name}_uninstall' );
+
+function {info.Name}_uninstall () {{
+    {UninstallHookTag.Evaluate(info)}
+}}", $"{Path.Combine( Path.Combine("WordPress", info.Name), info.Name)}");
         }
     }
 }
