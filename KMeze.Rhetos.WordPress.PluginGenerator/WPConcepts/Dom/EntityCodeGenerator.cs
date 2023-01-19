@@ -15,6 +15,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
         public static readonly CsTag<EntityInfo> ColumnTag = "Column";
         public static readonly CsTag<EntityInfo> ColumnMapTag = "ColumnMap";
         public static readonly CsTag<EntityInfo> KeyMapTag = "KeyMap";
+        public static readonly CsTag<EntityInfo> AuthorizationTag = "Authorization";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -59,7 +60,9 @@ class {info.Name}_REST_Controller {{
     }}
 
     public function permissions_check( $request ): bool {{
-        return true;
+        {AuthorizationTag.Evaluate(info)}
+
+        return false;
     }}
 
     private function prepare_item_for_response( $row ) {{
