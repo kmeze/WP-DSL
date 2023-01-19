@@ -29,20 +29,20 @@ Following is DSL script example that demos some features.
 WPPlugin MyPlugin
 {
   // Create Non-Post Type entity (PHP class, database table, REST endpoints)
-  Entity
+  Entity TestEntity
   {
     // Set some entity properties and generates columns in database table
     ShortString Title;
-    Int         Count;
+    Integer     Count;
   
     // Set permission check callback for REST endpoints. Callback code is set in Action concept bellow.
-    Authorization: AllowPublic;
+    Authorization MyPlugin.AllowPublic;
   
     // Drop custom table from database on plugin activation. Delete or comment line below to preserve table.
     DropOnDeactivate;
   }
     
   // The Action concept bellow creates function AllowPublic() in main plugin file that is used for permission check callback by REST endpoints.
-  Action AllowPublic 'return true;'
+  Action AllowPublic 'return true;';
 }
 ```
