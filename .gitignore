@@ -428,3 +428,4 @@ fabric.properties
 # Rhetos DSL scripts
 *.rhe
 !TestPlugin/DslScripts/TestPlugin.rhe
+!TestPlugin/DslScripts/MyPlugin.rhe
