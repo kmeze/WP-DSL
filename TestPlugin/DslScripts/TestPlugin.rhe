@@ -19,4 +19,13 @@ WPPlugin TestPlugin
     }
 
     Action AllowPublicAccess 'return true;';
+
+    Action TestActivationConcept '// ActivationAction concept test ';
+    ActivationAction TestPlugin.TestActivationConcept;
+
+    Action TestDeactivationConcept '// DeactivationAction concept test ';
+    DeactivationAction TestPlugin.TestDeactivationConcept;
+
+    Action TestUninstallConcept '// UninstallAction concept test ';
+    UninstallAction TestPlugin.TestUninstallConcept;
 }
