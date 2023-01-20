@@ -23,14 +23,13 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator
                         ";
             codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnTag, info.Entity);
 
-            snippet = $@"$entity->{info.Name}_id = is_null($row->{info.Name}_ID) ? null : (int) $row->{info.Name}_ID;
+            snippet = $@"$entity->{info.Name}_id = is_null($row->{info.Name}_id) ? null : (int) $row->{info.Name}_id;
         ";
             codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnMapTag, info.Entity);
 
             snippet = $@",KEY ind_{info.Entity.Name}_{info.Name}_id ({info.Name}_id)
                         ";
             codeBuilder.InsertCode(snippet, EntityCodeGenerator.KeyMapTag, info.Entity);
-
         }
     }
 }
