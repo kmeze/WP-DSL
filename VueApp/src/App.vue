@@ -8,11 +8,13 @@ testPluginStore.apiUrl = 'http://localhost:8000/wp-json/TestPlugin/v1/TestEntity
 
 <template>
   <main>
-    <h1>TestEntity Count: {{testPluginStore.TestEntity.length}}</h1>
+    <h1>TestEntity Count: {{ testPluginStore.TestEntity.length }}</h1>
     <button type="button" @click="testPluginStore.fetchTestEntity()">Fetch</button>
-    <li v-for="item in testPluginStore.TestEntity">
-      {{ item }}
-    </li>
+    <ul>
+      <li v-for="item in testPluginStore.TestEntity">
+        {{ item }}
+      </li>
+    </ul>
   </main>
 </template>
 
