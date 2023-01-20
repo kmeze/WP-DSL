@@ -1,0 +1,14 @@
+WPPlugin MyPlugin
+{
+  Entity TestEntity
+  {
+    ShortString Title;
+    Integer         Count;
+
+    Authorization MyPlugin.AllowPublic;
+
+    DropOnDeactivate;
+  }
+
+  Action AllowPublic 'return true;';
+}
