@@ -11,4 +11,18 @@
     <PackageReference Include="Rhetos.CommonConcepts" Version="5.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="JsSdk\" />
+    <None Remove="JsSdk\Plugins\" />
+    <None Remove="JsSdk\Plugins\Dom\" />
+    <None Remove="JsSdk\Plugins\Dom\DataStructure\" />
+    <None Remove="JsSdk\Plugins\Dom\SimpleBusinessLogic\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="JsSdk\" />
+    <Folder Include="JsSdk\Plugins\" />
+    <Folder Include="JsSdk\Plugins\Dom\" />
+    <Folder Include="JsSdk\Plugins\Dom\DataStructure\" />
+    <Folder Include="JsSdk\Plugins\Dom\SimpleBusinessLogic\" />
+  </ItemGroup>
 </Project>
