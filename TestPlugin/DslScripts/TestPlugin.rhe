@@ -19,4 +19,7 @@ WPPlugin TestPlugin
     }
 
     Action AllowPublicAccess 'return true;';
+
+    Action TestActivationConcept '// ActivationAction concept test ';
+    ActivationAction TestPlugin.TestActivationConcept;
 }
