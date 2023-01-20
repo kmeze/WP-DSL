@@ -22,4 +22,7 @@ WPPlugin TestPlugin
 
     Action TestActivationConcept '// ActivationAction concept test ';
     ActivationAction TestPlugin.TestActivationConcept;
+
+    Action TestDeactivationConcept '// DeactivationAction concept test ';
+    DeactivationAction TestPlugin.TestDeactivationConcept;
 }
