@@ -25,4 +25,7 @@ WPPlugin TestPlugin
 
     Action TestDeactivationConcept '// DeactivationAction concept test ';
     DeactivationAction TestPlugin.TestDeactivationConcept;
+
+    Action TestUninstallConcept '// UninstallAction concept test ';
+    UninstallAction TestPlugin.TestUninstallConcept;
 }
