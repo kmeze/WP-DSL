@@ -28,6 +28,10 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator.JsSdk
         }},
         ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreActionTag, info.WPPlugin);
+
+            snippet = $@"this.{info.Name} = []
+            ";
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreCleanUpActionTag, info.WPPlugin);
         }
     }
 }
