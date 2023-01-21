@@ -21,7 +21,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator.JsSdk
             var info = (WPPluginInfo)conceptInfo;
 
             codeBuilder.InsertCodeToFile(
-$@"import {{ defineStore }} from 'pinia'
+$@"import {{defineStore}} from 'pinia'
 import axios from 'axios'
 
 export const use{info.Name}Store = defineStore('{info.Name}', {{
