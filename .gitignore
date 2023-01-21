@@ -429,3 +429,4 @@ fabric.properties
 *.rhe
 !TestPlugin/DslScripts/TestPlugin.rhe
 !TestPlugin/DslScripts/MyPlugin.rhe
+VueApp/src/stores/TestPluginStore.js
