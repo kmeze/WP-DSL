@@ -33,7 +33,7 @@ export const use{info.Name}Store = defineStore('{info.Name}', {{
         }}
     }},
     getters: {{
-    {PiniaStoreGettersTag.Evaluate(info)}
+        {PiniaStoreGettersTag.Evaluate(info)}
     }},
     actions: {{
         {PiniaStoreActionTag.Evaluate(info)}
