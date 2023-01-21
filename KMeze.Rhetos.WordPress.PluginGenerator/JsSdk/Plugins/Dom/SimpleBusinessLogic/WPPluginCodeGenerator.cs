@@ -28,6 +28,7 @@ export const use{info.Name}Store = defineStore('{info.Name}', {{
     state: () => {{
         return {{
             apiUrl: '',
+            isLoggedIn: false,
             {PiniaStoreStateTag.Evaluate(info)}
         }}
     }},
