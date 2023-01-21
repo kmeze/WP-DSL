@@ -10,7 +10,14 @@ const credentials = ref({
   password: '',
 })
 
-const rememberMe = ref(false)
+const rememberMe = ref(true)
+
+onMounted(() => {
+  testPluginStore.tryToLogInUser().then((res) => {
+        if (res) testPluginStore.fetchTestEntity()
+      }
+  )
+})
 </script>
 
 <template>
@@ -18,7 +25,7 @@ const rememberMe = ref(false)
     <div>
       <h1>Me</h1>
       <div>
-        <p>Logged in: {{testPluginStore.jwtIsLoggedIn}}</p>
+        <p>Logged in: {{ testPluginStore.isLoggedIn }}</p>
       </div>
       <div style="margin-bottom: 1rem;">
         <label>Username:</label>
