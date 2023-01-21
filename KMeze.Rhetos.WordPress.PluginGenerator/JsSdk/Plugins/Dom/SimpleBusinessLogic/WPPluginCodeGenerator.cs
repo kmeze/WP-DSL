@@ -12,7 +12,9 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator.JsSdk
     public class WPPluginCodeGenerator : IWPPluginJsSdkConceptCodeGenerator
     {
         public static readonly CsTag<WPPluginInfo> PiniaStoreStateTag = "PiniaStoreState";
+        public static readonly CsTag<WPPluginInfo> PiniaStoreGettersTag = "PiniaStoreGetters";
         public static readonly CsTag<WPPluginInfo> PiniaStoreActionTag = "PiniaStoreAction";
+        public static readonly CsTag<WPPluginInfo> PiniaStoreCleanUpActionTag = "PiniaStoreActionCleanUp";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -26,13 +28,20 @@ export const use{info.Name}Store = defineStore('{info.Name}', {{
     state: () => {{
         return {{
             apiUrl: '',
+            isLoggedIn: false,
             {PiniaStoreStateTag.Evaluate(info)}
         }}
     }},
+    getters: {{
+    {PiniaStoreGettersTag.Evaluate(info)}
+    }},
     actions: {{
         {PiniaStoreActionTag.Evaluate(info)}
+        cleanUp() {{
+            {PiniaStoreCleanUpActionTag.Evaluate(info)}
+        }},
     }},
 }})", $"{Path.Combine(Path.Combine(Path.Combine(Path.Combine("WordPress", info.Name), "src"), "stores"), info.Name + "Store")}");
-        } 
+        }
     }
 }
