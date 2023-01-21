@@ -7,7 +7,7 @@ WPPlugin TestPlugin
         ShortString title;
         Integer count;
 
-        Authorization TestPlugin.AllowPublicAccess;
+        Authorization TestPlugin.AllowLoggedIn;
     }
 
     Entity TestChildEntity
@@ -20,6 +20,8 @@ WPPlugin TestPlugin
 
     Action AllowPublicAccess 'return true;';
 
+    Action AllowLoggedIn 'return is_user_logged_in();';
+
     Action TestActivationConcept '// ActivationAction concept test ';
     ActivationAction TestPlugin.TestActivationConcept;
 
@@ -28,4 +30,6 @@ WPPlugin TestPlugin
 
     Action TestUninstallConcept '// UninstallAction concept test ';
     UninstallAction TestPlugin.TestUninstallConcept;
+
+    JWTAuth;
 }
