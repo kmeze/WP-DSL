@@ -16,46 +16,56 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator.JsSdk
         {
             var info = (JwtAuthInfo)conceptInfo;
 
-            // Generate entity state in Pinia store
-            string snippet = $@"authToken: '',
+            // Generate state in Pinia store
+            string snippet = $@"jwtAuthToken: '',
             ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreStateTag, info.WPPlugin);
 
-            // Generate getters in Pinia store
-            snippet = $@"jwtIsLoggedIn(state) {{
-            if (state.authToken) return true
-            if (localStorage.token) {{
-                state.authToken = localStorage.token;
-                return true
-            }}
+            // Generate actions in Pinia store
+            snippet = $@"async tryToLogInUser() {{
+            if (!localStorage.token) return false
 
-            return false
+            let retVal = false
+            const token = localStorage.token
+            await axios.post(`${{this.apiUrl}}/wp-json/jwt-auth/v1/token/validate`, null, {{
+                headers: {{ Authorization: `Bearer ${{token}}`}}
+            }}).then(res => {{
+                this.jwtAuthToken = token
+                this.isLoggedIn = true
+                axios.defaults.headers['Authorization'] = `Bearer ${{token}}`
+
+                retVal = true;
+            }}).catch((error) => {{
+                retVal = false;
+            }})
+
+            return retVal
         }},
-        ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreGettersTag, info.WPPlugin);
-
-            // Generate entity actions in Pinia store
-            snippet = $@"jwtLogIn(username, password, rememberMe = false) {{
+        jwtLogIn(username, password, rememberMe = false) {{
             let token = ''
             let authorization = ''
+            let loggedIn = false
             const res = axios.post(`${{this.apiUrl}}/wp-json/jwt-auth/v1/token`, {{
                 ""username"": username,
                 ""password"": password,
             }}).then(res => {{
                 token = res.data.token
+                loggedIn = true
                 authorization = `Bearer ${{token}}`
-                if(rememberMe) localStorage.token = JSON.stringify(token)
+                if(rememberMe) localStorage.token = token
             }}).catch((error) => {{
                 localStorage.removeItem(""token"")
                 this.cleanUp()
                 console.log('%cError: %s', 'color: red;', error.message)
             }}).finally(() => {{
-                this.authToken = token
+                this.jwtAuthToken = token
+                this.isLoggedIn = loggedIn
                 axios.defaults.headers['Authorization'] = authorization
             }})
         }},
         jwtLogOut() {{
-            this.authToken = ''
+            this.jwtAuthToken = ''
+            this.isLoggedIn = false
             axios.defaults.headers['Authorization'] = ``
             localStorage.removeItem(""token"")
             this.cleanUp()
