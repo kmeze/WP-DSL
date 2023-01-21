@@ -14,6 +14,7 @@ const rememberMe = ref(true)
 
 onMounted(() => {
   testPluginStore.tryToLogInUser().then((res) => {
+        if (res) testPluginStore.fetchMe()
         if (res) testPluginStore.fetchTestEntity()
       }
   )
@@ -25,7 +26,7 @@ onMounted(() => {
     <div>
       <h1>Me</h1>
       <div>
-        <p>Logged in: {{ testPluginStore.isLoggedIn }}</p>
+        <p>Logged in as: {{ testPluginStore.me.username }}</p>
       </div>
       <div style="margin-bottom: 1rem;">
         <label>Username:</label>

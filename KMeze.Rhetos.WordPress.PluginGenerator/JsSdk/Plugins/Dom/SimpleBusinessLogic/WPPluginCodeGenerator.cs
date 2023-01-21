@@ -29,6 +29,7 @@ export const use{info.Name}Store = defineStore('{info.Name}', {{
         return {{
             apiUrl: '',
             isLoggedIn: false,
+            me: {{}},
             {PiniaStoreStateTag.Evaluate(info)}
         }}
     }},
@@ -37,6 +38,15 @@ export const use{info.Name}Store = defineStore('{info.Name}', {{
     }},
     actions: {{
         {PiniaStoreActionTag.Evaluate(info)}
+        async fetchMe() {{
+            const res = await axios.get(`${{this.apiUrl}}/wp-json/wp/v2/users/me?context=edit&_fields=id,username`).then(res => {{
+                this.me = {{
+                    id: res.data.id,
+                    username: res.data.username,
+                }}
+                res.data;
+            }})
+        }},
         cleanUp() {{
             {PiniaStoreCleanUpActionTag.Evaluate(info)}
         }},
