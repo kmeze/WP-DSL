@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 
-namespace KMeze.WordPressDSL.JsSdk
+namespace KMeze.WordPressDSL.Vue.Pinia
 {
     [Export(typeof(IGenerator))]
     public class WPPluginJsSdkGenerator : IGenerator

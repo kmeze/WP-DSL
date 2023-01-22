@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using Autofac;
 
-namespace KMeze.WordPressDSL.JsSdk
+namespace KMeze.WordPressDSL.Vue.Pinia
 {
     [Export(typeof(Module))]
     public class WPPluginJsSdkGeneratorModuleConfiguration : Module
