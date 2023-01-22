@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\KMeze.WordPressDSL\KMeze.WordPressDSL.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Rhetos" Version="5.3.0" />
-    <PackageReference Include="Rhetos.CommonConcepts" Version="5.3.0" />
-  </ItemGroup>
 </Project>
