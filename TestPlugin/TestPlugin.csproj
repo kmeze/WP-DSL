@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KMeze.Rhetos.WordPress.PluginGenerator\KMeze.Rhetos.WordPress.PluginGenerator.csproj" />
+    <ProjectReference Include="..\KMeze.WordPressDSL\KMeze.WordPressDSL.csproj" />
   </ItemGroup>
 
 </Project>
