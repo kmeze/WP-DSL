@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KMeze.Rhetos.WordPress.PluginGenerator\KMeze.Rhetos.WordPress.PluginGenerator.csproj" />
+    <ProjectReference Include="..\KMeze.WordPressDSL\KMeze.WordPressDSL.csproj" />
+    <ProjectReference Include="..\KMeze.WordPressDSL.Vue.Pinia\KMeze.WordPressDSL.Vue.Pinia.csproj" />
   </ItemGroup>
 
 </Project>
