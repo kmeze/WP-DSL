@@ -1,8 +1,12 @@
-# Rhetos WordPress Plugin Generator
+# WordPressDSL
 
-Rhetos WordPress Plugin Generator simplifies WordPress plugin development by generating PHP file from [Rhetos DSL](https://github.com/Rhetos/Rhetos/wiki/What-is-Rhetos#rhetos-dsl) script. It is a plugin package for [Rhetos development platform](https://github.com/Rhetos/Rhetos).
+WordPressDSL is implementation of
+WordPress [domain-specific language](https://en.wikipedia.org/wiki/Domain-specific_language) (DSL). It simplifies
+WordPress plugin development in the way that developers use specific high-level programming language to write
 
-See [rhetos.org](http://www.rhetos.org/) for more information on Rhetos.
+WordPressDSL is a plugin package
+for [Rhetos platform](https://github.com/Rhetos/Rhetos). See [rhetos.org](http://www.rhetos.org/)
+and [Rhetos GitHub](https://github.com/Rhetos/Rhetos) for more information on Rhetos.
 
 See [WordPress Plugin Handbook](https://developer.wordpress.org/plugins/) for more information on WordPress plugin
 development.
@@ -44,12 +48,17 @@ WPPlugin MyPlugin
 Some script explanations for beginning:
 
 1. We started with `WPPlugin` keyword to generate MyPlugin.php file.
-2. `Entity` keyword will create Non-Post Type entity (PHP class, database table, REST endpoints) together with its properties (using ShortString and Integer keywords).
-3. In `Authorization` keyword we set permission check callback for REST endpoints. Callback code is set in Action keyword bellow.
-4. `DropOnDeactivate` drops custom table from database on plugin deactivation. Delete or comment that line preserve table.
-5. The `Action` keyword creates `MyPlugin_AllowPublic() { return true; };` function in main plugin file that is used for permission check callback by REST endpoints.
+2. `Entity` keyword will create Non-Post Type entity (PHP class, database table, REST endpoints) together with its
+   properties (using ShortString and Integer keywords).
+3. In `Authorization` keyword we set permission check callback for REST endpoints. Callback code is set in Action
+   keyword bellow.
+4. `DropOnDeactivate` drops custom table from database on plugin deactivation. Delete or comment that line preserve
+   table.
+5. The `Action` keyword creates `MyPlugin_AllowPublic() { return true; };` function in main plugin file that is used for
+   permission check callback by REST endpoints.
 
-After running build following PHP code is created. And it is quite of code for simple script above that doesn't have to be written (and debugged) manually;
+After running build following PHP code is created. And it is quite of code for simple script above that doesn't have to
+be written (and debugged) manually;
 
 ```php
 <?php
