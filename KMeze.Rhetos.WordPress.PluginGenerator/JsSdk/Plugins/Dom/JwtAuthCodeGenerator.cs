@@ -28,7 +28,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator.JsSdk
             let retVal = false
             const token = localStorage.token
             await axios.post(`${{this.apiUrl}}/wp-json/jwt-auth/v1/token/validate`, null, {{
-                headers: {{ Authorization: `Bearer ${{token}}`}}
+                headers: {{Authorization: `Bearer ${{token}}`}}
             }}).then(res => {{
                 this.jwtAuthToken = token
                 this.isLoggedIn = true
@@ -52,7 +52,7 @@ namespace KMeze.Rhetos.WordPress.PluginGenerator.JsSdk
                 token = res.data.token
                 loggedIn = true
                 authorization = `Bearer ${{token}}`
-                if(rememberMe) localStorage.token = token
+                if (rememberMe) localStorage.token = token
             }}).catch((error) => {{
                 localStorage.removeItem(""token"")
                 this.cleanUp()
