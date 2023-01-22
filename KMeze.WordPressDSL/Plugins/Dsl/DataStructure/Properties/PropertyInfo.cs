@@ -1,7 +1,7 @@
 using System.ComponentModel.Composition;
 using Rhetos.Dsl;
 
-namespace KMeze.Rhetos.WordPress.PluginGenerator
+namespace KMeze.WordPressDSL
 {
     /// <summary>
     /// Property is an abstract concept: there is no ConceptKeyword.

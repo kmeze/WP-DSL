@@ -1,6 +1,6 @@
 using Rhetos.Compiler;
 
-namespace KMeze.Rhetos.WordPress.PluginGenerator
+namespace KMeze.WordPressDSL
 {
     public interface IWPPluginConceptCodeGenerator : IConceptCodeGenerator
     {

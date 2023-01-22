@@ -5,7 +5,7 @@ using Rhetos.Dom.DefaultConcepts;
 using Rhetos.Dsl;
 using Rhetos.Extensibility;
 
-namespace KMeze.Rhetos.WordPress.PluginGenerator
+namespace KMeze.WordPressDSL
 {
     [Export(typeof(IWPPluginConceptCodeGenerator))]
     [ExportMetadata(MefProvider.Implements, typeof(ShortStringPropertyInfo))]

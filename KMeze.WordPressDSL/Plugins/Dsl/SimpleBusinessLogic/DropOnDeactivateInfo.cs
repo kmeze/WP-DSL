@@ -1,7 +1,7 @@
 using System.ComponentModel.Composition;
 using Rhetos.Dsl;
 
-namespace KMeze.Rhetos.WordPress.PluginGenerator
+namespace KMeze.WordPressDSL
 {
     /// <summary>
     /// Drop entity table on plugin deactivation.

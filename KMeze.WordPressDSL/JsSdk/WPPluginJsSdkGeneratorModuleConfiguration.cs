@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using Autofac;
 
-namespace KMeze.Rhetos.WordPress.PluginGenerator.JsSdk
+namespace KMeze.WordPressDSL.JsSdk
 {
     [Export(typeof(Module))]
     public class WPPluginJsSdkGeneratorModuleConfiguration : Module

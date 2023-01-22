@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 
-namespace KMeze.Rhetos.WordPress.PluginGenerator
+namespace KMeze.WordPressDSL
 {
     [Export(typeof(IGenerator))]
     public class WPPluginGenerator : IGenerator
