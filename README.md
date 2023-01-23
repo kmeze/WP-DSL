@@ -1,4 +1,4 @@
-# WordPressDSL
+# WordPress DSL
 
 WordPressDSL is the implementation of WordPress [domain-specific language](https://en.wikipedia.org/wiki/Domain-specific_language) (DSL). It simplifies WordPress plugin development in the way that developers (mostly) use a specific high-level programming language to create WordPress plugins instead of writing extensive PHP code.
 
