@@ -69,5 +69,6 @@ function HelloWorld_uninstall() {
 
     /*WPPluginInfo UninstallHook HelloWorld*/
 } );
+
 // ...
 ```
