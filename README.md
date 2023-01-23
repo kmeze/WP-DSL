@@ -26,6 +26,7 @@ development.
 * [WPPlugin](Docs/WPPlugin.md) - generates WordPress plugin snippet
 * [ActivationHook / DeactivationHook / UninstallHook](Docs/ActivationAction-DeactivationAction-UninstallAction.md) - execute the [Action](Docs/Action.md) in the plugin activation / deactivation / uninstall hook
 * [Action](Docs/Action.md) - create (PHP) function
+* [Code](Docs/Code.md) - inserts PHP code into main plugin file.
 
 ## Simple Example
 

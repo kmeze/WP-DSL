@@ -28,5 +28,13 @@ WPPlugin TestPlugin
     Action AllowLoggedIn 'return is_user_logged_in();';
     Action TestActivationConcept '// ActivationAction concept test ';
 
+    Code 'add_action( "admin_notices", function () {
+        ?>
+            <div class="notice notice-success is-dismissible">
+                <p><?php echo "Hello World!" ?></p>
+            </div>
+        <?php
+    } );';
+
     JWTAuth;
 }
