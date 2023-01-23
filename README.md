@@ -26,6 +26,25 @@ development.
 * [Action](Docs/Action.md) - create (PHP) function
 * [Code](Docs/Code.md) - inserts PHP code into main plugin file.
 
+## Usage
+1. Create local folder (e.g. MyPlugin)
+2. Navigate into the new folder and run the following commands in terminal (Mac/Linux) or command prompt 'Windows':
+    ```
+    dotnet new classlib
+    dotnet add package KMeze.WordPressDSL
+    dotnet add package Rhetos.MSBuild
+    ```
+
+3. Create new file with `.rhe` extension (e.g. MyPlugin.rhe) and paste following code:
+    ```
+    WPPlugin MyPlugin;
+    ```
+4. Build project by running:
+    ```
+    dotnet build
+    ```
+Your new plugin is created under obj/Rhetos/Source/WordPress in its own subfolder. Copy/paste or link plugin folder to WordPress plugins folder (wordpress/wp-content/plugins) and activate it like any other WordPress plugin.
+
 ## Simple Example
 
 Following is DSL script example that demos some features.
