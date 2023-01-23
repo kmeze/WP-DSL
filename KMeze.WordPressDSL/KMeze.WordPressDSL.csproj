@@ -1,6 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>KMeze.WordPressDSL</PackageId>
+    <Description>WordPress DSL simplifies WordPress plugin development in the way that developers (mostly) use a specific high-level programming language to create WordPress plugins instead of writing extensive PHP code.</Description>
+    <PackageTags>WordPress;WordPressDSL;Rhetos;</PackageTags>
+    <Version>1.0.0</Version>
+    <Authors>Krešimir Meze</Authors>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
