@@ -32,12 +32,8 @@ WPPlugin HelloWorld
 
 ```php
 <?php
-/**
- * Plugin Name: HelloWorld
- */
 
-// Exit if accessed directly
-defined( 'ABSPATH' ) || exit;
+// ...
 
 function HelloWorld_CleanUpOnDeactivation() {
     // Put your plugin deactivation code here 
@@ -51,7 +47,7 @@ function HelloWorld_RunThisActionOnActivation() {
     // Put your plugin activation code here 
 }
 
-/*WPPluginInfo PluginBody HelloWorld*/
+// ,,,
 
 register_activation_hook( __FILE__, function () {
     HelloWorld_RunThisActionOnActivation ();
@@ -72,5 +68,6 @@ function HelloWorld_uninstall() {
     HelloWorld_CleanUpOnUninstallation ();
 
     /*WPPluginInfo UninstallHook HelloWorld*/
-}
+} );
+// ...
 ```
