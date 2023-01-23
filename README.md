@@ -22,11 +22,12 @@ development.
     * generates [REST API](https://developer.wordpress.org/rest-api/) endpoints and controller classes
     * generates database clean-up code
 
-### List of WordPressDSL concepts
+## List of WordPressDSL concepts
 * [WPPlugin](Docs/WPPlugin.md) - generates WordPress plugin snippet
 * [ActivationHook / DeactivationHook / UninstallHook](Docs/ActivationAction-DeactivationAction-UninstallAction.md) - execute the [Action](Docs/Action.md) in the plugin activation / deactivation / uninstall hook
 * [Action](Docs/Action.md) - create (PHP) function
-### Simple Example
+
+## Simple Example
 
 Following is DSL script example that demos some features.
 
