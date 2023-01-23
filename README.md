@@ -12,9 +12,7 @@ development.
 ## Features
 
 * generates WordPress main plugin file with
-  required [header comment](https://developer.wordpress.org/plugins/plugin-basics/header-requirements/)
-* setups
-  plugin [Activation / Deactivation / Uninstall Hooks](https://developer.wordpress.org/plugins/plugin-basics/activation-deactivation-hooks/)
+  required [header comment](https://developer.wordpress.org/plugins/plugin-basics/header-requirements/) and [activation / deactivation / uninstall Hooks](https://developer.wordpress.org/plugins/plugin-basics/activation-deactivation-hooks/)
 * simplifies working with custom Non-Post Type entities:
     * generates PHP classes for custom entities
     * generates [dbDelta function](https://developer.wordpress.org/reference/functions/dbdelta/) calls for create and
