@@ -1,8 +1,8 @@
 # WordPress DSL
 
-WordPressDSL is the implementation of WordPress [domain-specific language](https://en.wikipedia.org/wiki/Domain-specific_language) (DSL). It simplifies WordPress plugin development in the way that developers (mostly) use a specific high-level programming language to create WordPress plugins instead of writing extensive PHP code.
+WordPress DSL is the implementation of WordPress [domain-specific language](https://en.wikipedia.org/wiki/Domain-specific_language) (DSL). It simplifies WordPress plugin development in the way that developers (mostly) use a specific high-level programming language to create WordPress plugins instead of writing extensive PHP code.
 
-WordPressDSL is a plugin package
+WordPress DSL is a plugin package
 for [Rhetos platform](https://github.com/Rhetos/Rhetos). See [rhetos.org](http://www.rhetos.org/)
 and [Rhetos wiki](https://github.com/Rhetos/Rhetos/wiki) for more information on Rhetos.
 
@@ -20,7 +20,7 @@ development.
     * generates [REST API](https://developer.wordpress.org/rest-api/) endpoints and controller classes
     * generates database clean-up code
 
-## List of WordPressDSL concepts
+## List of WordPress DSL concepts
 * [WPPlugin](Docs/WPPlugin.md) - generates WordPress plugin snippet
 * [ActivationHook / DeactivationHook / UninstallHook](Docs/ActivationAction-DeactivationAction-UninstallAction.md) - execute the [Action](Docs/Action.md) in the plugin activation / deactivation / uninstall hook
 * [Action](Docs/Action.md) - create (PHP) function
