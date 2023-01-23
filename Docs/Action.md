@@ -7,7 +7,7 @@ Creates (PHP) function that than be called in other concepts like [ActivationHoo
 ## Usage
 
 ```
-Action <plugin>.<name> <script>
+Action <action_name> <script>
 ```
 
 ## Example

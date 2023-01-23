@@ -18,18 +18,23 @@ WPPlugin TestPlugin
         Reference parent TestPlugin.TestEntity;
     }
 
-    Action AllowPublicAccess 'return true;';
-
-    Action AllowLoggedIn 'return is_user_logged_in();';
-
-    Action TestActivationConcept '// ActivationAction concept test ';
     ActivationAction TestPlugin.TestActivationConcept;
+    DeactivationAction TestPlugin.TestDeactivationConcept;
+    UninstallAction TestPlugin.TestUninstallConcept;
 
     Action TestDeactivationConcept '// DeactivationAction concept test ';
-    DeactivationAction TestPlugin.TestDeactivationConcept;
-
     Action TestUninstallConcept '// UninstallAction concept test ';
-    UninstallAction TestPlugin.TestUninstallConcept;
+    Action AllowPublicAccess 'return true;';
+    Action AllowLoggedIn 'return is_user_logged_in();';
+    Action TestActivationConcept '// ActivationAction concept test ';
+
+    Code 'add_action( "admin_notices", function () {
+        ?>
+            <div class="notice notice-success is-dismissible">
+                <p><?php echo "Hello World!" ?></p>
+            </div>
+        <?php
+    } );';
 
     JWTAuth;
 }
