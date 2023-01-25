@@ -3,9 +3,8 @@
 WordPress DSL is the implementation of WordPress [domain-specific language](https://en.wikipedia.org/wiki/Domain-specific_language) (DSL). It simplifies WordPress plugin development in the way that developers (mostly) use a specific high-level programming language to create WordPress plugins instead of writing extensive PHP code.
 
 WordPress DSL is a plugin package
-for [Rhetos platform](https://github.com/Rhetos/Rhetos). See [rhetos.org](http://www.rhetos.org/)
-and [Rhetos wiki](https://github.com/Rhetos/Rhetos/wiki) for more information on Rhetos.
-
+built on the [Rhetos platform](https://github.com/Rhetos/Rhetos). See [rhetos.org](http://www.rhetos.org/)
+and [Rhetos wiki](https://github.com/Rhetos/Rhetos/wiki) for more information on Rhetos. 
 See [WordPress Plugin Handbook](https://developer.wordpress.org/plugins/) for more information on WordPress plugin
 development.
 
