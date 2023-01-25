@@ -21,5 +21,8 @@ namespace KMeze.WordPressDSL
 
         [ConceptKey]
         public string Priority { get; set; }
+
+        [ConceptKey]
+        public string AcceptedArgs { get; set; }
     }
 }
