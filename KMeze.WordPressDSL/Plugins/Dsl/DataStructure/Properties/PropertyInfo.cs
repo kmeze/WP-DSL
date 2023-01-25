@@ -10,7 +10,7 @@ namespace KMeze.WordPressDSL
     public class PropertyInfo : IConceptInfo
     {
         [ConceptKey]
-        public DataStructureInfo DataStructure { get; set; }
+        public EntityInfo Entity { get; set; }
 
         [ConceptKey]
         public string Name { get; set; }

@@ -17,15 +17,15 @@ namespace KMeze.WordPressDSL
 
             string snippet = $@"public ?string ${info.Name} = null;
     ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ClassPropertyTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ClassPropertyTag, info.Entity);
 
             snippet = $@",{info.Name} VARCHAR(256)
                         ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnTag, info.Entity);
 
             snippet = $@"$entity->{info.Name} = $row->{info.Name};
         ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnMapTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnMapTag, info.Entity);
         }
     }
 }

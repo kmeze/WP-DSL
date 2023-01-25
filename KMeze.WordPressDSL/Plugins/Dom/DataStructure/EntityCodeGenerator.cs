@@ -11,11 +11,11 @@ namespace KMeze.WordPressDSL
     [ExportMetadata(MefProvider.Implements, typeof(EntityInfo))]
     public class EntityCodeGenerator : IWPPluginConceptCodeGenerator
     {
-        public static readonly CsTag<DataStructureInfo> ClassPropertyTag = "ClassProperty";
-        public static readonly CsTag<DataStructureInfo> ColumnTag = "Column";
-        public static readonly CsTag<DataStructureInfo> ColumnMapTag = "ColumnMap";
-        public static readonly CsTag<DataStructureInfo> KeyMapTag = "KeyMap";
-        public static readonly CsTag<DataStructureInfo> AuthorizationTag = "Authorization";
+        public static readonly CsTag<EntityInfo> ClassPropertyTag = "ClassProperty";
+        public static readonly CsTag<EntityInfo> ColumnTag = "Column";
+        public static readonly CsTag<EntityInfo> ColumnMapTag = "ColumnMap";
+        public static readonly CsTag<EntityInfo> KeyMapTag = "KeyMap";
+        public static readonly CsTag<EntityInfo> AuthorizationTag = "Authorization";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
