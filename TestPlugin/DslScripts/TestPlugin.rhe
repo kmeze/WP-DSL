@@ -20,6 +20,8 @@ WPPlugin TestPlugin
 
     ActionHook 'admin_notices' TestPlugin.SayHello 9 0;
 
+    FilterHook 'document_title' TestPlugin.SetWebsiteTitle 10 1;
+
     ActivationAction TestPlugin.TestActivationConcept;
     DeactivationAction TestPlugin.TestDeactivationConcept;
     UninstallAction TestPlugin.TestUninstallConcept;
@@ -36,6 +38,10 @@ WPPlugin TestPlugin
                 </div>
             <?php
     ';
+    Action SetWebsiteTitle 'return $title . " - My Great Website";'
+    {
+        Arg 'title';
+    }
 
     Code 'add_action( "admin_notices", function () {
         ?>
