@@ -21,12 +21,21 @@ development.
     * generates database clean-up code
 
 ## List of WordPress DSL concepts
-* [WPPlugin](Docs/WPPlugin.md) - generates WordPress plugin snippet
+
+### Basic concepts
+
+* [WPPlugin](Docs/WPPlugin.md) - generates WordPress plugin file
 * [ActivationAction / DeactivationAction / UninstallAction](Docs/ActivationAction-DeactivationAction-UninstallAction.md) - execute the [Action](Docs/Action.md) in the plugin activation / deactivation / uninstall hook
-* [Action](Docs/Action.md) - create (PHP) function
-* [Code](Docs/Code.md) - inserts PHP code into main plugin file.
+
+### Low-level concepts
+
+In a low-level concept, you can do anything you need because you a writing common WordPress PHP code that will be inserted in a plugin file. It is recommended to use low-level concepts as less you can, only as a workaround if there isn't some higher-level concept for your need.
+
+* [Action](Docs/Action.md) - create (PHP) function in plugin file
+* [Code](Docs/Code.md) - inserts PHP code into plugin file
 
 ## Usage
+
 1. Create local folder (e.g. MyPlugin)
 2. Navigate into the new folder and run the following commands in terminal (Mac/Linux) or command prompt 'Windows':
     ```
@@ -43,4 +52,5 @@ development.
     ```
     dotnet build
     ```
+
 Your new plugin is created under obj/Rhetos/Source/WordPress in its own subfolder. Copy/paste or link plugin folder to WordPress plugins folder (wordpress/wp-content/plugins) and activate it like any other WordPress plugin.
