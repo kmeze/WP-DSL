@@ -18,6 +18,8 @@ WPPlugin TestPlugin
         Reference parent TestPlugin.TestEntity;
     }
 
+    ActionHook admin_notices TestPlugin.SayHello 9;
+
     ActivationAction TestPlugin.TestActivationConcept;
     DeactivationAction TestPlugin.TestDeactivationConcept;
     UninstallAction TestPlugin.TestUninstallConcept;
@@ -27,11 +29,18 @@ WPPlugin TestPlugin
     Action AllowPublicAccess 'return true;';
     Action AllowLoggedIn 'return is_user_logged_in();';
     Action TestActivationConcept '// ActivationAction concept test ';
+    Action SayHello '
+            ?>
+                <div class="notice notice-success is-dismissible">
+                    <p><?php echo "Hello World!" ?></p>
+                </div>
+            <?php
+    ';
 
     Code 'add_action( "admin_notices", function () {
         ?>
             <div class="notice notice-success is-dismissible">
-                <p><?php echo "Hello World!" ?></p>
+                <p><?php echo "Hello Again!" ?></p>
             </div>
         <?php
     } );';
