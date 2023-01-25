@@ -8,18 +8,14 @@ using Rhetos.Extensibility;
 namespace KMeze.WordPressDSL
 {
     [Export(typeof(IWPPluginConceptCodeGenerator))]
-    [ExportMetadata(MefProvider.Implements, typeof(ActionInfo))]
-    public class ActionCodeGenerator : IWPPluginConceptCodeGenerator
+    [ExportMetadata(MefProvider.Implements, typeof(FilterHookInfo))]
+    public class FilterHookCodeGenerator : IWPPluginConceptCodeGenerator
     {
-        public static readonly CsTag<ActionInfo> ActionArgTag = "ActionArg";
-
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
-            var info = (ActionInfo)conceptInfo;
+            var info = (FilterHookInfo)conceptInfo;
 
-            string snippet = $@"function {info.WPPlugin.Name}_{info.Name} ({ActionArgTag.Evaluate(info)} ) {{
-    {info.Script}
-}}
+            string snippet = $@"add_filter( '{info.HookName}', '{info.Callback.WPPlugin.Name}_{info.Callback.Name}', {info.Priority}, {info.AcceptedArgs});
 
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
