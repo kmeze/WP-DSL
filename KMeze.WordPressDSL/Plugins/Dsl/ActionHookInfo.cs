@@ -19,6 +19,7 @@ namespace KMeze.WordPressDSL
         [ConceptKey]
         public ActionInfo Callback { get; set; }
 
+        [ConceptKey]
         public string Priority { get; set; }
     }
 }
