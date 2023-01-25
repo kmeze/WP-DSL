@@ -15,7 +15,7 @@ namespace KMeze.WordPressDSL
         {
             var info = (ActionHookInfo)conceptInfo;
 
-            string snippet = $@"add_action( '{info.Slug}', '{info.Callback.WPPlugin.Name}_{info.Callback.Name}', {info.Priority}, {info.AcceptedArgs});
+            string snippet = $@"add_action( '{info.HookName}', '{info.Callback.WPPlugin.Name}_{info.Callback.Name}', {info.Priority}, {info.AcceptedArgs});
 
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);

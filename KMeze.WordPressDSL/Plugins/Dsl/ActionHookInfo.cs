@@ -14,7 +14,7 @@ namespace KMeze.WordPressDSL
         public WPPluginInfo WPPlugin { get; set; }
 
         [ConceptKey]
-        public string Slug { get; set; }
+        public string HookName { get; set; }
 
         [ConceptKey]
         public ActionInfo Callback { get; set; }
