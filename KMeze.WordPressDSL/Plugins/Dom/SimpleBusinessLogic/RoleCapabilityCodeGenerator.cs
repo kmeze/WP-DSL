@@ -8,15 +8,15 @@ using Rhetos.Extensibility;
 namespace KMeze.WordPressDSL
 {
     [Export(typeof(IWPPluginConceptCodeGenerator))]
-    [ExportMetadata(MefProvider.Implements, typeof(CapabilityInfo))]
+    [ExportMetadata(MefProvider.Implements, typeof(RoleCapabilityInfo))]
     public class CapabilityCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
-            var info = (CapabilityInfo)conceptInfo;
+            var info = (RoleCapabilityInfo)conceptInfo;
 
-            string snippet = $@"'{info.Cap}', ";
-            codeBuilder.InsertCode(snippet, RoleCodeGenerator.CapTag, info.Role);
+            string snippet = $@"'{info.Role.WPPlugin.Name}_{info.Capability.Slug}', ";
+            codeBuilder.InsertCode(snippet, RoleCodeGenerator.CapabilityTag, info.Role);
         }
     }
 }

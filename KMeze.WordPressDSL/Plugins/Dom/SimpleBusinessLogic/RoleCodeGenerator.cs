@@ -11,14 +11,14 @@ namespace KMeze.WordPressDSL
     [ExportMetadata(MefProvider.Implements, typeof(RoleInfo))]
     public class RoleCodeGenerator : IWPPluginConceptCodeGenerator
     {
-        public static readonly CsTag<RoleInfo> CapTag = "Cap";
+        public static readonly CsTag<RoleInfo> CapabilityTag = "Capability";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
             var info = (RoleInfo)conceptInfo;
 
             string snippet = $@"add_role( '{info.WPPlugin.Name}_{info.Slug}', '{info.Name}', array(
-        {CapTag.Evaluate(info)}
+        {CapabilityTag.Evaluate(info)}
     ) );
 
 ";

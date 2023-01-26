@@ -8,12 +8,12 @@ namespace KMeze.WordPressDSL
     /// </summary>
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("Capability")]
-    public class CapabilityInfo : IConceptInfo
+    public class RoleCapabilityInfo : IConceptInfo
     {
         [ConceptKey]
-        public WPPluginInfo WPPlugin { get; set; }
+        public RoleInfo Role { get; set; }
 
         [ConceptKey]
-        public string Slug { get; set; }
+        public CapabilityInfo Capability { get; set; }
     }
 }
