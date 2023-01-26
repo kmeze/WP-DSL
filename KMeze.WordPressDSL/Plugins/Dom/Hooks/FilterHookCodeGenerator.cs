@@ -15,10 +15,16 @@ namespace KMeze.WordPressDSL
         {
             var info = (FilterHookInfo)conceptInfo;
 
-            string snippet = $@"add_filter( '{info.HookName}', '{info.Callback.WPPlugin.Name}_{info.Callback.Name}', {info.Priority}, {info.AcceptedArgs});
+            var args = info.Args;
+            var acceptedArgs = args.Split(",", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+
+            string snippet = $@"add_filter( '{info.HookName}', '{info.Callback.WPPlugin.Name}_{info.Callback.Name}', {info.Priority}, {acceptedArgs.Count()});
 
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+
+            snippet = $@"{String.Join(", ", acceptedArgs)}";
+            codeBuilder.InsertCode(snippet, ActionCodeGenerator.ActionArgTag, info.Callback);
         }
     }
 }
