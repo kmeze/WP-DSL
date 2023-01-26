@@ -18,7 +18,7 @@ WPPlugin TestPlugin
         Reference parent TestPlugin.TestEntity;
     }
 
-    ActionHook 'admin_notices' TestPlugin.SayHello 9 '';
+    ActionHook 'admin_notices' TestPlugin.SayHello 9 '$test';
 
     FilterHook 'document_title' TestPlugin.SetWebsiteTitle 10 '$title';
 
