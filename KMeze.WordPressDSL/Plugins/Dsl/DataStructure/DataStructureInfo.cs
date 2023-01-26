@@ -4,13 +4,13 @@ using Rhetos.Dsl;
 namespace KMeze.WordPressDSL
 {
     /// <summary>
-    /// Property is an abstract concept: there is no ConceptKeyword.
+    /// DataStructure is an abstract concept: there is no ConceptKeyword.
     /// </summary>
     [Export(typeof(IConceptInfo))]
-    public class PropertyInfo : IConceptInfo
+    public class DataStructureInfo : IConceptInfo
     {
         [ConceptKey]
-        public DataStructureInfo DataStructure { get; set; }
+        public WPPluginInfo WPPlugin { get; set; }
 
         [ConceptKey]
         public string Name { get; set; }

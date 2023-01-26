@@ -11,11 +11,13 @@ namespace KMeze.WordPressDSL
     [ExportMetadata(MefProvider.Implements, typeof(ActionInfo))]
     public class ActionCodeGenerator : IWPPluginConceptCodeGenerator
     {
+        public static readonly CsTag<ActionInfo> ActionArgTag = "ActionArg";
+
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
             var info = (ActionInfo)conceptInfo;
 
-            string snippet = $@"function {info.WPPlugin.Name}_{info.Name}() {{
+            string snippet = $@"function {info.WPPlugin.Name}_{info.Name} ( {ActionArgTag.Evaluate(info)} ) {{
     {info.Script}
 }}
 

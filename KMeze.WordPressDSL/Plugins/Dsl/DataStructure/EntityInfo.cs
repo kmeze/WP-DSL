@@ -8,12 +8,7 @@ namespace KMeze.WordPressDSL
     /// </summary>
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("Entity")]
-    public class EntityInfo : IConceptInfo
+    public class EntityInfo : DataStructureInfo, IConceptInfo
     {
-        [ConceptKey]
-        public WPPluginInfo WPPlugin { get; set; }
-
-        [ConceptKey]
-        public string Name { get; set; }
     }
 }
