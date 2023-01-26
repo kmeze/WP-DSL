@@ -24,7 +24,6 @@ namespace KMeze.WordPressDSL
 
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DeactivationHookTag, info.WPPlugin);
-
         }
     }
 }
