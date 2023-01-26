@@ -13,8 +13,6 @@ namespace KMeze.WordPressDSL
     {
         public static readonly CsTag<ActionInfo> ActionArgTag = "ActionArg";
 
-        private static string str = "";
-        
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
             var info = (ActionInfo)conceptInfo;
