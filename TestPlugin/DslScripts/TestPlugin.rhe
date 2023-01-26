@@ -18,7 +18,7 @@ WPPlugin TestPlugin
         Reference parent TestPlugin.TestEntity;
     }
 
-    ActionHook 'admin_notices' TestPlugin.SayHello 9;
+    ActionHook 'admin_notices' TestPlugin.SayHello;
 
     FilterHook 'document_title' TestPlugin.SetWebsiteTitle 10 '$title';
 
@@ -46,7 +46,7 @@ WPPlugin TestPlugin
                 <p><?php echo "Hello Again!" ?></p>
             </div>
         <?php
-    } );';
+    }, 11 );';
 
     JWTAuth;
 }
