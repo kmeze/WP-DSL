@@ -13,11 +13,15 @@ namespace KMeze.WordPressDSL
     {
         public static readonly CsTag<ActionInfo> ActionArgTag = "ActionArg";
 
+        private static string str = "";
+        
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
             var info = (ActionInfo)conceptInfo;
 
-            string snippet = $@"function {info.WPPlugin.Name}_{info.Name} ({ActionArgTag.Evaluate(info)} ) {{
+            str = ActionArgTag.Evaluate(info);
+
+            string snippet = $@"function {info.WPPlugin.Name}_{info.Name} ( {ActionArgTag.Evaluate(info)} ) {{
     {info.Script}
 }}
 
