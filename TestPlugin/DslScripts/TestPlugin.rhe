@@ -18,6 +18,8 @@ WPPlugin TestPlugin
         Reference parent TestPlugin.TestEntity;
     }
 
+    Role 'test_role' 'Test Plugin Role';
+
     ActionHook 'admin_notices' TestPlugin.SayHello;
 
     FilterHook 'document_title' TestPlugin.SetWebsiteTitle DefaultPriority '$title';
