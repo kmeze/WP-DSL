@@ -25,6 +25,11 @@ WPPlugin TestPlugin
     Capability Read;
     Capability Manage;
 
+    Role Subscriber
+    {
+        Capability TestPlugin.Read;
+    }
+
     Role TestRole 'Test Plugin'
     {
         Capability TestPlugin.Read;
