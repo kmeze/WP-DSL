@@ -23,6 +23,6 @@ namespace KMeze.WordPressDSL
         public string Priority { get; set; }
 
         [ConceptKey]
-        public string AcceptedArgs { get; set; }
+        public string Args { get; set; }
     }
 }
