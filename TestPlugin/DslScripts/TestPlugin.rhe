@@ -38,10 +38,7 @@ WPPlugin TestPlugin
                 </div>
             <?php
     ';
-    Action SetWebsiteTitle 'return $title . " - My Great Website";'
-    {
-        Arg 'title';
-    }
+    Action SetWebsiteTitle 'return $title . " - My Great Website";';
 
     Code 'add_action( "admin_notices", function () {
         ?>
