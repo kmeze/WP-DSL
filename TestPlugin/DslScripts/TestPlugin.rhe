@@ -7,7 +7,11 @@ WPPlugin TestPlugin
         ShortString title;
         Integer count;
 
-        Authorization TestPlugin.AllowLoggedIn;
+//        Authorization TestPlugin.AllowLoggedIn;
+//        AllowAll;
+//        AllowLoggedIn;
+//        AllowRole TestPlugin.TestRole;
+        AllowCapability TestPlugin.Read;
     }
 
     Entity TestChildEntity
@@ -17,6 +21,26 @@ WPPlugin TestPlugin
         ShortString child_title;
         Reference parent TestPlugin.TestEntity;
     }
+
+    Capability Read;
+    Capability Manage;
+
+    Role Subscriber
+    {
+        Capability TestPlugin.Read;
+    }
+
+    Role TestRole 'Test Plugin'
+    {
+        Capability TestPlugin.Read;
+    }
+
+    Role TesAdmin 'Test Plugin Administrator'
+    {
+        Capability TestPlugin.Manage;
+    }
+
+    DefaultRole TestPlugin.TestRole;
 
     ActionHook 'admin_notices' TestPlugin.SayHello;
 
@@ -28,8 +52,8 @@ WPPlugin TestPlugin
 
     Action TestDeactivationConcept '// DeactivationAction concept test ';
     Action TestUninstallConcept '// UninstallAction concept test ';
-    Action AllowPublicAccess 'return true;';
-    Action AllowLoggedIn 'return is_user_logged_in();';
+//    Action AllowPublicAccess 'return true;';
+//    Action AllowLoggedIn 'return is_user_logged_in();';
     Action TestActivationConcept '// ActivationAction concept test ';
     Action SayHello '
             ?>
