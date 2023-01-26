@@ -20,7 +20,7 @@ WPPlugin TestPlugin
 
     ActionHook 'admin_notices' TestPlugin.SayHello 9 0;
 
-    FilterHook 'document_title' TestPlugin.SetWebsiteTitle 10 1;
+    FilterHook 'document_title' TestPlugin.SetWebsiteTitle 10 '$title';
 
     ActivationAction TestPlugin.TestActivationConcept;
     DeactivationAction TestPlugin.TestDeactivationConcept;
