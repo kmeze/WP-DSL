@@ -35,6 +35,8 @@ WPPlugin TestPlugin
         Capability TestPlugin.Manage;
     }
 
+    DefaultRole TestPlugin.TestRole;
+
     ActionHook 'admin_notices' TestPlugin.SayHello;
 
     FilterHook 'document_title' TestPlugin.SetWebsiteTitle DefaultPriority '$title';
