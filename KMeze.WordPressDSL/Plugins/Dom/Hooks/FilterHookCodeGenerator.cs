@@ -15,10 +15,13 @@ namespace KMeze.WordPressDSL
         {
             var info = (FilterHookInfo)conceptInfo;
 
+            var priority = info.Priority;
+            if (priority.Trim().ToLower() == "defaultpriority") priority = "10";
+
             var args = info.Args;
             var acceptedArgs = args.Split(",", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
-            string snippet = $@"add_filter( '{info.HookName}', '{info.Callback.WPPlugin.Name}_{info.Callback.Name}', {info.Priority}, {acceptedArgs.Count()});
+            string snippet = $@"add_filter( '{info.HookName}', '{info.Callback.WPPlugin.Name}_{info.Callback.Name}', {priority}, {acceptedArgs.Count()});
 
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);

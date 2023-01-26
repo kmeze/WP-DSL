@@ -18,7 +18,7 @@ namespace KMeze.WordPressDSL
                     WPPlugin = conceptInfo.WPPlugin,
                     HookName = conceptInfo.HookName,
                     Callback = conceptInfo.Callback,
-                    Priority = "10",
+                    Priority = "DefaultPriority",
                     Args = "",
                 });
 
