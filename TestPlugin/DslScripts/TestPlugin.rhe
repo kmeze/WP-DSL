@@ -18,7 +18,10 @@ WPPlugin TestPlugin
         Reference parent TestPlugin.TestEntity;
     }
 
-    Role 'test_role' 'Test Plugin Role';
+    Role 'test_role' 'Test Plugin Role'
+    {
+        Capability 'manage_test';
+    }
 
     ActionHook 'admin_notices' TestPlugin.SayHello;
 
