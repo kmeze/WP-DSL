@@ -19,8 +19,6 @@ namespace KMeze.WordPressDSL
         {
             var info = (ActionInfo)conceptInfo;
 
-            str = ActionArgTag.Evaluate(info);
-
             string snippet = $@"function {info.WPPlugin.Name}_{info.Name} ( {ActionArgTag.Evaluate(info)} ) {{
     {info.Script}
 }}
