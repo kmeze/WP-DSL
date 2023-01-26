@@ -7,7 +7,8 @@ WPPlugin TestPlugin
         ShortString title;
         Integer count;
 
-        AllowAll;
+//        AllowAll;
+//        AllowLoggedIn;
     }
 
     Entity TestChildEntity

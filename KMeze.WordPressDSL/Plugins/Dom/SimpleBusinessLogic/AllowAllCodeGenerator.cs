@@ -31,4 +31,30 @@ namespace KMeze.WordPressDSL
             return newConcepts;
         }
     }
+
+    [Export(typeof(IConceptMacro))]
+    public class AllowLoggedInCodeGenerator : IConceptMacro<AllowLoggedInInfo>
+    {
+        public IEnumerable<IConceptInfo> CreateNewConcepts(AllowLoggedInInfo conceptInfo, IDslModel existingConcepts)
+        {
+            var newConcepts = new List<IConceptInfo>();
+
+            ActionInfo action = new ActionInfo
+            {
+                WPPlugin = conceptInfo.Entity.WPPlugin,
+                Name = "AllowAll",
+                Script = "return is_user_logged_in();",
+            };
+
+            newConcepts.Add(action);
+
+            newConcepts.Add(new AuthorizationInfo
+            {
+                Entity = conceptInfo.Entity,
+                Action = action,
+            });
+
+            return newConcepts;
+        }
+    }
 }
