@@ -11,7 +11,7 @@ WPPlugin TestPlugin
 //        AllowAll;
 //        AllowLoggedIn;
 //        AllowRole TestPlugin.TestRole;
-//        AllowCapability TestPlugin.Read;
+        AllowCapability TestPlugin.Read;
     }
 
     Entity TestChildEntity
@@ -32,7 +32,6 @@ WPPlugin TestPlugin
 
     Role TesAdmin 'Test Plugin Administrator'
     {
-        Capability TestPlugin.Read;
         Capability TestPlugin.Manage;
     }
 
