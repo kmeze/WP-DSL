@@ -21,12 +21,12 @@ namespace KMeze.WordPressDSL
         {CapabilityTag.Evaluate(info)}
     ) );
 
-";
+    ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationHookTag, info.WPPlugin);
 
             snippet = $@"remove_role( '{info.WPPlugin.Name}_{info.Slug}' );
 
-";
+    ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DeactivationHookTag, info.WPPlugin);
         }
     }
