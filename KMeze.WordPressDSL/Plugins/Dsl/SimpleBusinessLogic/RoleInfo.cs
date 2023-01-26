@@ -16,7 +16,6 @@ namespace KMeze.WordPressDSL
         [ConceptKey]
         public string Slug { get; set; }
 
-        [ConceptKey]
         public string Name { get; set; }
     }
 }
