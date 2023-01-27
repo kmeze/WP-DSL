@@ -1,7 +1,7 @@
 using System.ComponentModel.Composition;
 using Rhetos.Dsl;
 
-namespace KMeze.WordPressDSL
+namespace KMeze.WP.DSL
 {
     /// <summary>
     /// DataStructure is an abstract concept: there is no ConceptKeyword.

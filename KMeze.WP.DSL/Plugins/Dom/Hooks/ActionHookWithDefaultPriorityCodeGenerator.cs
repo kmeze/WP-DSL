@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using KMeze.WordPressDSL;
+using KMeze.WP.DSL;
 using Rhetos.Dsl;
 using Rhetos.Dsl.DefaultConcepts;
 
-namespace KMeze.WordPressDSL
+namespace KMeze.WP.DSL
 {
     [Export(typeof(IConceptMacro))]
     public class ActionHookWithDefaultPriorityCodeGenerator : IConceptMacro<ActionHookWithDefaultPriorityInfo>

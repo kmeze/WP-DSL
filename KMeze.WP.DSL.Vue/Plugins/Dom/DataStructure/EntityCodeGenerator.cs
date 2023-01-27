@@ -5,7 +5,7 @@ using Rhetos.Dom.DefaultConcepts;
 using Rhetos.Dsl;
 using Rhetos.Extensibility;
 
-namespace KMeze.WordPressDSL.Vue.Pinia
+namespace KMeze.WP.DSL.Vue.Pinia
 {
     [Export(typeof(IWPPluginJsSdkConceptCodeGenerator))]
     [ExportMetadata(MefProvider.Implements, typeof(EntityInfo))]

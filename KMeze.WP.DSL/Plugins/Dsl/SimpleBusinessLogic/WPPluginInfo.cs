@@ -2,7 +2,7 @@ using System.ComponentModel.Composition;
 using Rhetos.Dsl;
 using Rhetos.Dsl.DefaultConcepts;
 
-namespace KMeze.WordPressDSL
+namespace KMeze.WP.DSL
 {
     /// <summary>
     /// Generates a main plugin file

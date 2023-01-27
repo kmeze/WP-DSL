@@ -1,7 +1,7 @@
 using System.ComponentModel.Composition;
 using Autofac;
 
-namespace KMeze.WordPressDSL
+namespace KMeze.WP.DSL
 {
     [Export(typeof(Module))]
     public class WPPluginGeneratorModuleConfiguration : Module
