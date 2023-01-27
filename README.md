@@ -39,7 +39,7 @@ In a low-level concept, you can do anything you need because you a writing commo
 2. Navigate into the new folder and run the following commands in terminal (Mac/Linux) or command prompt 'Windows':
     ```
     dotnet new classlib
-    dotnet add package KMeze.WordPressDSL
+    dotnet add package KMeze.WP.DSL
     dotnet add package Rhetos.MSBuild
     ```
 
