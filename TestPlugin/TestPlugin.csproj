@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KMeze.WordPressDSL\KMeze.WordPressDSL.csproj" />
+    <ProjectReference Include="..\KMeze.WP.DSL\KMeze.WP.DSL.csproj" />
     <ProjectReference Include="..\KMeze.WordPressDSL.Vue.Pinia\KMeze.WordPressDSL.Vue.Pinia.csproj" />
   </ItemGroup>
 

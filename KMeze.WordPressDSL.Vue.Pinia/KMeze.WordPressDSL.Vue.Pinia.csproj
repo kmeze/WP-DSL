@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\KMeze.WordPressDSL\KMeze.WordPressDSL.csproj" />
+    <ProjectReference Include="..\KMeze.WP.DSL\KMeze.WP.DSL.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
