@@ -5,9 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPlugin", "TestPlugin\TestPlugin.csproj", "{088F6CB6-7E50-49E6-A5B4-C4CDF50C4D41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMeze.WordPressDSL.Vue.Pinia", "KMeze.WordPressDSL.Vue.Pinia\KMeze.WordPressDSL.Vue.Pinia.csproj", "{5CDA7FFE-93B6-445F-A261-EFDD2B199ED6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMeze.WP.DSL", "KMeze.WP.DSL\KMeze.WP.DSL.csproj", "{79BD95BB-76B7-4876-8E12-6D5E4491A46D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMeze.WP.DSL.Vue", "KMeze.WP.DSL.Vue\KMeze.WP.DSL.Vue.csproj", "{C83A5505-86A0-4736-9C17-7B053436BDE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,13 +22,13 @@ Global
 		{088F6CB6-7E50-49E6-A5B4-C4CDF50C4D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{088F6CB6-7E50-49E6-A5B4-C4CDF50C4D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{088F6CB6-7E50-49E6-A5B4-C4CDF50C4D41}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5CDA7FFE-93B6-445F-A261-EFDD2B199ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CDA7FFE-93B6-445F-A261-EFDD2B199ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CDA7FFE-93B6-445F-A261-EFDD2B199ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CDA7FFE-93B6-445F-A261-EFDD2B199ED6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79BD95BB-76B7-4876-8E12-6D5E4491A46D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79BD95BB-76B7-4876-8E12-6D5E4491A46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79BD95BB-76B7-4876-8E12-6D5E4491A46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79BD95BB-76B7-4876-8E12-6D5E4491A46D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C83A5505-86A0-4736-9C17-7B053436BDE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C83A5505-86A0-4736-9C17-7B053436BDE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C83A5505-86A0-4736-9C17-7B053436BDE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C83A5505-86A0-4736-9C17-7B053436BDE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
