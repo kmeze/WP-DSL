@@ -1,8 +1,8 @@
-# WordPress DSL
+# 
 
-WordPress DSL is the implementation of WordPress [domain-specific language](https://en.wikipedia.org/wiki/Domain-specific_language) (DSL). It simplifies WordPress plugin development in the way that developers (mostly) use a specific high-level programming language to create WordPress plugins instead of writing extensive PHP code.
+WP-DSL is the implementation of WordPress [domain-specific language](https://en.wikipedia.org/wiki/Domain-specific_language) (DSL). It simplifies WordPress plugin development in the way that developers (mostly) use a specific high-level programming language to create WordPress plugins instead of writing extensive PHP code.
 
-WordPress DSL is a plugin package
+WP-DSL is a plugin package
 built on the [Rhetos platform](https://github.com/Rhetos/Rhetos). See [rhetos.org](http://www.rhetos.org/)
 and [Rhetos wiki](https://github.com/Rhetos/Rhetos/wiki) for more information on Rhetos. 
 See [WordPress Plugin Handbook](https://developer.wordpress.org/plugins/) for more information on WordPress plugin
@@ -19,7 +19,7 @@ development.
     * generates [REST API](https://developer.wordpress.org/rest-api/) endpoints and controller classes
     * generates database clean-up code
 
-## List of WordPress DSL concepts
+## List of WP-DSL concepts
 
 ### Basic concepts
 
@@ -39,7 +39,7 @@ In a low-level concept, you can do anything you need because you a writing commo
 2. Navigate into the new folder and run the following commands in terminal (Mac/Linux) or command prompt 'Windows':
     ```
     dotnet new classlib
-    dotnet add package KMeze.WordPressDSL
+    dotnet add package KMeze.WP.DSL
     dotnet add package Rhetos.MSBuild
     ```
 
