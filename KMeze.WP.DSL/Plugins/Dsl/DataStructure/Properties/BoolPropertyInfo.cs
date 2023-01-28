@@ -5,7 +5,7 @@ using KMeze.WP.DSL;
 namespace KMeze.WP.DSL
 {
     /// <summary>
-    /// Represents Amount month property.
+    /// Represents Bool property.
     /// </summary>
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("Bool")]
