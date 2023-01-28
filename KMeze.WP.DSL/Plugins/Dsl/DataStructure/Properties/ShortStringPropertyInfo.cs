@@ -4,7 +4,7 @@ using Rhetos.Dsl;
 namespace KMeze.WP.DSL
 {
     /// <summary>
-    /// Represents ShotrString property.
+    /// Represents ShotString property.
     /// </summary>
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("ShortString")]
