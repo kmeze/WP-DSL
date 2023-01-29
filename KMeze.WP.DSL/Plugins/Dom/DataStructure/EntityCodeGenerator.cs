@@ -11,9 +11,7 @@ namespace KMeze.WP.DSL
     [ExportMetadata(MefProvider.Implements, typeof(EntityInfo))]
     public class EntityCodeGenerator : IWPPluginConceptCodeGenerator
     {
-        public static readonly CsTag<DataStructureInfo> ColumnTag = "Column";
         public static readonly CsTag<DataStructureInfo> ColumnMapTag = "ColumnMap";
-        public static readonly CsTag<DataStructureInfo> KeyMapTag = "KeyMap";
         public static readonly CsTag<DataStructureInfo> AuthorizationTag = "Authorization";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
@@ -145,19 +143,22 @@ add_action( 'rest_api_init', function () {{
 
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+        }
+    }
 
-            snippet = $@"require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    global $wpdb;
-    $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
-    dbDelta( ""CREATE TABLE {{$table_name}} (
-                        ID BIGINT(20) NOT NULL AUTO_INCREMENT
-                        {ColumnTag.Evaluate(info)}
-                        ,PRIMARY KEY  (ID)
-                        {KeyMapTag.Evaluate(info)}
-                        ) {{$wpdb->get_charset_collate()}};"" );
+    [Export(typeof(IConceptMacro))]
+    public class EntityMacroCodeGenerator : IConceptMacro<EntityInfo>
+    {
+        public IEnumerable<IConceptInfo> CreateNewConcepts(EntityInfo conceptInfo, IDslModel existingConcepts)
+        {
+            var newConcepts = new List<IConceptInfo>();
 
-    ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationHookTag, info.WPPlugin);
+            newConcepts.Add(new DbDeltaInfo
+            {
+                DataStructure = conceptInfo
+            });
+
+            return newConcepts;
         }
     }
 }
