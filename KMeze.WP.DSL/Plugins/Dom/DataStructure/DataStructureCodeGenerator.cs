@@ -32,7 +32,7 @@ namespace KMeze.WP.DSL
         $dataStructure = new {info.WPPlugin.Name}_{info.Name}();
         {ClassParsePropertyTag.Evaluate(info)}
 
-        return $dataStructure;    
+        return $dataStructure;
 }}
 
     {ClassMethodTag.Evaluate(info)}
