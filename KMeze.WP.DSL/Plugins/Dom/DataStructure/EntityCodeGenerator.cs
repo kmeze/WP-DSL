@@ -11,7 +11,6 @@ namespace KMeze.WP.DSL
     [ExportMetadata(MefProvider.Implements, typeof(EntityInfo))]
     public class EntityCodeGenerator : IWPPluginConceptCodeGenerator
     {
-        public static readonly CsTag<DataStructureInfo> ClassPropertyTag = "ClassProperty";
         public static readonly CsTag<DataStructureInfo> ColumnTag = "Column";
         public static readonly CsTag<DataStructureInfo> ColumnMapTag = "ColumnMap";
         public static readonly CsTag<DataStructureInfo> KeyMapTag = "KeyMap";
@@ -21,16 +20,11 @@ namespace KMeze.WP.DSL
         {
             var info = (EntityInfo)conceptInfo;
 
+            string snippet = $@"public ?int $id = null;
+    ";
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassPropertyTag, info);
+
             // Generate entity class
-            string snippet = $@"class {info.WPPlugin.Name}_{info.Name} {{
-    public ?int $id = null;
-    {ClassPropertyTag.Evaluate(info)}
-}}
-
-";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
-
-            // Generate entity repository
             snippet = $@"class {info.WPPlugin.Name}_{info.Name}_Repository {{
     public function select_{info.Name}() {{
         global $wpdb;
@@ -119,6 +113,9 @@ namespace KMeze.WP.DSL
     }}
 
     public function get_items( $request ): array {{
+        return {info.WPPlugin.Name}_{info.Name}::get_results();
+
+
 	    return array_map( function ( $row ) {{
 	        return $this->prepare_item_for_response( $row );
 	    }}, ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->select_{info.Name}() );
