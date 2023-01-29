@@ -26,12 +26,6 @@ namespace KMeze.WP.DSL
     ";
             codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassParsePropertyTag, info);
 
-            // Generate entity class
-            snippet = $@"
-
-";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
-
             // Generate entity REST controller and register routes
             snippet = $@"class {info.WPPlugin.Name}_{info.Name}_REST_Controller {{
     public function register_routes() {{
