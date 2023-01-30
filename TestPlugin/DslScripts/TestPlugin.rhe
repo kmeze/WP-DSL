@@ -1,11 +1,10 @@
 WPPlugin TestPlugin
 {
-    DataStructure TestDataStructure
+    UserMeta TestUserMeta
     {
         ShortString StringVal;
         Integer IntVal;
         Bool BoolVal;
-        Reference Ref TestPlugin.TestDataStructure;
     }
 
     Entity TestEntity
