@@ -18,15 +18,18 @@ namespace KMeze.WP.DSL
 
             string snippet = $@"public ?bool ${info.Name} = null;
     ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ClassPropertyTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassPropertyTag, info.DataStructure);
 
-            snippet = $@",{info.Name} BOOLEAN
-                        ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnTag, info.DataStructure);
-
-            snippet = $@"$entity->{info.Name} = is_null($row->{info.Name}) ? null : (bool) $row->{info.Name};
+            snippet = $@"$dataStructure->{info.Name} = is_null($object->{info.Name}) ? null : (bool) $object->{info.Name};
         ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnMapTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassParsePropertyTag, info.DataStructure);
+
+            if (info.DataStructure is IDbDeltaDataStructure)
+            {
+                snippet = $@",{info.Name} BOOLEAN
+                        ";
+                codeBuilder.InsertCode(snippet, DbDeltaCodeGenerator.DbDeltaColumnTag, info.DataStructure);
+            }
         }
     }
 }

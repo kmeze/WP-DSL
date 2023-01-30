@@ -17,19 +17,22 @@ namespace KMeze.WP.DSL
 
             string snippet = $@"public ?int ${info.Name}_id = null;
     ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ClassPropertyTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassPropertyTag, info.DataStructure);
 
-            snippet = $@",{info.Name}_id BIGINT(20) DEFAULT NULL
-                        ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnTag, info.DataStructure);
-
-            snippet = $@"$entity->{info.Name}_id = is_null($row->{info.Name}_id) ? null : (int) $row->{info.Name}_id;
+            snippet = $@"$dataStructure->{info.Name}_id = is_null($object->{info.Name}_id) ? null : (int) $object->{info.Name}_id;
         ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnMapTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassParsePropertyTag, info.DataStructure);
 
-            snippet = $@",KEY ind_{info.DataStructure.Name}_{info.Name}_id ({info.Name}_id)
+            if (info.DataStructure is IDbDeltaDataStructure)
+            {
+                snippet = $@",{info.Name}_id BIGINT(20) DEFAULT NULL
                         ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.KeyMapTag, info.DataStructure);
+                codeBuilder.InsertCode(snippet, DbDeltaCodeGenerator.DbDeltaColumnTag, info.DataStructure);
+
+                snippet = $@",KEY ind_{info.DataStructure.Name}_{info.Name}_id ({info.Name}_id)
+                        ";
+                codeBuilder.InsertCode(snippet, DbDeltaCodeGenerator.DbDeltaKeyTag, info.DataStructure);
+            }
         }
     }
 }
