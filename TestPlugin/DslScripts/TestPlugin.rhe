@@ -1,5 +1,13 @@
 WPPlugin TestPlugin
 {
+    DataStructure TestDataStructure
+    {
+        ShortString StringVal;
+        Integer IntVal;
+        Bool BoolVal;
+        Reference Ref TestPlugin.TestDataStructure;
+    }
+
     Entity TestEntity
     {
         // DropOnDeactivate;
