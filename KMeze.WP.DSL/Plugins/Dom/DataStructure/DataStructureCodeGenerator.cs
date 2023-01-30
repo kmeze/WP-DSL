@@ -28,7 +28,7 @@ namespace KMeze.WP.DSL
         {ClassConstructorTag.Evaluate(info)}
     }}
 
-    protected static function parse( $object ):{info.WPPlugin.Name}_{info.Name} {{
+    public static function parse( $object ):{info.WPPlugin.Name}_{info.Name} {{
         $dataStructure = new {info.WPPlugin.Name}_{info.Name}();
         {ClassParsePropertyTag.Evaluate(info)}
 
