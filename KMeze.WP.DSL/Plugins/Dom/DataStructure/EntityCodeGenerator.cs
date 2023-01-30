@@ -25,20 +25,4 @@ namespace KMeze.WP.DSL
             codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassParsePropertyTag, info);
         }
     }
-
-    [Export(typeof(IConceptMacro))]
-    public class EntityMacroCodeGenerator : IConceptMacro<EntityInfo>
-    {
-        public IEnumerable<IConceptInfo> CreateNewConcepts(EntityInfo conceptInfo, IDslModel existingConcepts)
-        {
-            var newConcepts = new List<IConceptInfo>();
-
-            newConcepts.Add(new DbDeltaInfo
-            {
-                DataStructure = conceptInfo
-            });
-
-            return newConcepts;
-        }
-    }
 }

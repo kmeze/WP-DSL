@@ -23,15 +23,15 @@ namespace KMeze.WP.DSL
         ";
             codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassParsePropertyTag, info.DataStructure);
 
-            if (info.DataStructure is IDbDeltaDataStructure)
+            if (info.DataStructure is EntityInfo)
             {
                 snippet = $@",{info.Name}_id BIGINT(20) DEFAULT NULL
                         ";
-                codeBuilder.InsertCode(snippet, DbDeltaCodeGenerator.DbDeltaColumnTag, info.DataStructure);
+                codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaColumnTag, info.DataStructure);
 
                 snippet = $@",KEY ind_{info.DataStructure.Name}_{info.Name}_id ({info.Name}_id)
                         ";
-                codeBuilder.InsertCode(snippet, DbDeltaCodeGenerator.DbDeltaKeyTag, info.DataStructure);
+                codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaKeyTag, info.DataStructure);
             }
         }
     }
