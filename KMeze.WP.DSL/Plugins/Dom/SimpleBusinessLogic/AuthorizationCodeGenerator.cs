@@ -18,7 +18,7 @@ namespace KMeze.WP.DSL
             string snippet = $@"if ( (bool) {info.Entity.WPPlugin.Name}_{info.Action.Name} () ) return true;
 
         ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.AuthorizationTag, info.Entity);
+            codeBuilder.InsertCode(snippet, EntityRestControllerCodeGenerator.AuthorizationTag, info.Entity);
         }
     }
 }

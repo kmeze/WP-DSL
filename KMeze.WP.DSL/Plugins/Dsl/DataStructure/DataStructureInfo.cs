@@ -4,9 +4,10 @@ using Rhetos.Dsl;
 namespace KMeze.WP.DSL
 {
     /// <summary>
-    /// DataStructure is an abstract concept: there is no ConceptKeyword.
+    ///
     /// </summary>
     [Export(typeof(IConceptInfo))]
+    [ConceptKeyword("DataStructure")]
     public class DataStructureInfo : IConceptInfo
     {
         [ConceptKey]

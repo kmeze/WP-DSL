@@ -7,8 +7,8 @@ namespace KMeze.WP.DSL
     /// Represents custom entity.
     /// </summary>
     [Export(typeof(IConceptInfo))]
-    [ConceptKeyword("Entity")]
-    public class EntityInfo : DataStructureInfo
+    [ConceptKeyword("UserMeta")]
+    public class UserMetaInfo : DataStructureInfo
     {
     }
 }

@@ -17,15 +17,18 @@ namespace KMeze.WP.DSL
 
             string snippet = $@"public ?string ${info.Name} = null;
     ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ClassPropertyTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassPropertyTag, info.DataStructure);
 
-            snippet = $@",{info.Name} VARCHAR(256)
-                        ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnTag, info.DataStructure);
-
-            snippet = $@"$entity->{info.Name} = $row->{info.Name};
+            snippet = $@"$dataStructure->{info.Name} = $object->{info.Name};
         ";
-            codeBuilder.InsertCode(snippet, EntityCodeGenerator.ColumnMapTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassParsePropertyTag, info.DataStructure);
+
+            if (info.DataStructure is EntityInfo)
+            {
+                snippet = $@",{info.Name} VARCHAR(256)
+                        ";
+                codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaColumnTag, info.DataStructure);
+            }
         }
     }
 }

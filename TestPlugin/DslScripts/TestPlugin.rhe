@@ -1,11 +1,22 @@
 WPPlugin TestPlugin
 {
+    UserMeta TestUserMeta
+    {
+        ShortString StringVal
+        {
+            Default 'date( "Ym", strtotime( wp_get_current_user()->user_registered ) )';
+        }
+        Integer IntVal { Default '(int) date("Y", strtotime("+5 years"))'; }
+        Bool BoolVal;
+    }
+
     Entity TestEntity
     {
         // DropOnDeactivate;
 
         ShortString title;
         Integer count;
+        Bool active;
 
 //        Authorization TestPlugin.AllowLoggedIn;
 //        AllowAll;
