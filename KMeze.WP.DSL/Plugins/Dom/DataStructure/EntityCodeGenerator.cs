@@ -38,11 +38,6 @@ namespace KMeze.WP.DSL
                 DataStructure = conceptInfo
             });
 
-            newConcepts.Add(new RepositoryInfo
-            {
-                DataStructure = conceptInfo
-            });
-
             return newConcepts;
         }
     }

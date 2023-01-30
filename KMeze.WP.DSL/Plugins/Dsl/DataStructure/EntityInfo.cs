@@ -8,7 +8,7 @@ namespace KMeze.WP.DSL
     /// </summary>
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("Entity")]
-    public class EntityInfo : DataStructureInfo, IDbDeltaDataStructure, IRepositoryDataStructure
+    public class EntityInfo : DataStructureInfo, IDbDeltaDataStructure
     {
     }
 }
