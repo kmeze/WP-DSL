@@ -2,8 +2,11 @@ WPPlugin TestPlugin
 {
     UserMeta TestUserMeta
     {
-        ShortString StringVal;
-        Integer IntVal;
+        ShortString StringVal
+        {
+            Default 'date( "Ym", strtotime( wp_get_current_user()->user_registered ) )';
+        }
+        Integer IntVal { Default '(int) date("Y", strtotime("+5 years"))'; }
         Bool BoolVal;
     }
 
