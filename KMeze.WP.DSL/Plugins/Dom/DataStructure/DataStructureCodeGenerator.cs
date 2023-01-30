@@ -33,7 +33,7 @@ namespace KMeze.WP.DSL
         {ClassParsePropertyTag.Evaluate(info)}
 
         return $dataStructure;
-}}
+    }}
 
     {ClassMethodTag.Evaluate(info)}
 }}
