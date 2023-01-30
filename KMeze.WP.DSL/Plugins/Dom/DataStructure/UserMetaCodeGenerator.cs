@@ -21,6 +21,8 @@ namespace KMeze.WP.DSL
             'get_callback' => function ( $user, $key ) {{
                 $meta = get_user_meta( $user['id'], $key, true );
 
+                if ( empty ( $meta ) ) return new {info.WPPlugin.Name}_{info.Name}();
+
                 return {info.WPPlugin.Name}_{info.Name}::parse( (object) $meta );;
             }},
             'update_callback' => function ( $value, $user, $key ) {{
