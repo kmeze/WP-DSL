@@ -15,8 +15,7 @@ namespace KMeze.WP.DSL
         {
             var info = (TakeInfo)conceptInfo;
 
-            // TODO: IMPORTANT CVIS_ MUST BE wpdb->prefilx; MULTIPLE CS FILES
-            string snippet = $@",cvis_{info.Property.DataStructure.WPPlugin.Name}_{info.Property.DataStructure.Name}.{info.Property.Name}
+            string snippet = $@",$this->source_table_name.{info.Property.Name}
                     ";
             codeBuilder.InsertCode(snippet, ListCodeGenerator.ListColumnTag, info.List);
         }
