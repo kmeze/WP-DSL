@@ -19,8 +19,6 @@ namespace KMeze.WP.DSL
             var info = (ListInfo)conceptInfo;
 
             string snippet = $@"public function get() {{
-        global $wpdb;
-        $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
 
         // TODO: IMPORTANT CVIS_ MUST BE wpdb->prefilx; MULTIPLE CS FILES
         $sql = ""SELECT cvis_{info.Source.WPPlugin.Name}_{info.Source.Name}.ID
@@ -28,7 +26,7 @@ namespace KMeze.WP.DSL
                 FROM cvis_{info.Source.WPPlugin.Name}_{info.Source.Name}
                 {ListJoinTag.Evaluate(info)};"";
 
-        return $wpdb->get_results( $sql );
+        return $this->wpdb->get_results( $sql );
     }}
 
 ";

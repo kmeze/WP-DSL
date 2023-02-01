@@ -21,9 +21,12 @@ namespace KMeze.WP.DSL
             var info = (DataStructureInfo)conceptInfo;
 
             string snippet = $@"class {info.WPPlugin.Name}_{info.Name}_Repository {{
+    protected ?wpdb $wpdb = null;
     {RepositoryClassPropertyTag.Evaluate(info)}
 
     public function __construct() {{
+        global $wpdb;
+        $this->wpdb = $wpdb;
         {RepositoryClassConstructorTag.Evaluate(info)}
     }}
 
