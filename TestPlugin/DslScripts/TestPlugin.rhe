@@ -36,10 +36,6 @@ WPPlugin TestPlugin
     List FlatList TestPlugin.TestChildEntity
     {
         Take child_title;
-        FromReference TestPlugin.TestChildEntity.parent
-        {
-            Take title;
-        }
 
         AllowAll;
     }
