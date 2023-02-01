@@ -28,7 +28,7 @@ namespace KMeze.WP.DSL
         {info.Action.Script}
     }}
 
-    ";
+";
             codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassMethodTag, info.DataStructure);
         }
     }
