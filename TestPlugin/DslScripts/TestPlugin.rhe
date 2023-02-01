@@ -36,22 +36,33 @@ WPPlugin TestPlugin
     Select FlatSelect
         "
             SELECT
-                e.ID,
-                e.title,
-                c.parent_id,
-                c.`child_title`
+                c.ID,
+                c.child_title,
+                c.parent_id
              FROM
-                cvis_TestPlugin_TestEntity e
-	            LEFT JOIN cvis_TestPlugin_TestChildEntity c ON c.parent_id = e.ID;
+                cvis_TestPlugin_TestChildEntity c;
         "
     {
         Integer ID;
-        Integer parent_id;
-        ShortString title;
         ShortString child_title;
+        Integer parent_id;
+
+        Action TestPlugin.Orphans;
 
         AllowAll;
     }
+
+    Action Orphans '
+		$result = array_map( function ( $row ) {
+			return $this->prepare_item_for_response( $row );
+		}, ( new TestPlugin_FlatSelect_Repository() )->get() );
+
+		return array_filter( $result, function ( $item ) {
+			if ( empty( $item->parent_id ) ) {
+				return $item;
+			}
+		} );
+    ';
 
     List FlatList TestPlugin.TestChildEntity
     {
