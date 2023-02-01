@@ -38,8 +38,10 @@ WPPlugin TestPlugin
         Take child_title;
         FromReference TestPlugin.TestChildEntity.parent
         {
-            Take TestPlugin.TestEntity.title;
+            Take title;
         }
+
+        AllowAll;
     }
 
     Capability Read;
