@@ -40,7 +40,7 @@ WPPlugin TestPlugin
                 c.child_title,
                 c.parent_id
              FROM
-                cvis_TestPlugin_TestChildEntity c;
+                {$table('TestPlugin.TestChildEntity')} c;
         "
     {
         Integer ID;

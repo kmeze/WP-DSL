@@ -16,6 +16,10 @@ namespace KMeze.WP.DSL
             var info = (SelectInfo)conceptInfo;
 
             string snippet = $@"public function get() {{
+	    $table = function (string $entityFullName):string {{
+		    return $this->wpdb->prefix . str_replace('.', '_', $entityFullName);
+	    }};
+
         return $this->wpdb->get_results( ""{info.Query}"" );
     }}
 
