@@ -38,12 +38,6 @@ namespace KMeze.WP.DSL
             'permission_callback' => array( $this, 'item_permissions_check' ),
         ) );
 
-        register_rest_route( $this->namespace, $this->resource_name . '/(?P<id>[\d]+)', array(
-            'methods'             => 'GET',
-            'callback'            => array( $this, 'get_item' ),
-            'permission_callback' => array( $this, 'item_permissions_check' ),
-        ) );
-
         ";
             codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassRegisterRoutesTag, info);
 
