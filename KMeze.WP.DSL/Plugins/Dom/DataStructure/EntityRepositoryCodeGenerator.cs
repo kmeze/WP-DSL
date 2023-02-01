@@ -11,27 +11,25 @@ namespace KMeze.WP.DSL
     [ExportMetadata(MefProvider.Implements, typeof(EntityInfo))]
     public class EntityRepositoryCodeGenerator : IWPPluginConceptCodeGenerator
     {
-
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
             var info = (EntityInfo)conceptInfo;
 
-            string snippet = $@"class {info.WPPlugin.Name}_{info.Name}_Repository {{
-    public function select_{info.Name}() {{
+            string snippet = $@"public function get() {{
         global $wpdb;
         $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
 
         return $wpdb->get_results( ""SELECT * FROM {{$table_name}};"" );
     }}
 
-    public function select_{info.Name}_by_ID( int $id ) {{
+    public function get_by_ID( int $id ) {{
         global $wpdb;
         $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
 
         return $wpdb->get_row( ""SELECT * FROM {{$table_name}} WHERE ID={{$id}};"" );
     }}
 
-    public function insert_{info.Name}( array $data ) {{
+    public function insert( array $data ): int {{
         global $wpdb;
         $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
         $wpdb->insert( $table_name, $data );
@@ -39,21 +37,20 @@ namespace KMeze.WP.DSL
         return $wpdb->insert_id;
     }}
 
-    public function update_{info.Name}( int $id, array $data ) {{
+    public function update( int $id, array $data ) {{
 	    global $wpdb;
 	    $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
 	    $wpdb->update( $table_name, $data, array( 'id' => $id ) );
     }}
 
-    public function delete_{info.Name}( int $id ) {{
+    public function delete( int $id ) {{
 	    global $wpdb;
 	    $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
 	    $wpdb->delete( $table_name, array( 'id' => $id ) );
     }}
-}}
 
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassMethodTag, info);
         }
     }
 }
