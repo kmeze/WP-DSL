@@ -11,24 +11,24 @@ namespace KMeze.WP.DSL
         public ListInfo List { get; set; }
 
         [ConceptKey]
-        public ReferencePropertyInfo SourceReferencePropertyInfo { get; set; }
+        public string SourceReferenceName { get; set; }
     }
 
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("FromReference")]
-    public class FromReferenceNameInfo : IConceptInfo
+    public class FromReferenceMacroInfo : IConceptInfo
     {
         [ConceptKey]
         public ListInfo List { get; set; }
 
         [ConceptKey]
-        public string SourceReferenceName { get; set; }
+        public ReferencePropertyInfo SourceReferencePropertyInfo { get; set; }
     }
 
     [Export(typeof(IConceptMacro))]
-    public class FromNamedReferenceMacro : IConceptMacro<FromReferenceNameInfo>
+    public class FromReferenceMacro : IConceptMacro<FromReferenceInfo>
     {
-        public IEnumerable<IConceptInfo> CreateNewConcepts(FromReferenceNameInfo conceptInfo, IDslModel existingConcepts)
+        public IEnumerable<IConceptInfo> CreateNewConcepts(FromReferenceInfo conceptInfo, IDslModel existingConcepts)
         {
             // Get source ReferencePropertyInfo
             ReferencePropertyInfo rpi = existingConcepts.FindByReference<ReferencePropertyInfo>(ci => ci.DataStructure, conceptInfo.List.Source)
@@ -43,7 +43,7 @@ namespace KMeze.WP.DSL
                 ReferencedDataStructure = rpi.ReferencedDataStructure,
             };
 
-            var fromReferenceInfo = new FromReferenceInfo
+            var fromReferenceInfo = new FromReferenceMacroInfo
             {
                 List = conceptInfo.List,
                 SourceReferencePropertyInfo = reference,

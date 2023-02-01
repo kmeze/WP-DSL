@@ -8,7 +8,7 @@ namespace KMeze.WP.DSL
     public class TakeFromReferenceInfo : IConceptInfo
     {
         [ConceptKey]
-        public FromReferenceInfo FromReference { get; set; }
+        public FromReferenceMacroInfo FromReference { get; set; }
 
         [ConceptKey]
         public string Name { get; set; }
