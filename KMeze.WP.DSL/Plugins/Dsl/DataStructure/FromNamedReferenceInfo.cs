@@ -27,13 +27,13 @@ namespace KMeze.WP.DSL
             {
                 DataStructure = conceptInfo.List.Source,
                 Name = conceptInfo.Name,
-                Referenced = rpi.Referenced,
+                ReferencedDataStructure = rpi.ReferencedDataStructure,
             };
 
             var fromReferenceInfo = new FromReferenceInfo
             {
                 List = conceptInfo.List,
-                Reference = reference,
+                SourceReferencePropertyName = reference,
             };
 
             return new IConceptInfo[] { reference, fromReferenceInfo };
