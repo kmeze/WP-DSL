@@ -18,15 +18,21 @@ namespace KMeze.WP.DSL
         {
             var info = (ListInfo)conceptInfo;
 
-            string snippet = $@"
+            string snippet = $@"public function get() {{
+        global $wpdb;
+        $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
 
-$slq = "" SELECT cvis_{info.Source.WPPlugin.Name}_{info.Source.Name}.ID
-    {ListColumnTag.Evaluate(info)}
-FROM cvis_{info.Source.WPPlugin.Name}_{info.Source.Name}
-{ListJoinTag.Evaluate(info)}; "";
+        // TODO: IMPORTANT CVIS_ MUST BE wpdb->prefilx; MULTIPLE CS FILES
+        $sql = ""SELECT cvis_{info.Source.WPPlugin.Name}_{info.Source.Name}.ID
+                    {ListColumnTag.Evaluate(info)}
+                FROM cvis_{info.Source.WPPlugin.Name}_{info.Source.Name}
+                {ListJoinTag.Evaluate(info)};"";
+
+        return $wpdb->get_results( $sql );
+    }}
 
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassMethodTag, info);
         }
     }
 }
