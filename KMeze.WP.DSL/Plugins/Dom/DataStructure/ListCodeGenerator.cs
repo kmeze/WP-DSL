@@ -36,7 +36,7 @@ namespace KMeze.WP.DSL
 
             snippet = $@"public function get() {{
 
-        $sql = ""SELECT $this->source_table_name.ID
+        $sql = ""SELECT $this->source_table_name.ID AS ID
                     {ListColumnTag.Evaluate(info)}
                 FROM $this->source_table_name
                 {ListJoinTag.Evaluate(info)};"";
