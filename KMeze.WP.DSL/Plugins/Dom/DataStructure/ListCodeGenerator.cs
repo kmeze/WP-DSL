@@ -18,12 +18,27 @@ namespace KMeze.WP.DSL
         {
             var info = (ListInfo)conceptInfo;
 
-            string snippet = $@"public function get() {{
+            string snippet = $@"public ?int $id = null;
+    ";
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataStructureClassPropertyTag, info);
 
-        // TODO: IMPORTANT CVIS_ MUST BE wpdb->prefilx; MULTIPLE CS FILES
-        $sql = ""SELECT cvis_{info.Source.WPPlugin.Name}_{info.Source.Name}.ID
+            snippet = $@"$dataStructure->id = (int) $object->ID;
+        ";
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataClassParsePropertyTag, info);
+
+            snippet = $@"protected ?string $source_table_name = null;
+    ";
+            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassPropertyTag, info);
+
+            snippet = $@"$this->source_table_name = $this->wpdb->prefix . '{info.Source.WPPlugin.Name}_{info.Source.Name}';
+        ";
+            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassConstructorTag, info);
+
+            snippet = $@"public function get() {{
+
+        $sql = ""SELECT $this->source_table_name.ID
                     {ListColumnTag.Evaluate(info)}
-                FROM cvis_{info.Source.WPPlugin.Name}_{info.Source.Name}
+                FROM $this->source_table_name
                 {ListJoinTag.Evaluate(info)};"";
 
         return $this->wpdb->get_results( $sql );
