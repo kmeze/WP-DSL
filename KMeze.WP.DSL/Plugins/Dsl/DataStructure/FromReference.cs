@@ -30,10 +30,12 @@ namespace KMeze.WP.DSL
     {
         public IEnumerable<IConceptInfo> CreateNewConcepts(FromReferenceNameInfo conceptInfo, IDslModel existingConcepts)
         {
+            // Get source ReferencePropertyInfo
             ReferencePropertyInfo rpi = existingConcepts.FindByReference<ReferencePropertyInfo>(ci => ci.DataStructure, conceptInfo.List.Source)
                .Where(ci => ci.Name == conceptInfo.SourceReferenceName)
                .FirstOrDefault();
 
+            // Create FormReferenceInfo
             var reference = new ReferencePropertyInfo
             {
                 DataStructure = conceptInfo.List.Source,
