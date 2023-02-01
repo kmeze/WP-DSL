@@ -14,6 +14,6 @@ namespace KMeze.WP.DSL
         public ListInfo List { get; set; }
 
         [ConceptKey]
-        public ReferencePropertyInfo Reference { get; set; }
+        public ReferencePropertyInfo SourceReferencePropertyName { get; set; }
     }
 }
