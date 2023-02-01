@@ -19,6 +19,7 @@ namespace KMeze.WP.DSL
     {
         public IEnumerable<IConceptInfo> CreateNewConcepts(TakeInfo conceptInfo, IDslModel existingConcepts)
         {
+            // Create PropertyInfo and add to List to generate DataStructure class properties and parse funcion mapping
             var pi = existingConcepts.FindByReference<PropertyInfo>(ci => ci.DataStructure, conceptInfo.SourcePropertyName.DataStructure)
                 .Where(ci => ci.Name == conceptInfo.SourcePropertyName.Name)
                 .SingleOrDefault();
