@@ -11,7 +11,7 @@ namespace KMeze.WP.DSL
     public class AuthorizationInfo : IConceptInfo
     {
         [ConceptKey]
-        public EntityInfo Entity { get; set; }
+        public DataStructureInfo DataStructure { get; set; }
 
         [ConceptKey]
         public ActionInfo Action { get; set; }

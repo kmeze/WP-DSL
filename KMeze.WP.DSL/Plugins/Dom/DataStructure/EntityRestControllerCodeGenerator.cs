@@ -11,8 +11,6 @@ namespace KMeze.WP.DSL
     [ExportMetadata(MefProvider.Implements, typeof(EntityInfo))]
     public class EntityRestControllerCodeGenerator : IWPPluginConceptCodeGenerator
     {
-        public static readonly CsTag<EntityInfo> AuthorizationTag = "Authorization";
-
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
             var info = (EntityInfo)conceptInfo;
@@ -49,13 +47,7 @@ namespace KMeze.WP.DSL
         ";
             codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassRegisterRoutesTag, info);
 
-            snippet = $@"public function item_permissions_check( $request ): bool {{
-        {AuthorizationTag.Evaluate(info)}
-
-        return false;
-    }}
-
-    private function prepare_item_for_response( $row ) {{
+            snippet = $@"private function prepare_item_for_response( $row ) {{
         return {info.WPPlugin.Name}_{info.Name}::parse( $row );
     }}
 

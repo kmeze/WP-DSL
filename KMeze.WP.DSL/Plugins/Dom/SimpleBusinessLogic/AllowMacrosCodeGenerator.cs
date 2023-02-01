@@ -15,7 +15,7 @@ namespace KMeze.WP.DSL
 
             ActionInfo action = new ActionInfo
             {
-                WPPlugin = conceptInfo.Entity.WPPlugin,
+                WPPlugin = conceptInfo.DataStructure.WPPlugin,
                 Name = "AllowAll",
                 Script = "return true;",
             };
@@ -24,7 +24,7 @@ namespace KMeze.WP.DSL
 
             newConcepts.Add(new AuthorizationInfo
             {
-                Entity = conceptInfo.Entity,
+                DataStructure = conceptInfo.DataStructure,
                 Action = action,
             });
 
@@ -41,7 +41,7 @@ namespace KMeze.WP.DSL
 
             ActionInfo action = new ActionInfo
             {
-                WPPlugin = conceptInfo.Entity.WPPlugin,
+                WPPlugin = conceptInfo.DataStructure.WPPlugin,
                 Name = "AllowLoggedIn",
                 Script = "return is_user_logged_in();",
             };
@@ -50,7 +50,7 @@ namespace KMeze.WP.DSL
 
             newConcepts.Add(new AuthorizationInfo
             {
-                Entity = conceptInfo.Entity,
+                DataStructure = conceptInfo.DataStructure,
                 Action = action,
             });
 
@@ -67,7 +67,7 @@ namespace KMeze.WP.DSL
 
             ActionInfo action = new ActionInfo
             {
-                WPPlugin = conceptInfo.Entity.WPPlugin,
+                WPPlugin = conceptInfo.DataStructure.WPPlugin,
                 Name = "AllowRole",
                 Script = $@"if (! is_user_logged_in() ) return false;
 
@@ -82,7 +82,7 @@ namespace KMeze.WP.DSL
 
             newConcepts.Add(new AuthorizationInfo
             {
-                Entity = conceptInfo.Entity,
+                DataStructure = conceptInfo.DataStructure,
                 Action = action,
             });
 
@@ -99,11 +99,11 @@ namespace KMeze.WP.DSL
 
             ActionInfo action = new ActionInfo
             {
-                WPPlugin = conceptInfo.Entity.WPPlugin,
+                WPPlugin = conceptInfo.DataStructure.WPPlugin,
                 Name = "AllowCapability",
                 Script = $@"if (! is_user_logged_in() ) return false;
 
-    if ( current_user_can( '{conceptInfo.Entity.WPPlugin.Name}_{conceptInfo.Capability.Slug}' ) ) return true;
+    if ( current_user_can( '{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.Capability.Slug}' ) ) return true;
 
     return false;
 ",
@@ -113,7 +113,7 @@ namespace KMeze.WP.DSL
 
             newConcepts.Add(new AuthorizationInfo
             {
-                Entity = conceptInfo.Entity,
+                DataStructure = conceptInfo.DataStructure,
                 Action = action,
             });
 

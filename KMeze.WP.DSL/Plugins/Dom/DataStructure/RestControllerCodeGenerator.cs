@@ -16,6 +16,7 @@ namespace KMeze.WP.DSL
         public static readonly CsTag<DataStructureInfo> RestControllerClassConstructorTag = "RestControllerClassConstructor";
         public static readonly CsTag<DataStructureInfo> RestControllerClassRegisterRoutesTag = "RestControllerClassRegisterRoutes";
         public static readonly CsTag<DataStructureInfo> RestControllerClassMethodTag = "RestControllerClassMethod";
+        public static readonly CsTag<DataStructureInfo> RestControllerAuthorizationTag = "Authorization";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -34,6 +35,12 @@ namespace KMeze.WP.DSL
 
     public function register_routes() {{
         {RestControllerClassRegisterRoutesTag.Evaluate(info)}
+    }}
+
+    public function item_permissions_check( $request ): bool {{
+        {RestControllerAuthorizationTag.Evaluate(info)}
+
+        return false;
     }}
 
     {RestControllerClassMethodTag.Evaluate(info)}

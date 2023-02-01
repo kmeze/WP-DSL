@@ -13,7 +13,6 @@ namespace KMeze.WP.DSL
     {
         public static readonly CsTag<ListInfo> ListColumnTag = "ListColumn";
         public static readonly CsTag<ListInfo> ListJoinTag = "ListJoin";
-        public static readonly CsTag<ListInfo> AuthorizationTag = "Authorization";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -48,13 +47,7 @@ namespace KMeze.WP.DSL
         ";
             codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassRegisterRoutesTag, info);
 
-            snippet = $@"public function item_permissions_check( $request ): bool {{
-        {AuthorizationTag.Evaluate(info)}
-
-        return false;
-    }}
-
-    private function prepare_item_for_response( $row ) {{
+            snippet = $@"private function prepare_item_for_response( $row ) {{
         return {info.WPPlugin.Name}_{info.Name}::parse( $row );
     }}
 
