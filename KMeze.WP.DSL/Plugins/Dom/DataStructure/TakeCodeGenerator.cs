@@ -15,7 +15,7 @@ namespace KMeze.WP.DSL
         {
             var info = (TakeInfo)conceptInfo;
 
-            string snippet = $@",$this->source_table_name.{info.SourcePropertyInfo.Name} AS {info.SourcePropertyInfo.Name}
+            string snippet = $@",$this->source_table_name.{info.SourcePropertyName} AS {info.SourcePropertyName}
                     ";
             codeBuilder.InsertCode(snippet, ListCodeGenerator.ListColumnTag, info.List);
         }
