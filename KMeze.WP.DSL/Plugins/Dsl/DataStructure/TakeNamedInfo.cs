@@ -28,7 +28,7 @@ namespace KMeze.WP.DSL
             var takeInfo = new TakeInfo
             {
                 List = conceptInfo.List,
-                Property = property,
+                SourcePropertyName = property,
             };
 
             return new IConceptInfo[] { property, takeInfo };
