@@ -33,7 +33,7 @@ namespace KMeze.WP.DSL
             var fromReferenceInfo = new FromReferenceInfo
             {
                 List = conceptInfo.List,
-                SourceReferencePropertyName = reference,
+                SourceReferencePropertyInfo = reference,
             };
 
             return new IConceptInfo[] { reference, fromReferenceInfo };

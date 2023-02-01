@@ -24,7 +24,7 @@ namespace KMeze.WP.DSL
         {
             // FromReference.Reference je što (ReferenceProperty u Source DataStructure)
             var re = existingConcepts.FindByReference<ReferencePropertyInfo>(ci => ci.DataStructure, conceptInfo.FromReference.List.Source)
-                .Where(ci => ci.Name == conceptInfo.FromReference.SourceReferencePropertyName.Name)
+                .Where(ci => ci.Name == conceptInfo.FromReference.SourceReferencePropertyInfo.Name)
                 .SingleOrDefault();
 
             var pi = existingConcepts.FindByReference<PropertyInfo>(ci => ci.DataStructure, re.ReferencedDataStructure)
