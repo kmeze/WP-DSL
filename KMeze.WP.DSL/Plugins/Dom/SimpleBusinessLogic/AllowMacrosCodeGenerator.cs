@@ -7,7 +7,7 @@ using Rhetos.Dsl.DefaultConcepts;
 namespace KMeze.WP.DSL
 {
     [Export(typeof(IConceptMacro))]
-    public class AllowAllCodeGenerator : IConceptMacro<AllowAllInfo>
+    public class AllowAllMacro : IConceptMacro<AllowAllInfo>
     {
         public IEnumerable<IConceptInfo> CreateNewConcepts(AllowAllInfo conceptInfo, IDslModel existingConcepts)
         {
@@ -33,7 +33,7 @@ namespace KMeze.WP.DSL
     }
 
     [Export(typeof(IConceptMacro))]
-    public class AllowLoggedInCodeGenerator : IConceptMacro<AllowLoggedInInfo>
+    public class AllowLoggedInMacro : IConceptMacro<AllowLoggedInInfo>
     {
         public IEnumerable<IConceptInfo> CreateNewConcepts(AllowLoggedInInfo conceptInfo, IDslModel existingConcepts)
         {
@@ -59,7 +59,7 @@ namespace KMeze.WP.DSL
     }
 
     [Export(typeof(IConceptMacro))]
-    public class AllowRoleCodeGenerator : IConceptMacro<AllowRoleInfo>
+    public class AllowRoleMacro : IConceptMacro<AllowRoleInfo>
     {
         public IEnumerable<IConceptInfo> CreateNewConcepts(AllowRoleInfo conceptInfo, IDslModel existingConcepts)
         {
@@ -91,7 +91,7 @@ namespace KMeze.WP.DSL
     }
 
     [Export(typeof(IConceptMacro))]
-    public class AllowCapabilityCodeGenerator : IConceptMacro<AllowCapabilityInfo>
+    public class AllowCapabilityMacro : IConceptMacro<AllowCapabilityInfo>
     {
         public IEnumerable<IConceptInfo> CreateNewConcepts(AllowCapabilityInfo conceptInfo, IDslModel existingConcepts)
         {
