@@ -18,11 +18,11 @@ namespace KMeze.WP.DSL
 
             string snippet = $@"public ?bool ${info.Name} = null;
     ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassPropertyTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataStructureClassPropertyTag, info.DataStructure);
 
             snippet = $@"$dataStructure->{info.Name} = is_null($object->{info.Name}) ? null : (bool) $object->{info.Name};
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassParsePropertyTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataClassParsePropertyTag, info.DataStructure);
 
             if (info.DataStructure is EntityInfo)
             {

@@ -20,7 +20,7 @@ namespace KMeze.WP.DSL
             string snippet = $@"{ClassConstructorPropertyTag.Evaluate(info)};
 
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassConstructorTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataClassConstructorTag, info.DataStructure);
         }
     }
 }

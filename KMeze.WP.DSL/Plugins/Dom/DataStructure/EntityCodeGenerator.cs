@@ -18,11 +18,11 @@ namespace KMeze.WP.DSL
 
             string snippet = $@"public ?int $id = null;
     ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassPropertyTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataStructureClassPropertyTag, info);
 
             snippet = $@"$dataStructure->id = (int) $object->ID;
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassParsePropertyTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataClassParsePropertyTag, info);
         }
     }
 }
