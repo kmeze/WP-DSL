@@ -11,7 +11,7 @@ namespace KMeze.WP.DSL
     public class AllowAllInfo : IConceptInfo
     {
         [ConceptKey]
-        public EntityInfo Entity { get; set; }
+        public DataStructureInfo DataStructure { get; set; }
     }
 
     /// <summary>
@@ -22,7 +22,7 @@ namespace KMeze.WP.DSL
     public class AllowLoggedInInfo : IConceptInfo
     {
         [ConceptKey]
-        public EntityInfo Entity { get; set; }
+        public DataStructureInfo DataStructure { get; set; }
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ namespace KMeze.WP.DSL
     public class AllowRoleInfo : IConceptInfo
     {
         [ConceptKey]
-        public EntityInfo Entity { get; set; }
+        public DataStructureInfo DataStructure { get; set; }
 
         [ConceptKey]
         public RoleInfo Role { get; set; }
@@ -47,7 +47,7 @@ namespace KMeze.WP.DSL
     public class AllowCapabilityInfo : IConceptInfo
     {
         [ConceptKey]
-        public EntityInfo Entity { get; set; }
+        public DataStructureInfo DataStructure { get; set; }
 
         [ConceptKey]
         public CapabilityInfo Capability { get; set; }

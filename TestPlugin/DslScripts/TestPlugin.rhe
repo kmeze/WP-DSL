@@ -33,6 +33,13 @@ WPPlugin TestPlugin
         Reference parent TestPlugin.TestEntity;
     }
 
+    List FlatList TestPlugin.TestChildEntity
+    {
+        Take child_title;
+
+        AllowAll;
+    }
+
     Capability Read;
     Capability Manage;
 

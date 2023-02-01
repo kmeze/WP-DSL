@@ -10,6 +10,6 @@ namespace KMeze.WP.DSL
     [ConceptKeyword("Reference")]
     public class ReferencePropertyInfo : PropertyInfo, IConceptInfo
     {
-        public DataStructureInfo Referenced { get; set; }
+        public DataStructureInfo ReferencedDataStructure { get; set; }
     }
 }

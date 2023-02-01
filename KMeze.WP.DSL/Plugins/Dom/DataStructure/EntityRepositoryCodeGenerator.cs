@@ -11,49 +11,42 @@ namespace KMeze.WP.DSL
     [ExportMetadata(MefProvider.Implements, typeof(EntityInfo))]
     public class EntityRepositoryCodeGenerator : IWPPluginConceptCodeGenerator
     {
-
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
             var info = (EntityInfo)conceptInfo;
 
-            string snippet = $@"class {info.WPPlugin.Name}_{info.Name}_Repository {{
-    public function select_{info.Name}() {{
-        global $wpdb;
-        $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
+            string snippet = $@"protected ?string ${info.Name}_table_name = null;
+    ";
+            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassPropertyTag, info);
 
-        return $wpdb->get_results( ""SELECT * FROM {{$table_name}};"" );
+            snippet = $@"$this->{info.Name}_table_name = $this->wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
+        ";
+            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassConstructorTag, info);
+
+            snippet = $@"public function get() {{
+        return $this->wpdb->get_results( ""SELECT * FROM $this->{info.Name}_table_name;"" );
     }}
 
-    public function select_{info.Name}_by_ID( int $id ) {{
-        global $wpdb;
-        $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
-
-        return $wpdb->get_row( ""SELECT * FROM {{$table_name}} WHERE ID={{$id}};"" );
+    public function get_by_ID( int $id ) {{
+        return $this->wpdb->get_row( ""SELECT * FROM $this->{info.Name}_table_name WHERE ID=$id;"" );
     }}
 
-    public function insert_{info.Name}( array $data ) {{
-        global $wpdb;
-        $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
-        $wpdb->insert( $table_name, $data );
+    public function insert( array $data ): int {{
+        $this->wpdb->insert( $this->{info.Name}_table_name, $data );
 
-        return $wpdb->insert_id;
+        return $this->insert_id;
     }}
 
-    public function update_{info.Name}( int $id, array $data ) {{
-	    global $wpdb;
-	    $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
-	    $wpdb->update( $table_name, $data, array( 'id' => $id ) );
+    public function update( int $id, array $data ) {{
+	    $this->wpdb->update( $this->{info.Name}_table_name, $data, array( 'ID' => $id ) );
     }}
 
-    public function delete_{info.Name}( int $id ) {{
-	    global $wpdb;
-	    $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
-	    $wpdb->delete( $table_name, array( 'id' => $id ) );
+    public function delete( int $id ) {{
+	    $this->wpdb->delete( $this->{info.Name}_table_name, array( 'ID' => $id ) );
     }}
-}}
 
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassMethodTag, info);
         }
     }
 }
