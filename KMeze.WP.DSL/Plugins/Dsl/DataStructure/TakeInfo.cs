@@ -11,7 +11,7 @@ namespace KMeze.WP.DSL
         public ListInfo List { get; set; }
 
         [ConceptKey]
-        public PropertyInfo SourcePropertyName { get; set; }
+        public PropertyInfo SourcePropertyInfo { get; set; }
     }
 
     [Export(typeof(IConceptMacro))]
@@ -20,14 +20,14 @@ namespace KMeze.WP.DSL
         public IEnumerable<IConceptInfo> CreateNewConcepts(TakeInfo conceptInfo, IDslModel existingConcepts)
         {
             // Create PropertyInfo and add to List to generate DataStructure class properties and parse funcion mapping
-            var pi = existingConcepts.FindByReference<PropertyInfo>(ci => ci.DataStructure, conceptInfo.SourcePropertyName.DataStructure)
-                .Where(ci => ci.Name == conceptInfo.SourcePropertyName.Name)
+            var pi = existingConcepts.FindByReference<PropertyInfo>(ci => ci.DataStructure, conceptInfo.SourcePropertyInfo.DataStructure)
+                .Where(ci => ci.Name == conceptInfo.SourcePropertyInfo.Name)
                 .SingleOrDefault();
 
             // TODO: Refactor
-            if (pi is ShortStringPropertyInfo) return new IConceptInfo[] { new ShortStringPropertyInfo { DataStructure = conceptInfo.List, Name = conceptInfo.SourcePropertyName.Name  } };
-            if (pi is IntegerPropertyInfo) return new IConceptInfo[] { new IntegerPropertyInfo { DataStructure = conceptInfo.List, Name = conceptInfo.SourcePropertyName.Name } };
-            if (pi is BoolPropertyInfo) return new IConceptInfo[] { new BoolPropertyInfo { DataStructure = conceptInfo.List, Name = conceptInfo.SourcePropertyName.Name } };
+            if (pi is ShortStringPropertyInfo) return new IConceptInfo[] { new ShortStringPropertyInfo { DataStructure = conceptInfo.List, Name = conceptInfo.SourcePropertyInfo.Name  } };
+            if (pi is IntegerPropertyInfo) return new IConceptInfo[] { new IntegerPropertyInfo { DataStructure = conceptInfo.List, Name = conceptInfo.SourcePropertyInfo.Name } };
+            if (pi is BoolPropertyInfo) return new IConceptInfo[] { new BoolPropertyInfo { DataStructure = conceptInfo.List, Name = conceptInfo.SourcePropertyInfo.Name } };
             
             return null;
         }
@@ -41,7 +41,7 @@ namespace KMeze.WP.DSL
         public ListInfo List { get; set; }
 
         [ConceptKey]
-        public string PropertyName { get; set; }
+        public string SourcePropertyName { get; set; }
     }
 
     [Export(typeof(IConceptMacro))]
@@ -52,13 +52,13 @@ namespace KMeze.WP.DSL
             var property = new PropertyInfo
             {
                 DataStructure = conceptInfo.List.Source,
-                Name = conceptInfo.PropertyName,
+                Name = conceptInfo.SourcePropertyName,
             };
 
             var takeInfo = new TakeInfo
             {
                 List = conceptInfo.List,
-                SourcePropertyName = property,
+                SourcePropertyInfo = property,
             };
 
             return new IConceptInfo[] { property, takeInfo };
