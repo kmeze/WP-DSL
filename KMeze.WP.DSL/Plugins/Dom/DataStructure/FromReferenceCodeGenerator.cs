@@ -16,7 +16,7 @@ namespace KMeze.WP.DSL
             var info = (FromReferenceInfo)conceptInfo;
 
             // TODO: IMPORTANT CVIS_ MUST BE wpdb->prefilx
-            string snippet = $@"LEFT OUTER JOIN cvis_{info.Reference.Referenced.WPPlugin.Name}_{info.Reference.Referenced.Name} ON cvis_{info.Reference.DataStructure.WPPlugin.Name}_{info.Reference.DataStructure.Name}.{info.Reference.Name}_id = cvis_{info.Reference.Referenced.WPPlugin.Name}_{info.Reference.Referenced.Name}.ID
+            string snippet = $@"LEFT OUTER JOIN cvis_{info.SourceReferencePropertyName.ReferencedDataStructure.WPPlugin.Name}_{info.SourceReferencePropertyName.ReferencedDataStructure.Name} ON cvis_{info.SourceReferencePropertyName.DataStructure.WPPlugin.Name}_{info.SourceReferencePropertyName.DataStructure.Name}.{info.SourceReferencePropertyName.Name}_id = cvis_{info.SourceReferencePropertyName.ReferencedDataStructure.WPPlugin.Name}_{info.SourceReferencePropertyName.ReferencedDataStructure.Name}.ID
 ";
             codeBuilder.InsertCode(snippet, ListCodeGenerator.ListJoinTag, info.List);
         }
