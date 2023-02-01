@@ -33,6 +33,26 @@ WPPlugin TestPlugin
         Reference parent TestPlugin.TestEntity;
     }
 
+    Select FlatSelect
+        "
+            SELECT
+                e.ID,
+                e.title,
+                c.parent_id,
+                c.`child_title`
+             FROM
+                cvis_TestPlugin_TestEntity e
+	            LEFT JOIN cvis_TestPlugin_TestChildEntity c ON c.parent_id = e.ID;
+        "
+    {
+        Integer ID;
+        Integer parent_id;
+        ShortString title;
+        ShortString child_title;
+
+        AllowAll;
+    }
+
     List FlatList TestPlugin.TestChildEntity
     {
         Take child_title;
