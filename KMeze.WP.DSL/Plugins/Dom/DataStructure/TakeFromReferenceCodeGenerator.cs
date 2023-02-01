@@ -21,4 +21,4 @@ namespace KMeze.WP.DSL
             codeBuilder.InsertCode(snippet, ListCodeGenerator.ListColumnTag, info.FromReference.List);
         }
     }
-}                // znači da su iz iste tablice
+}

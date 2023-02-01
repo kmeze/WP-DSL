@@ -15,7 +15,6 @@ namespace KMeze.WP.DSL
     }
 
     [Export(typeof(IConceptInfo))]
-    [ConceptKeyword("FromReference")]
     public class FromReferenceMacroInfo : IConceptInfo
     {
         [ConceptKey]

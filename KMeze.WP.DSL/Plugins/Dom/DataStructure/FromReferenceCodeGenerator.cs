@@ -15,8 +15,17 @@ namespace KMeze.WP.DSL
         {
             var info = (FromReferenceMacroInfo)conceptInfo;
 
+            string snippet = $@"protected ?string $join_{info.SourceReferencePropertyInfo.Name}_table_name = null;
+    ";
+            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassPropertyTag, info.List);
+
+            snippet = $@"$this->join_{info.SourceReferencePropertyInfo.Name}_table_name = $this->wpdb->prefix . '{info.SourceReferencePropertyInfo.ReferencedDataStructure.WPPlugin.Name}_{info.SourceReferencePropertyInfo.ReferencedDataStructure.Name}';
+        ";
+            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassConstructorTag, info.List);
+
+
             // TODO: IMPORTANT CVIS_ MUST BE wpdb->prefilx
-            string snippet = $@"LEFT OUTER JOIN cvis_{info.SourceReferencePropertyInfo.ReferencedDataStructure.WPPlugin.Name}_{info.SourceReferencePropertyInfo.ReferencedDataStructure.Name} ON cvis_{info.SourceReferencePropertyInfo.DataStructure.WPPlugin.Name}_{info.SourceReferencePropertyInfo.DataStructure.Name}.{info.SourceReferencePropertyInfo.Name}_id = cvis_{info.SourceReferencePropertyInfo.ReferencedDataStructure.WPPlugin.Name}_{info.SourceReferencePropertyInfo.ReferencedDataStructure.Name}.ID
+            snippet = $@"LEFT OUTER JOIN $this->join_{info.SourceReferencePropertyInfo.Name}_table_name ON $this->source_table_name.{info.SourceReferencePropertyInfo.Name}_id = $this->join_{info.SourceReferencePropertyInfo.Name}_table_name.ID
 ";
             codeBuilder.InsertCode(snippet, ListCodeGenerator.ListJoinTag, info.List);
         }
