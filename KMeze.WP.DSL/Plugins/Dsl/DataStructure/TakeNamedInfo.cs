@@ -11,7 +11,7 @@ namespace KMeze.WP.DSL
         public ListInfo List { get; set; }
 
         [ConceptKey]
-        public string ColumnName { get; set; }
+        public string PropertyName { get; set; }
     }
 
     [Export(typeof(IConceptMacro))]
@@ -22,7 +22,7 @@ namespace KMeze.WP.DSL
             var property = new PropertyInfo
             {
                 DataStructure = conceptInfo.List.Source,
-                Name = conceptInfo.ColumnName,
+                Name = conceptInfo.PropertyName,
             };
 
             var takeInfo = new TakeInfo
