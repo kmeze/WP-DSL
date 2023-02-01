@@ -35,7 +35,7 @@ namespace KMeze.WP.DSL
 
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("Take")]
-    public class TakeNamedInfo : IConceptInfo
+    public class TakeNameInfo : IConceptInfo
     {
         [ConceptKey]
         public ListInfo List { get; set; }
@@ -45,9 +45,9 @@ namespace KMeze.WP.DSL
     }
 
     [Export(typeof(IConceptMacro))]
-    public class TakeNamedMacro : IConceptMacro<TakeNamedInfo>
+    public class TakeNameMacro : IConceptMacro<TakeNameInfo>
     {
-        public IEnumerable<IConceptInfo> CreateNewConcepts(TakeNamedInfo conceptInfo, IDslModel existingConcepts)
+        public IEnumerable<IConceptInfo> CreateNewConcepts(TakeNameInfo conceptInfo, IDslModel existingConcepts)
         {
             var property = new PropertyInfo
             {
