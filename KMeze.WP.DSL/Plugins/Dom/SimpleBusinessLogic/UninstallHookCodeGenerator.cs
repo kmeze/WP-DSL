@@ -8,17 +8,17 @@ using Rhetos.Extensibility;
 namespace KMeze.WP.DSL
 {
     [Export(typeof(IWPPluginConceptCodeGenerator))]
-    [ExportMetadata(MefProvider.Implements, typeof(DeactivationHookInfo))]
-    public class DeactivationActionCodeGenerator : IWPPluginConceptCodeGenerator
+    [ExportMetadata(MefProvider.Implements, typeof(UninstallHookInfo))]
+    public class UninstallHookCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
-            var info = (DeactivationHookInfo)conceptInfo;
+            var info = (UninstallHookInfo)conceptInfo;
 
             string snippet = $@"{info.WPPlugin.Name}_{info.Action.Name} ();
 
     ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DeactivationHookTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.UninstallHookTag, info.WPPlugin);
         }
     }
 }
