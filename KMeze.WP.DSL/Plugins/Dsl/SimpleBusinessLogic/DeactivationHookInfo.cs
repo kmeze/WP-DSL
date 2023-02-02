@@ -5,7 +5,7 @@ namespace KMeze.WP.DSL
 {
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("DeactivationHook")]
-    public class DectivationHookInfo : IConceptInfo
+    public class DeactivationHookInfo : IConceptInfo
     {
         [ConceptKey]
         public WPPluginInfo WPPlugin { get; set; }
