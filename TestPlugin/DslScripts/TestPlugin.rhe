@@ -54,7 +54,7 @@ WPPlugin TestPlugin
 
     Action Orphans '
         $result = ( new TestPlugin_FlatSelect_Repository() )->get();
-        return array_filter( $result, fn ( $item ) => empty( $item->parent_id ) );
+        return array_filter( $result, fn ( $item ) => is_null( $item->parent_id ) );
     ';
 
     List FlatList TestPlugin.TestChildEntity
