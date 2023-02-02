@@ -8,12 +8,12 @@ using Rhetos.Extensibility;
 namespace KMeze.WP.DSL
 {
     [Export(typeof(IWPPluginConceptCodeGenerator))]
-    [ExportMetadata(MefProvider.Implements, typeof(DectivationActionInfo))]
+    [ExportMetadata(MefProvider.Implements, typeof(DectivationHookInfo))]
     public class DectivationActionCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
-            var info = (DectivationActionInfo)conceptInfo;
+            var info = (DectivationHookInfo)conceptInfo;
 
             string snippet = $@"{info.WPPlugin.Name}_{info.Action.Name} ();
 

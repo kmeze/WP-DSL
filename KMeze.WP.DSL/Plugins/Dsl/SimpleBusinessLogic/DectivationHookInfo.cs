@@ -4,8 +4,8 @@ using Rhetos.Dsl;
 namespace KMeze.WP.DSL
 {
     [Export(typeof(IConceptInfo))]
-    [ConceptKeyword("UninstallAction")]
-    public class UninstallActionInfo : IConceptInfo
+    [ConceptKeyword("DeactivationHook")]
+    public class DectivationHookInfo : IConceptInfo
     {
         [ConceptKey]
         public WPPluginInfo WPPlugin { get; set; }

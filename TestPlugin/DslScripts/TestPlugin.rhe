@@ -73,12 +73,12 @@ WPPlugin TestPlugin
     Callback SetWebsiteTitle 'return $title . " - My Great Website";';
 
     // Activation & deactivation hooks
-    ActivationAction TestPlugin.TestActivationConcept;
+    ActivationHook TestPlugin.TestActivationConcept;
     Callback TestActivationConcept '// ActivationAction concept test ';
 
-    DeactivationAction TestPlugin.TestDeactivationConcept;
+    DeactivationHook TestPlugin.TestDeactivationConcept;
     Callback TestDeactivationConcept '// DeactivationAction concept test ';
 
-    UninstallAction TestPlugin.TestUninstallConcept;
+    UninstallHook TestPlugin.TestUninstallConcept;
     Callback TestUninstallConcept '// UninstallAction concept test ';
 }
