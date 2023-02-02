@@ -53,15 +53,14 @@ WPPlugin TestPlugin
     }
 
     Action Orphans '
+
+        $result = ( new TestPlugin_FlatSelect_Repository() )->get();
+
 		$result = array_map( function ( $row ) {
 			return $this->prepare_item_for_response( $row );
-		}, ( new TestPlugin_FlatSelect_Repository() )->get() );
+		}, $result );
 
-		return array_filter( $result, function ( $item ) {
-			if ( empty( $item->parent_id ) ) {
-				return $item;
-			}
-		} );
+        return array_filter( $result, fn ( $item ) => empty( $item->parent_id ) );
     ';
 
     List FlatList TestPlugin.TestChildEntity
