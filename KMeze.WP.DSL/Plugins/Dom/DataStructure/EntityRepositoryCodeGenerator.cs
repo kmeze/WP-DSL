@@ -28,7 +28,7 @@ namespace KMeze.WP.DSL
     }}
 
     public function get_by_ID( int $id ) {{
-        $row = $this->wpdb->get_row( ""SELECT * FROM $this->{info.Name}_table_name WHERE ID=$id;"" );
+        $row = $this->wpdb->get_row( $this->wpdb->prepare( ""SELECT * FROM $this->{info.Name}_table_name WHERE ID=%d;"", $id ) );
 
         return {info.WPPlugin.Name}_{info.Name}::parse( $row );
     }}
