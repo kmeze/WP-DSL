@@ -3,9 +3,6 @@ using Rhetos.Dsl;
 
 namespace KMeze.WP.DSL
 {
-    /// <summary>
-    /// Represents custom entity.
-    /// </summary>
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("Role")]
     public class RoleInfo : IConceptInfo

@@ -3,9 +3,6 @@ using Rhetos.Dsl;
 
 namespace KMeze.WP.DSL
 {
-    /// <summary>
-    /// Drop entity table on plugin deactivation.
-    /// </summary>
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("DropOnDeactivate")]
     public class DropOnDeactivateInfo : IConceptInfo
