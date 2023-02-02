@@ -45,7 +45,7 @@ namespace KMeze.WP.DSL
             'permission_callback' => array( $this, 'item_permissions_check' ),
         ) );
         ";
-            codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassRegisterRoutesTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info);
 
             snippet = $@"public function get_items( $request ): array {{
 
@@ -69,7 +69,7 @@ namespace KMeze.WP.DSL
     }}
 
 ";
-            codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassMethodTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassMethodTag, info);
         }
     }
 }
