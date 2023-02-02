@@ -48,6 +48,7 @@ WPPlugin TestPlugin
         Integer parent_id;
 
         Action TestPlugin.Orphans;
+        ActionPost TestPlugin.DoSomething;
 
         AllowAll;
     }
@@ -55,6 +56,11 @@ WPPlugin TestPlugin
     Action Orphans '
         $result = ( new TestPlugin_FlatSelect_Repository() )->get();
         return array_filter( $result, fn ( $item ) => is_null( $item->parent_id ) );
+    ';
+
+    Action DoSomething '
+        // do something here
+        return "Hello World!";
     ';
 
     List FlatList TestPlugin.TestChildEntity

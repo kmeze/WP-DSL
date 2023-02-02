@@ -3,9 +3,6 @@ using Rhetos.Dsl;
 
 namespace KMeze.WP.DSL
 {
-    /// <summary>
-    ///
-    /// </summary>
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("List")]
     public class ListInfo : DataStructureInfo
