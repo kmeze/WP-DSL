@@ -47,18 +47,13 @@ namespace KMeze.WP.DSL
         ";
             codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassRegisterRoutesTag, info);
 
-            snippet = $@"private function prepare_item_for_response( $row ) {{
-        return {info.WPPlugin.Name}_{info.Name}::parse( $row );
-    }}
+            snippet = $@"public function get_items( $request ): array {{
 
-    public function get_items( $request ): array {{
-	    return array_map( function ( $row ) {{
-	        return $this->prepare_item_for_response( $row );
-	    }}, ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get() );
+        return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get();
     }}
 
     public function get_item( $request ) {{
-        return $this->prepare_item_for_response( ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get_by_ID( $request->get_param( 'id' ) ) );
+        return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get_by_ID( $request->get_param( 'id' ) );
     }}
 
     public function create_item( $request ) {{
