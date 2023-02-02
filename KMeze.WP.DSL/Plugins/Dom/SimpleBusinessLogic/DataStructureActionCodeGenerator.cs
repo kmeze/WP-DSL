@@ -24,7 +24,7 @@ namespace KMeze.WP.DSL
         ";
             codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassRegisterRoutesTag, info.DataStructure);
 
-            snippet = $@"   public function get_{info.Action.Name}( $request ): array {{
+            snippet = $@"   public function get_{info.Action.Name}( $request ) {{
         return {info.Action.WPPlugin.Name}_{info.Action.Name}( $request );
     }}
 
