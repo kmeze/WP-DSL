@@ -31,9 +31,7 @@ namespace KMeze.WP.DSL
     }}
 
     protected function parse_result( array $result ): array {{
-        return array_map( function ( $row ) {{
-            return {info.WPPlugin.Name}_{info.Name}::parse( $row );
-		}}, $result );
+        return array_map( fn( $row ) => {info.WPPlugin.Name}_{info.Name}::parse( $row ), $result );
     }}
 
     {RepositoryClassMethodTag.Evaluate(info)}
