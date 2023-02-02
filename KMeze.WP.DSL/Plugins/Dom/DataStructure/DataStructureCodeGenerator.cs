@@ -12,9 +12,9 @@ namespace KMeze.WP.DSL
     [ExportMetadata(MefProvider.Implements, typeof(DataStructureInfo))]
     public class DataStructureCodeGenerator : IWPPluginConceptCodeGenerator
     {
-        public static readonly CsTag<DataStructureInfo> DataStructureClassPropertyTag = "DataStructureClassProperty";
-        public static readonly CsTag<DataStructureInfo> DataClassConstructorTag = "DataClassConstructor";
-        public static readonly CsTag<DataStructureInfo> DataClassMethodTag = "DataClassMethod";
+        public static readonly CsTag<DataStructureInfo> ClassPropertyTag = "ClassProperty";
+        public static readonly CsTag<DataStructureInfo> ClassConstructorTag = "ClassConstructor";
+        public static readonly CsTag<DataStructureInfo> ClassMethodTag = "ClassMethod";
         public static readonly CsTag<DataStructureInfo> DataClassParsePropertyTag = "DataClassParseProperty";
         public static readonly CsTag<DataStructureInfo> RepositoryClassPropertyTag = "RepositoryClassProperty";
         public static readonly CsTag<DataStructureInfo> RepositoryClassConstructorTag = "RepositoryClassConstructor";
@@ -26,10 +26,10 @@ namespace KMeze.WP.DSL
 
             // Generate DataStructure class
             string snippet = $@"class {info.WPPlugin.Name}_{info.Name} {{
-    {DataStructureClassPropertyTag.Evaluate(info)}
+    {ClassPropertyTag.Evaluate(info)}
 
     public function __construct() {{
-        {DataClassConstructorTag.Evaluate(info)}
+        {ClassConstructorTag.Evaluate(info)}
     }}
 
     public static function parse( $object ):?{info.WPPlugin.Name}_{info.Name} {{
@@ -41,7 +41,7 @@ namespace KMeze.WP.DSL
         return $dataStructure;
     }}
 
-    {DataClassMethodTag.Evaluate(info)}
+    {ClassMethodTag.Evaluate(info)}
 }}
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DataStructureClassesTag, info.WPPlugin);
