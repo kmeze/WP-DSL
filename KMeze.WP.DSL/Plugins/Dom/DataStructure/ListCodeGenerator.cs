@@ -28,11 +28,11 @@ namespace KMeze.WP.DSL
 
             snippet = $@"protected ?string $source_table_name = null;
     ";
-            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassPropertyTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassPropertyTag, info);
 
             snippet = $@"$this->source_table_name = $this->wpdb->prefix . '{info.Source.WPPlugin.Name}_{info.Source.Name}';
         ";
-            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassConstructorTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassConstructorTag, info);
 
             snippet = $@"public function get() {{
 
@@ -45,7 +45,7 @@ namespace KMeze.WP.DSL
     }}
 
 ";
-            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassMethodTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassMethodTag, info);
 
             snippet = $@"register_rest_route( $this->namespace, $this->resource_name, array(
             'methods'             => 'GET',

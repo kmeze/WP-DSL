@@ -24,7 +24,7 @@ namespace KMeze.WP.DSL
     }}
 
 ";
-            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassMethodTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassMethodTag, info);
 
             snippet = $@"register_rest_route( $this->namespace, $this->resource_name, array(
             'methods'             => 'GET',
