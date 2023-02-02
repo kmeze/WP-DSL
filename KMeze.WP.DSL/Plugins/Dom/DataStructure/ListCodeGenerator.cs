@@ -41,7 +41,7 @@ namespace KMeze.WP.DSL
                 FROM $this->source_table_name
                 {ListJoinTag.Evaluate(info)};"";
 
-        return $this->wpdb->get_results( $sql );
+        return $this->parse_result( $this->wpdb->get_results( $sql ) );
     }}
 
 ";
@@ -56,14 +56,8 @@ namespace KMeze.WP.DSL
         ";
             codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassRegisterRoutesTag, info);
 
-            snippet = $@"private function prepare_item_for_response( $row ) {{
-        return {info.WPPlugin.Name}_{info.Name}::parse( $row );
-    }}
-
-    public function get_items( $request ): array {{
-	    return array_map( function ( $row ) {{
-	        return $this->prepare_item_for_response( $row );
-	    }}, ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get() );
+            snippet = $@"public function get_items( $request ): array {{
+        return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get();
     }}
 
 ";

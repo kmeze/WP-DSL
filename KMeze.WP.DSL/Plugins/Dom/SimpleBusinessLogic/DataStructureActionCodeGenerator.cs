@@ -24,12 +24,15 @@ namespace KMeze.WP.DSL
         ";
             codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassRegisterRoutesTag, info.DataStructure);
 
-            snippet = $@"   public function get_{info.Action.Name}( $request ): array {{
-        {info.Action.Script}
+            snippet = $@"   public function get_{info.Action.Name}( $request ) {{
+        return {info.Action.WPPlugin.Name}_{info.Action.Name}( $request );
     }}
 
-";
+    ";
             codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassMethodTag, info.DataStructure);
+
+            snippet = $@" $request ";
+            codeBuilder.InsertCode(snippet, ActionCodeGenerator.ActionArgTag, info.Action);
         }
     }
 }

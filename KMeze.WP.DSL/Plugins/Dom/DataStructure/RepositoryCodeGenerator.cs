@@ -30,6 +30,10 @@ namespace KMeze.WP.DSL
         {RepositoryClassConstructorTag.Evaluate(info)}
     }}
 
+    protected function parse_result( array $result ): array {{
+        return array_map( fn( $row ) => {info.WPPlugin.Name}_{info.Name}::parse( $row ), $result );
+    }}
+
     {RepositoryClassMethodTag.Evaluate(info)}
 }}
 
