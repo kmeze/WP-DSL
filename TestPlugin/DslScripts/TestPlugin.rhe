@@ -31,7 +31,7 @@ WPPlugin TestPlugin
         Action TestPlugin.GetSomething;
     }
 
-    Action GetSomething '
+    Callback GetSomething '
         $result = ( new TestPlugin_FlatSelect_Repository() )->get();
         return array_filter( $result, fn ( $item ) => is_null( $item->parent_id ) );
     ';
@@ -66,19 +66,19 @@ WPPlugin TestPlugin
 
     // Action hooks
     ActionHook 'admin_notices' TestPlugin.SayHello;
-    Action SayHello '?><div class="notice notice-success is-dismissible"><p><?php echo "Hello World!" ?></p></div><?php';
+    Callback SayHello '?><div class="notice notice-success is-dismissible"><p><?php echo "Hello World!" ?></p></div><?php';
 
     // Filter hooks
     FilterHook 'document_title' TestPlugin.SetWebsiteTitle DefaultPriority '$title';
-    Action SetWebsiteTitle 'return $title . " - My Great Website";';
+    Callback SetWebsiteTitle 'return $title . " - My Great Website";';
 
     // Activation & deactivation hooks
     ActivationAction TestPlugin.TestActivationConcept;
-    Action TestActivationConcept '// ActivationAction concept test ';
+    Callback TestActivationConcept '// ActivationAction concept test ';
 
     DeactivationAction TestPlugin.TestDeactivationConcept;
-    Action TestDeactivationConcept '// DeactivationAction concept test ';
+    Callback TestDeactivationConcept '// DeactivationAction concept test ';
 
     UninstallAction TestPlugin.TestUninstallConcept;
-    Action TestUninstallConcept '// UninstallAction concept test ';
+    Callback TestUninstallConcept '// UninstallAction concept test ';
 }

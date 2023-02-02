@@ -26,7 +26,7 @@ namespace KMeze.WP.DSL
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.FilterHooksTag, info.WPPlugin);
 
             snippet = $@"{String.Join(", ", acceptedArgs)}";
-            codeBuilder.InsertCode(snippet, ActionCodeGenerator.ActionArgTag, info.Callback);
+            codeBuilder.InsertCode(snippet, CallbackCodeGenerator.CallbackArgTag, info.Callback);
         }
     }
 }

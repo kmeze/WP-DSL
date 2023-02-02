@@ -4,8 +4,8 @@ using Rhetos.Dsl;
 namespace KMeze.WP.DSL
 {
     [Export(typeof(IConceptInfo))]
-    [ConceptKeyword("Action")]
-    public class ActionInfo : IConceptInfo
+    [ConceptKeyword("Callback")]
+    public class CallbackInfo : IConceptInfo
     {
         [ConceptKey]
         public WPPluginInfo WPPlugin { get; set; }

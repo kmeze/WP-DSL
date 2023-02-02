@@ -14,6 +14,6 @@ namespace KMeze.WP.DSL
         public string HookName { get; set; }
 
         [ConceptKey]
-        public ActionInfo Callback { get; set; }
+        public CallbackInfo Callback { get; set; }
     }
 }

@@ -11,6 +11,6 @@ namespace KMeze.WP.DSL
         public WPPluginInfo WPPlugin { get; set; }
 
         [ConceptKey]
-        public ActionInfo Action { get; set; }
+        public CallbackInfo Action { get; set; }
     }
 }

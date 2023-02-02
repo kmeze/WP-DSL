@@ -12,7 +12,7 @@ namespace KMeze.WP.DSL
     public class ActionHookCodeGenerator : IWPPluginConceptCodeGenerator
     {
 
-        public static readonly CsTag<ActionInfo> ActionHookPriorityTag = "ActionHookPriority";
+        public static readonly CsTag<CallbackInfo> ActionHookPriorityTag = "ActionHookPriority";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -29,7 +29,7 @@ namespace KMeze.WP.DSL
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActionHooksTag, info.WPPlugin);
 
             snippet = $@"{String.Join(", ", acceptedArgs)}";
-            codeBuilder.InsertCode(snippet, ActionCodeGenerator.ActionArgTag, info.Callback);
+            codeBuilder.InsertCode(snippet, CallbackCodeGenerator.CallbackArgTag, info.Callback);
         }
     }
 }

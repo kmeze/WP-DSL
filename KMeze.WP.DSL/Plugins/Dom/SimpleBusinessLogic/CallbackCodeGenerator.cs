@@ -8,16 +8,16 @@ using Rhetos.Extensibility;
 namespace KMeze.WP.DSL
 {
     [Export(typeof(IWPPluginConceptCodeGenerator))]
-    [ExportMetadata(MefProvider.Implements, typeof(ActionInfo))]
-    public class ActionCodeGenerator : IWPPluginConceptCodeGenerator
+    [ExportMetadata(MefProvider.Implements, typeof(CallbackInfo))]
+    public class CallbackCodeGenerator : IWPPluginConceptCodeGenerator
     {
-        public static readonly CsTag<ActionInfo> ActionArgTag = "ActionArg";
+        public static readonly CsTag<CallbackInfo> CallbackArgTag = "CallbackArg";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
-            var info = (ActionInfo)conceptInfo;
+            var info = (CallbackInfo)conceptInfo;
 
-            string snippet = $@"function {info.WPPlugin.Name}_{info.Name} ( {ActionArgTag.Evaluate(info)} ) {{
+            string snippet = $@"function {info.WPPlugin.Name}_{info.Name} ( {CallbackArgTag.Evaluate(info)} ) {{
     {info.Script}
 }}
 ";

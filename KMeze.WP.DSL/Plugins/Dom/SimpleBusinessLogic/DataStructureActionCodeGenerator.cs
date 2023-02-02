@@ -32,7 +32,7 @@ namespace KMeze.WP.DSL
             codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassMethodTag, info.DataStructure);
 
             snippet = $@" $request ";
-            codeBuilder.InsertCode(snippet, ActionCodeGenerator.ActionArgTag, info.Action);
+            codeBuilder.InsertCode(snippet, CallbackCodeGenerator.CallbackArgTag, info.Action);
         }
     }
 }
