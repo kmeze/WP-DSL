@@ -97,12 +97,6 @@ namespace KMeze.WP.DSL
 }}
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DataStructureClassesTag, info.WPPlugin);
-
-            snippet = $@"add_action( 'rest_api_init', function () {{
-    ( new {info.WPPlugin.Name}_{info.Name}_REST_Controller() )->register_routes();
-}} );
-";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActionHooksTag, info.WPPlugin);
         }
     }
 }

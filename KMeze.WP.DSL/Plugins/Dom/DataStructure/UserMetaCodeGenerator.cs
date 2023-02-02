@@ -16,23 +16,21 @@ namespace KMeze.WP.DSL
         {
             var info = (UserMetaInfo)conceptInfo;
 
-            string snippet = $@"add_action( 'rest_api_init', function () {{
-    register_rest_field( 'user', '{info.WPPlugin.Name}_{info.Name}', array(
-            'get_callback' => function ( $user, $key ) {{
-                $meta = get_user_meta( $user['id'], $key, true );
+            string snippet = $@"register_rest_field( 'user', '{info.WPPlugin.Name}_{info.Name}', array(
+                'get_callback' => function ( $user, $key ) {{
+                    $meta = get_user_meta( $user['id'], $key, true );
 
-                if ( empty ( $meta ) ) return new {info.WPPlugin.Name}_{info.Name}();
+                    if ( empty ( $meta ) ) return new {info.WPPlugin.Name}_{info.Name}();
 
-                return {info.WPPlugin.Name}_{info.Name}::parse( (object) $meta );;
-            }},
-            'update_callback' => function ( $value, $user, $key ) {{
-                return update_user_meta( $user->id, $key, $value );
-            }},
-        )
-    );
-}} );
-";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActionHooksTag, info.WPPlugin);
+                    return {info.WPPlugin.Name}_{info.Name}::parse( (object) $meta );;
+                }},
+                'update_callback' => function ( $value, $user, $key ) {{
+                    return update_user_meta( $user->id, $key, $value );
+                }},
+            )
+        );
+    ";
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info);
         }
     }
 }
