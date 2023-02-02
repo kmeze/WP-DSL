@@ -97,6 +97,7 @@ namespace KMeze.WP.DSL
 }}
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DataStructureClassesTag, info.WPPlugin);
+
         }
     }
 }
