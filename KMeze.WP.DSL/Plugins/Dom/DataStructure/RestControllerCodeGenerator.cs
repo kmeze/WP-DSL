@@ -45,13 +45,14 @@ namespace KMeze.WP.DSL
 
     {RestControllerClassMethodTag.Evaluate(info)}
 }}
+";
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DataStructureClassesTag, info.WPPlugin);
 
-add_action( 'rest_api_init', function () {{
+            snippet = $@"add_action( 'rest_api_init', function () {{
     ( new {info.WPPlugin.Name}_{info.Name}_REST_Controller() )->register_routes();
 }} );
-
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActionHooksTag, info.WPPlugin);
         }
     }
 }

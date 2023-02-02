@@ -20,9 +20,8 @@ namespace KMeze.WP.DSL
             string snippet = $@"function {info.WPPlugin.Name}_{info.Name} ( {ActionArgTag.Evaluate(info)} ) {{
     {info.Script}
 }}
-
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.CallbacksTag, info.WPPlugin);
         }
     }
 }

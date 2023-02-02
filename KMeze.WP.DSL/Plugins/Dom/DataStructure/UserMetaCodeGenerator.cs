@@ -31,9 +31,8 @@ namespace KMeze.WP.DSL
         )
     );
 }} );
-
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActionHooksTag, info.WPPlugin);
         }
     }
 }

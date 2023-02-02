@@ -11,7 +11,11 @@ namespace KMeze.WP.DSL
     [ExportMetadata(MefProvider.Implements, typeof(WPPluginInfo))]
     public class WPPluginCodeGenerator : IWPPluginConceptCodeGenerator
     {
-        public static readonly CsTag<WPPluginInfo> BodyTag = "PluginBody";
+        public static readonly CsTag<WPPluginInfo> ActionHooksTag = "ActionHooks";
+        public static readonly CsTag<WPPluginInfo> FilterHooksTag = "FilterHooks";
+        public static readonly CsTag<WPPluginInfo> CallbacksTag = "Callbacks";
+        public static readonly CsTag<WPPluginInfo> DataStructureClassesTag = "DataStructureClasses";
+        public static readonly CsTag<WPPluginInfo> CodeTag = "CodeTag";
         public static readonly CsTag<WPPluginInfo> ActivationHookTag = "ActivationHook";
         public static readonly CsTag<WPPluginInfo> DeactivationHookTag = "DeactivationHook";
         public static readonly CsTag<WPPluginInfo> UninstallHookTag = "UninstallHook";
@@ -29,22 +33,42 @@ $@"<?php
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
 
-{BodyTag.Evaluate(info)}
+/**
+ * Action Hooks
+ */
+{ActionHooksTag.Evaluate(info)}
+
+/**
+ * Filter Hooks
+ */
+{FilterHooksTag.Evaluate(info)}
+
+/**
+ * Callbacks
+ */
+{CallbacksTag.Evaluate(info)}
+function {info.Name}_uninstall() {{
+    {UninstallHookTag.Evaluate(info)}
+}}
+
+/**
+ * DataStructure classes
+ */
+{DataStructureClassesTag.Evaluate(info)}
+
+/**
+ * Code concept
+ */
+{CodeTag.Evaluate(info)}
 
 register_activation_hook( __FILE__, function () {{
     {ActivationHookTag.Evaluate(info)}
 }} );
-
 register_deactivation_hook( __FILE__, function () {{
     {DeactivationHookTag.Evaluate(info)}
 }} );
-
-// NOTE: register_uninstall_hook callback cannot be anonymous function
-register_uninstall_hook( __FILE__, '{info.Name}_uninstall' );
-
-function {info.Name}_uninstall() {{
-    {UninstallHookTag.Evaluate(info)}
-}}", $"{Path.Combine(Path.Combine("WordPress", info.Name), info.Name)}");
+register_uninstall_hook( __FILE__, '{info.Name}_uninstall' ); // NOTE: register_uninstall_hook callback cannot be anonymous function"
+        , $"{Path.Combine(Path.Combine("WordPress", info.Name), info.Name)}");
         }
     }
 }

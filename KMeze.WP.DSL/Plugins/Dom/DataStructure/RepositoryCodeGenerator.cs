@@ -36,9 +36,8 @@ namespace KMeze.WP.DSL
 
     {RepositoryClassMethodTag.Evaluate(info)}
 }}
-
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DataStructureClassesTag, info.WPPlugin);
         }
     }
 }
