@@ -24,11 +24,13 @@ namespace KMeze.WP.DSL
             codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassConstructorTag, info);
 
             snippet = $@"public function get() {{
-        return $this->wpdb->get_results( ""SELECT * FROM $this->{info.Name}_table_name;"" );
+        return $this->parse_result( $this->wpdb->get_results( ""SELECT * FROM $this->{info.Name}_table_name;"" ) );
     }}
 
     public function get_by_ID( int $id ) {{
-        return $this->wpdb->get_row( ""SELECT * FROM $this->{info.Name}_table_name WHERE ID=$id;"" );
+        $row = $this->wpdb->get_row( ""SELECT * FROM $this->{info.Name}_table_name WHERE ID=$id;"" );
+
+        return {info.WPPlugin.Name}_{info.Name}::parse( $row );
     }}
 
     public function insert( array $data ): int {{
