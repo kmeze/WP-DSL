@@ -11,7 +11,6 @@ namespace KMeze.WP.DSL
     [ExportMetadata(MefProvider.Implements, typeof(ActionHookInfo))]
     public class ActionHookCodeGenerator : IWPPluginConceptCodeGenerator
     {
-
         public static readonly CsTag<CallbackInfo> ActionHookPriorityTag = "ActionHookPriority";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
