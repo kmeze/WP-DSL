@@ -53,13 +53,7 @@ WPPlugin TestPlugin
     }
 
     Action Orphans '
-
         $result = ( new TestPlugin_FlatSelect_Repository() )->get();
-
-		$result = array_map( function ( $row ) {
-			return $this->prepare_item_for_response( $row );
-		}, $result );
-
         return array_filter( $result, fn ( $item ) => empty( $item->parent_id ) );
     ';
 
