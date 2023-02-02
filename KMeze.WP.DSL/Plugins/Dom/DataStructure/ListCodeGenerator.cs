@@ -41,7 +41,7 @@ namespace KMeze.WP.DSL
                 FROM $this->source_table_name
                 {ListJoinTag.Evaluate(info)};"";
 
-        return $this->wpdb->get_results( $sql );
+        return $this->parse_result( $this->wpdb->get_results( $sql ) );
     }}
 
 ";
@@ -61,9 +61,7 @@ namespace KMeze.WP.DSL
     }}
 
     public function get_items( $request ): array {{
-	    return array_map( function ( $row ) {{
-	        return $this->prepare_item_for_response( $row );
-	    }}, ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get() );
+        return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get();
     }}
 
 ";
