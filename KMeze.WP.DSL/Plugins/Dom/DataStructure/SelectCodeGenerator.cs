@@ -20,6 +20,8 @@ namespace KMeze.WP.DSL
 		    return $this->wpdb->prefix . str_replace('.', '_', $entityFullName);
 	    }};
 
+        $user_id = fn () => get_current_user_id();
+
         return $this->parse_result( $this->wpdb->get_results( ""{info.Query}"" ) );
     }}
 
