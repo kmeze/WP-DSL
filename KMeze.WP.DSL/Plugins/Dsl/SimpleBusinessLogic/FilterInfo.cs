@@ -35,7 +35,10 @@ namespace KMeze.WP.DSL
             {
                 WPPlugin = conceptInfo.Entity.WPPlugin,
                 Name = conceptInfo.Name,
-                Script = $@"return array(array( 'Name' => '{conceptInfo.PropertyName}', 'Value' => '{conceptInfo.PropertyValue}', 'Format' => '{conceptInfo.Format}' ));",
+                Script = $@"$conditions[] = array( 'Name' => '{conceptInfo.PropertyName}', 'Value' => '{conceptInfo.PropertyValue}', 'Format' => '{conceptInfo.Format}' );
+
+                    return $conditions;
+                ",
             };
 
             var filterHook = new FilterHookInfo
