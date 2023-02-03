@@ -24,11 +24,15 @@ WPPlugin TestPlugin
         Reference parent TestPlugin.TestEntity;
     }
 
-    Select FlatSelect "SELECT ID, child_title, parent_id FROM {$table('TestPlugin.TestChildEntity')};"
+    Select FlatSelect "
+        SELECT ID, title, owner_id
+        FROM {$table('TestPlugin.TestEntity')}
+        WHERE active=1 AND owner_id={$user_id()}
+        ORDER BY ID DESC;
+    "
     {
         Integer ID;
-        ShortString child_title;
-        Integer parent_id;
+        ShortString title;
 
         AllowAll;
 
