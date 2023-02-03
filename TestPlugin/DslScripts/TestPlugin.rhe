@@ -9,6 +9,8 @@ WPPlugin TestPlugin
         Integer count;
         Bool active;
 
+        OwnerContext;
+
         AllowCapability TestPlugin.Read;
 
         Filter Active active '1' '%d';
