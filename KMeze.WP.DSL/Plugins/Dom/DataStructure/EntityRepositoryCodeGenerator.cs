@@ -23,8 +23,43 @@ namespace KMeze.WP.DSL
         ";
             codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassConstructorTag, info);
 
-            snippet = $@"public function get() {{
-        return $this->parse_result( $this->wpdb->get_results( ""SELECT * FROM $this->{info.Name}_table_name;"" ) );
+            snippet = $@"public function transform_conditions($conditions) {{
+        $name_value = array();
+        $formats    = array();
+        $segments   = array();
+        $args             = array();
+        foreach ( $conditions as $condition ) {{
+            $name   = $condition['Name'];
+            $value  = $condition['Value'];
+            $format = $condition['Format'];
+
+            // For update & delete
+            $name_value[ $name ] = $value;
+            $formats[]           = $format;
+
+            // For prepare method
+            $segments[] = ""($name=$format)"";
+            $args[]           = $value;
+        }}
+
+        return array(
+            'NAME_VALUE' => $name_value,
+            'FORMATS' => $formats,
+            'SEGMENTS' => $segments,
+            'ARGS' => $args,
+        );
+    }}
+
+    public function get() {{
+
+        $conditions = [];
+        $conditions = apply_filters( '{info.WPPlugin.Name}_{info.Name}_filter', $conditions );
+
+        $transformed = $this->transform_conditions($conditions);
+        $where_part = ! empty( $transformed['SEGMENTS'] ) ? 'AND ' . implode( ' AND ', $transformed['SEGMENTS'] ) : '';
+        $sql = $this->wpdb->prepare( ""SELECT * FROM $this->{info.Name}_table_name WHERE (1=1) {{$where_part}};"", $transformed['ARGS'] );
+
+        return $this->parse_result( $this->wpdb->get_results( $sql ) );
     }}
 
     public function get_by_ID( int $id ) {{
