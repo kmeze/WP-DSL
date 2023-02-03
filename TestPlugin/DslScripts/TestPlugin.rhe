@@ -10,6 +10,8 @@ WPPlugin TestPlugin
         Bool active;
 
         AllowCapability TestPlugin.Read;
+
+        Filter Active active '1' '%d';
     }
 
     Entity TestChildEntity
