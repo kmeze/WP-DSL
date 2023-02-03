@@ -22,12 +22,11 @@ namespace KMeze.WP.DSL
             var acceptedArgs = args.Split(",", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
             string snippet = $@"add_filter( '{info.HookName}', '{info.Callback.WPPlugin.Name}_{info.Callback.Name}', {priority}, {acceptedArgs.Count()});
-
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.FilterHooksTag, info.WPPlugin);
 
             snippet = $@"{String.Join(", ", acceptedArgs)}";
-            codeBuilder.InsertCode(snippet, ActionCodeGenerator.ActionArgTag, info.Callback);
+            codeBuilder.InsertCode(snippet, CallbackCodeGenerator.CallbackArgTag, info.Callback);
         }
     }
 }

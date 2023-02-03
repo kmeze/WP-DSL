@@ -14,6 +14,26 @@ namespace KMeze.WP.DSL
         public string HookName { get; set; }
 
         [ConceptKey]
-        public ActionInfo Callback { get; set; }
+        public CallbackInfo Callback { get; set; }
+    }
+
+    [Export(typeof(IConceptMacro))]
+    public class ActionHookWithDefaultPriorityMacro : IConceptMacro<ActionHookWithDefaultPriorityInfo>
+    {
+        public IEnumerable<IConceptInfo> CreateNewConcepts(ActionHookWithDefaultPriorityInfo conceptInfo, IDslModel existingConcepts)
+        {
+            var newConcepts = new List<IConceptInfo>();
+
+            newConcepts.Add(new ActionHookInfo
+            {
+                WPPlugin = conceptInfo.WPPlugin,
+                HookName = conceptInfo.HookName,
+                Callback = conceptInfo.Callback,
+                Priority = "DefaultPriority",
+                Args = "",
+            });
+
+            return newConcepts;
+        }
     }
 }

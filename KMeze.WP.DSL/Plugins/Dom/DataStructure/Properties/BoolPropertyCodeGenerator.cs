@@ -18,7 +18,7 @@ namespace KMeze.WP.DSL
 
             string snippet = $@"public ?bool ${info.Name} = null;
     ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataStructureClassPropertyTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassPropertyTag, info.DataStructure);
 
             snippet = $@"$dataStructure->{info.Name} = is_null($object->{info.Name}) ? null : (bool) $object->{info.Name};
         ";

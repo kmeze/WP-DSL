@@ -28,7 +28,7 @@ namespace KMeze.WP.DSL
                         {DbDeltaKeyTag.Evaluate(info)}
                         ) {{$wpdb->get_charset_collate()}};"" );
 
-";
+    ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationHookTag, info.WPPlugin);
         }
     }

@@ -1,15 +1,6 @@
 WPPlugin TestPlugin
 {
-    UserMeta TestUserMeta
-    {
-        ShortString StringVal
-        {
-            Default 'date( "Ym", strtotime( wp_get_current_user()->user_registered ) )';
-        }
-        Integer IntVal { Default '(int) date("Y", strtotime("+5 years"))'; }
-        Bool BoolVal;
-    }
-
+    // DataStructures
     Entity TestEntity
     {
         // DropOnDeactivate;
@@ -18,10 +9,6 @@ WPPlugin TestPlugin
         Integer count;
         Bool active;
 
-//        Authorization TestPlugin.AllowLoggedIn;
-//        AllowAll;
-//        AllowLoggedIn;
-//        AllowRole TestPlugin.TestRole;
         AllowCapability TestPlugin.Read;
     }
 
@@ -33,46 +20,30 @@ WPPlugin TestPlugin
         Reference parent TestPlugin.TestEntity;
     }
 
-    Select FlatSelect
-        "
-            SELECT
-                c.ID,
-                c.child_title,
-                c.parent_id
-             FROM
-                {$table('TestPlugin.TestChildEntity')} c;
-        "
+    Select FlatSelect "SELECT ID, child_title, parent_id FROM {$table('TestPlugin.TestChildEntity')};"
     {
         Integer ID;
         ShortString child_title;
         Integer parent_id;
 
-        Action TestPlugin.Orphans;
-        ActionPost TestPlugin.DoSomething;
-
         AllowAll;
+
+        Action TestPlugin.GetSomething;
     }
 
-    Action Orphans '
+    Callback GetSomething '
         $result = ( new TestPlugin_FlatSelect_Repository() )->get();
         return array_filter( $result, fn ( $item ) => is_null( $item->parent_id ) );
     ';
 
-    Action DoSomething '
-        // do something here
-        return "Hello World!";
-    ';
-
-    List FlatList TestPlugin.TestChildEntity
+    UserMeta TestUserMeta
     {
-        Take child_title;
-
-        AllowAll;
+        ShortString StringVal { Default 'date( "Ym", strtotime( wp_get_current_user()->user_registered ) )'; }
+        Integer IntVal { Default '(int) date("Y", strtotime("+5 years"))'; }
+        Bool BoolVal;
     }
 
-    Capability Read;
-    Capability Manage;
-
+    // Roles & capabilities
     Role Subscriber
     {
         Capability TestPlugin.Read;
@@ -88,37 +59,26 @@ WPPlugin TestPlugin
         Capability TestPlugin.Manage;
     }
 
+    Capability Read;
+    Capability Manage;
+
     DefaultRole TestPlugin.TestRole;
 
+    // Action hooks
     ActionHook 'admin_notices' TestPlugin.SayHello;
+    Callback SayHello '?><div class="notice notice-success is-dismissible"><p><?php echo "Hello World!" ?></p></div><?php';
 
+    // Filter hooks
     FilterHook 'document_title' TestPlugin.SetWebsiteTitle DefaultPriority '$title';
+    Callback SetWebsiteTitle 'return $title . " - My Great Website";';
 
-    ActivationAction TestPlugin.TestActivationConcept;
-    DeactivationAction TestPlugin.TestDeactivationConcept;
-    UninstallAction TestPlugin.TestUninstallConcept;
+    // Activation & deactivation hooks
+    ActivationHook TestPlugin.TestActivationConcept;
+    Callback TestActivationConcept '// ActivationAction concept test ';
 
-    Action TestDeactivationConcept '// DeactivationAction concept test ';
-    Action TestUninstallConcept '// UninstallAction concept test ';
-//    Action AllowPublicAccess 'return true;';
-//    Action AllowLoggedIn 'return is_user_logged_in();';
-    Action TestActivationConcept '// ActivationAction concept test ';
-    Action SayHello '
-            ?>
-                <div class="notice notice-success is-dismissible">
-                    <p><?php echo "Hello World!" ?></p>
-                </div>
-            <?php
-    ';
-    Action SetWebsiteTitle 'return $title . " - My Great Website";';
+    DeactivationHook TestPlugin.TestDeactivationConcept;
+    Callback TestDeactivationConcept '// DeactivationAction concept test ';
 
-    Code 'add_action( "admin_notices", function () {
-        ?>
-            <div class="notice notice-success is-dismissible">
-                <p><?php echo "Hello Again!" ?></p>
-            </div>
-        <?php
-    }, 11 );';
-
-    JWTAuth;
+    UninstallHook TestPlugin.TestUninstallConcept;
+    Callback TestUninstallConcept '// UninstallAction concept test ';
 }

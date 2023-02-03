@@ -13,7 +13,7 @@ namespace KMeze.WP.DSL
         {
             var newConcepts = new List<IConceptInfo>();
 
-            ActionInfo action = new ActionInfo
+            CallbackInfo action = new CallbackInfo
             {
                 WPPlugin = conceptInfo.DataStructure.WPPlugin,
                 Name = "AllowAll",
@@ -39,7 +39,7 @@ namespace KMeze.WP.DSL
         {
             var newConcepts = new List<IConceptInfo>();
 
-            ActionInfo action = new ActionInfo
+            CallbackInfo action = new CallbackInfo
             {
                 WPPlugin = conceptInfo.DataStructure.WPPlugin,
                 Name = "AllowLoggedIn",
@@ -65,7 +65,7 @@ namespace KMeze.WP.DSL
         {
             var newConcepts = new List<IConceptInfo>();
 
-            ActionInfo action = new ActionInfo
+            CallbackInfo action = new CallbackInfo
             {
                 WPPlugin = conceptInfo.DataStructure.WPPlugin,
                 Name = "AllowRole",
@@ -97,7 +97,7 @@ namespace KMeze.WP.DSL
         {
             var newConcepts = new List<IConceptInfo>();
 
-            ActionInfo action = new ActionInfo
+            CallbackInfo action = new CallbackInfo
             {
                 WPPlugin = conceptInfo.DataStructure.WPPlugin,
                 Name = "AllowCapability",

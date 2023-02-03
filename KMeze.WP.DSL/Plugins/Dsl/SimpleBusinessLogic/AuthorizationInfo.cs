@@ -11,6 +11,6 @@ namespace KMeze.WP.DSL
         public DataStructureInfo DataStructure { get; set; }
 
         [ConceptKey]
-        public ActionInfo Action { get; set; }
+        public CallbackInfo Action { get; set; }
     }
 }

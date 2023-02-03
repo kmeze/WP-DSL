@@ -20,7 +20,7 @@ namespace KMeze.WP.DSL
 
             string snippet = $@"public ?int $id = null;
     ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataStructureClassPropertyTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassPropertyTag, info);
 
             snippet = $@"$dataStructure->id = (int) $object->ID;
         ";
@@ -28,11 +28,11 @@ namespace KMeze.WP.DSL
 
             snippet = $@"protected ?string $source_table_name = null;
     ";
-            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassPropertyTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassPropertyTag, info);
 
             snippet = $@"$this->source_table_name = $this->wpdb->prefix . '{info.Source.WPPlugin.Name}_{info.Source.Name}';
         ";
-            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassConstructorTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassConstructorTag, info);
 
             snippet = $@"public function get() {{
 
@@ -45,7 +45,7 @@ namespace KMeze.WP.DSL
     }}
 
 ";
-            codeBuilder.InsertCode(snippet, RepositoryCodeGenerator.RepositoryClassMethodTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassMethodTag, info);
 
             snippet = $@"register_rest_route( $this->namespace, $this->resource_name, array(
             'methods'             => 'GET',
@@ -54,14 +54,14 @@ namespace KMeze.WP.DSL
         ) );
 
         ";
-            codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassRegisterRoutesTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info);
 
             snippet = $@"public function get_items( $request ): array {{
         return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get();
     }}
 
 ";
-            codeBuilder.InsertCode(snippet, RestControllerCodeGenerator.RestControllerClassMethodTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassMethodTag, info);
         }
     }
 }

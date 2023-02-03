@@ -11,8 +11,7 @@ namespace KMeze.WP.DSL
     [ExportMetadata(MefProvider.Implements, typeof(ActionHookInfo))]
     public class ActionHookCodeGenerator : IWPPluginConceptCodeGenerator
     {
-
-        public static readonly CsTag<ActionInfo> ActionHookPriorityTag = "ActionHookPriority";
+        public static readonly CsTag<CallbackInfo> ActionHookPriorityTag = "ActionHookPriority";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -25,12 +24,11 @@ namespace KMeze.WP.DSL
             var acceptedArgs = args.Split(",", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
             string snippet = $@"add_action( '{info.HookName}', '{info.Callback.WPPlugin.Name}_{info.Callback.Name}', {priority}, {acceptedArgs.Count()});
-
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.BodyTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActionHooksTag, info.WPPlugin);
 
             snippet = $@"{String.Join(", ", acceptedArgs)}";
-            codeBuilder.InsertCode(snippet, ActionCodeGenerator.ActionArgTag, info.Callback);
+            codeBuilder.InsertCode(snippet, CallbackCodeGenerator.CallbackArgTag, info.Callback);
         }
     }
 }
