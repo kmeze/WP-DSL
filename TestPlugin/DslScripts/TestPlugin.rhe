@@ -11,7 +11,7 @@ WPPlugin TestPlugin
 
         AllowCapability TestPlugin.Read;
 
-        Filter Active active 'true' '%d';
+        Filter Active active '1' '%d';
     }
 
     Entity TestChildEntity
