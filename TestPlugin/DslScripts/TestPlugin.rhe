@@ -10,10 +10,9 @@ WPPlugin TestPlugin
         Bool active;
 
         AllowCapability TestPlugin.Read;
-    }
 
-    FilterHook 'TestPlugin_TestEntity_filter' TestPlugin.TestEntity_Active DefaultPriority '$conditions';
-    Callback TestEntity_Active 'return array(   array( "Name" => "active", "Value" => true, "Format" => "%d" ));';
+        Filter Active active 'true' '%d';
+    }
 
     Entity TestChildEntity
     {
