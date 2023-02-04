@@ -36,6 +36,15 @@ namespace KMeze.WP.DSL
 
                 newConcepts.AddRange(new IConceptInfo[] { reference, user });
             }
+            else if (conceptInfo.DataStructure is ListInfo)
+            {
+                var soruceDataStructueOwnerContext = existingConcepts.FindByReference<OwnerContextInfo>(ci => ci.DataStructure, ((ListInfo)conceptInfo.DataStructure).Source);
+
+                if (soruceDataStructueOwnerContext == null)
+                    throw new DslSyntaxException(conceptInfo, $@"Source propertty must also apply OwnerContext concept.");
+            }
+            else
+                throw new DslSyntaxException(conceptInfo, $@"OwnerContext can be used only on Entity or List concept.");
 
             var callback = new CallbackInfo
             {
