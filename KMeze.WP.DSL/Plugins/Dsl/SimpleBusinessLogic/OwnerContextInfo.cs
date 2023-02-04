@@ -35,6 +35,12 @@ namespace KMeze.WP.DSL
                 };
 
                 newConcepts.AddRange(new IConceptInfo[] { reference, user });
+
+                // Add OwnerContext also to all ListInfo DatStructures that uses this Entity as Source
+                newConcepts.AddRange(
+                    existingConcepts.FindByReference<ListInfo>(ci => ci.Source, conceptInfo.DataStructure)
+                        .Select(ci => new OwnerContextInfo { DataStructure = ci })
+                );
             }
             else if (conceptInfo.DataStructure is ListInfo)
             {
