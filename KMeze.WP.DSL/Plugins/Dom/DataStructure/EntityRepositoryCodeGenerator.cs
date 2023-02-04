@@ -23,34 +23,7 @@ namespace KMeze.WP.DSL
         ";
             codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassConstructorTag, info);
 
-            snippet = $@"public function transform_conditions($conditions) {{
-        $name_value = array();
-        $formats    = array();
-        $segments   = array();
-        $args             = array();
-        foreach ( $conditions as $condition ) {{
-            $name   = $condition['Name'];
-            $value  = $condition['Value'];
-            $format = $condition['Format'];
-
-            // For update & delete
-            $name_value[ $name ] = $value;
-            $formats[]           = $format;
-
-            // For prepare method
-            $segments[] = ""($name=$format)"";
-            $args[]           = $value;
-        }}
-
-        return array(
-            'NAME_VALUE' => $name_value,
-            'FORMATS' => $formats,
-            'SEGMENTS' => $segments,
-            'ARGS' => $args,
-        );
-    }}
-
-    public function get() {{
+            snippet = $@"public function get() {{
         $conditions = [];
         $conditions = apply_filters( '{info.WPPlugin.Name}_{info.Name}_filter', $conditions );
         $transformed = $this->transform_conditions($conditions);
