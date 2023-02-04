@@ -72,7 +72,7 @@ namespace KMeze.WP.DSL
         return {info.WPPlugin.Name}_{info.Name}::parse( $row );
     }}
 
-    public function insert( array $data ): int {{
+    public function insert( array $data ): ?int {{
         $this->wpdb->insert( $this->{info.Name}_table_name, $data );
 
         return $this->insert_id;
@@ -88,7 +88,12 @@ namespace KMeze.WP.DSL
     }}
 
     public function delete( int $id ) {{
-	    $this->wpdb->delete( $this->{info.Name}_table_name, array( 'ID' => $id ) );
+        $conditions = [];
+        $conditions = apply_filters( '{info.WPPlugin.Name}_{info.Name}_filter', $conditions );
+        $conditions[] = array( 'Name' => 'ID', 'Value' => $id, 'Format' => '%d' );
+        $transformed = $this->transform_conditions($conditions);
+
+	    $this->wpdb->delete( $this->{info.Name}_table_name, $transformed['NAME_VALUE'], $transformed['ARGS'] );
     }}
 
 ";
