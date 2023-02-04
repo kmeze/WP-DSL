@@ -66,7 +66,7 @@ namespace KMeze.WP.DSL
         return array_map( fn( $row ) => {info.WPPlugin.Name}_{info.Name}::parse( $row ), $result );
     }}
 
-    public function transform_conditions($conditions) {{
+    protected function transform_conditions($conditions) {{
         $name_value = array();
         $formats    = array();
         $segments   = array();
