@@ -17,18 +17,25 @@ namespace KMeze.WP.DSL
     {
         public IEnumerable<IConceptInfo> CreateNewConcepts(OwnerContextInfo conceptInfo, IDslModel existingConcepts)
         {
-            var user = new WPDataStructureInfo
-            {
-                WPPlugin = conceptInfo.DataStructure.WPPlugin,
-                Name = "User",
-            };
+            var newConcepts = new List<IConceptInfo>();
 
-            var reference = new ReferencePropertyInfo
+            if (conceptInfo.DataStructure is EntityInfo)
             {
-                DataStructure = conceptInfo.DataStructure,
-                Name = "Owner",
-                ReferencedDataStructure = user,
-            };
+                var user = new WPDataStructureInfo
+                {
+                    WPPlugin = conceptInfo.DataStructure.WPPlugin,
+                    Name = "User",
+                };
+
+                var reference = new ReferencePropertyInfo
+                {
+                    DataStructure = conceptInfo.DataStructure,
+                    Name = "Owner",
+                    ReferencedDataStructure = user,
+                };
+
+                newConcepts.AddRange(new IConceptInfo[] { reference, user });
+            }
 
             var callback = new CallbackInfo
             {
@@ -46,7 +53,9 @@ namespace KMeze.WP.DSL
                 Args = "$conditions"
             };
 
-            return new IConceptInfo[] { user, reference, callback, hook };
+            newConcepts.AddRange(new IConceptInfo[] { callback, hook });
+
+            return newConcepts;
         }
     }
 }
