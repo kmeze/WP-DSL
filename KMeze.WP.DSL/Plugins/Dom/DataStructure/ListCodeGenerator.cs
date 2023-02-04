@@ -35,11 +35,15 @@ namespace KMeze.WP.DSL
             codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassConstructorTag, info);
 
             snippet = $@"public function get() {{
-
-        $sql = ""SELECT $this->source_table_name.ID AS ID
-                    {ListColumnTag.Evaluate(info)}
-                FROM $this->source_table_name
-                {ListJoinTag.Evaluate(info)};"";
+                $conditions = [];
+                $conditions = apply_filters( '{info.WPPlugin.Name}_{info.Name}_filter', $conditions );
+                $transformed = $this->transform_conditions($conditions);
+                $where_part = ! empty( $transformed['SEGMENTS'] ) ? 'AND ' . implode( ' AND ', $transformed['SEGMENTS'] ) : '';
+                $sql = $this->wpdb->prepare( ""SELECT $this->source_table_name.ID AS ID
+                            {ListColumnTag.Evaluate(info)}
+                            FROM $this->source_table_name
+                            {ListJoinTag.Evaluate(info)}
+                            WHERE (1=1) {{$where_part}};"", $transformed['ARGS'] );
 
         return $this->parse_result( $this->wpdb->get_results( $sql ) );
     }}
@@ -56,7 +60,7 @@ namespace KMeze.WP.DSL
         ";
             codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info);
 
-            snippet = $@"public function get_items( $request ): array {{
+            snippet = $@"public function get_items( $request ) {{
         return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get();
     }}
 

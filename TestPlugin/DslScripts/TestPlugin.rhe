@@ -16,6 +16,13 @@ WPPlugin TestPlugin
         Filter Active active '1' '%d';
     }
 
+    List SomeList TestPlugin.TestEntity
+    {
+        Take title;
+
+        AllowAll;
+    }
+
     Entity TestChildEntity
     {
         // DropOnDeactivate;
