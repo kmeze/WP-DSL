@@ -75,7 +75,7 @@ namespace KMeze.WP.DSL
     public function insert( array $data ): ?int {{
         $this->wpdb->insert( $this->{info.Name}_table_name, $data );
 
-        return $this->insert_id;
+        return $this->wpdb->insert_id;
     }}
 
     public function update( int $id, array $data ) {{
