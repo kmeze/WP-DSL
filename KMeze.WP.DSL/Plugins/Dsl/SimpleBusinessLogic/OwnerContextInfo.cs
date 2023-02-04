@@ -34,7 +34,7 @@ namespace KMeze.WP.DSL
                     ReferencedDataStructure = user,
                 };
 
-                newConcepts.AddRange(new IConceptInfo[] { reference, user });
+                 newConcepts.AddRange(new IConceptInfo[] { reference, user });
 
                 // Add OwnerContext also to all ListInfo DatStructures that uses this Entity as Source
                 newConcepts.AddRange(
@@ -52,23 +52,23 @@ namespace KMeze.WP.DSL
             else
                 throw new DslSyntaxException(conceptInfo, $@"OwnerContext can be used only on Entity or List concept.");
 
-            var callback = new CallbackInfo
+            var callback_filter = new CallbackInfo
             {
                 WPPlugin = conceptInfo.DataStructure.WPPlugin,
                 Name = $@"{conceptInfo.DataStructure.Name}_Filter_OwnerContext",
                 Script = $@"$conditions[] = array( 'Name' => 'owner_id', 'Value' => get_current_user_id(), 'Format' => '%d' ); return $conditions;"
             };
 
-            var hook = new FilterHookInfo
+            var hook_filter = new FilterHookInfo
             {
                 WPPlugin = conceptInfo.DataStructure.WPPlugin,
                 HookName = $@"{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.DataStructure.Name}_filter",
-                Callback = callback,
+                Callback = callback_filter,
                 Priority = "20",
                 Args = "$conditions"
             };
 
-            newConcepts.AddRange(new IConceptInfo[] { callback, hook });
+            newConcepts.AddRange(new IConceptInfo[] { callback_filter, hook_filter });
 
             return newConcepts;
         }
