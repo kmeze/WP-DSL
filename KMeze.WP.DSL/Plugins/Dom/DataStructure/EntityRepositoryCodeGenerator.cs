@@ -84,7 +84,7 @@ namespace KMeze.WP.DSL
         $conditions[] = array( 'Name' => 'ID', 'Value' => $id, 'Format' => '%d' );
         $transformed = $this->transform_conditions($conditions);
 
-	    $this->wpdb->update( $this->{info.Name}_table_name, $data, $transformed['NAME_VALUE'], null, $transformed['ARGS']);
+	    return $this->wpdb->update( $this->{info.Name}_table_name, $data, $transformed['NAME_VALUE'], null, $transformed['ARGS']);
     }}
 
     public function delete( int $id ) {{
