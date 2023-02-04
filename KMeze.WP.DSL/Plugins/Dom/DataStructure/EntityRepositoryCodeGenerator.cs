@@ -61,7 +61,13 @@ namespace KMeze.WP.DSL
     }}
 
     public function get_by_ID( int $id ) {{
-        $row = $this->wpdb->get_row( $this->wpdb->prepare( ""SELECT * FROM $this->{info.Name}_table_name WHERE ID=%d;"", $id ) );
+        $conditions = [];
+        $conditions = apply_filters( '{info.WPPlugin.Name}_{info.Name}_filter', $conditions );
+        $conditions[] = array( 'Name' => 'ID', 'Value' => $id, 'Format' => '%d' );
+        $transformed = $this->transform_conditions($conditions);
+        $where_part = ! empty( $transformed['SEGMENTS'] ) ? 'AND ' . implode( ' AND ', $transformed['SEGMENTS'] ) : '';
+        $sql = $this->wpdb->prepare( ""SELECT * FROM $this->{info.Name}_table_name WHERE (1=1) {{$where_part}};"", $transformed['ARGS'] );
+        $row = $this->wpdb->get_row( $sql );
 
         return {info.WPPlugin.Name}_{info.Name}::parse( $row );
     }}
