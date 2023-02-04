@@ -40,7 +40,7 @@ namespace KMeze.WP.DSL
             var hook = new FilterHookInfo
             {
                 WPPlugin = conceptInfo.DataStructure.WPPlugin,
-                HookName = "TestPlugin_TestEntity_filter",
+                HookName = $@"{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.DataStructure.Name}_filter",
                 Callback = callback,
                 Priority = "20",
                 Args = "$conditions"
