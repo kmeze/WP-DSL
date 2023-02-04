@@ -9,7 +9,7 @@ namespace KMeze.WP.DSL
     public class OwnerContextInfo : IConceptInfo
     {
         [ConceptKey]
-        public EntityInfo Entity { get; set; }
+        public DataStructureInfo DataStructure { get; set; }
     }
 
     [Export(typeof(IConceptMacro))]
@@ -19,27 +19,27 @@ namespace KMeze.WP.DSL
         {
             var user = new WPDataStructureInfo
             {
-                WPPlugin = conceptInfo.Entity.WPPlugin,
+                WPPlugin = conceptInfo.DataStructure.WPPlugin,
                 Name = "User",
             };
 
             var reference = new ReferencePropertyInfo
             {
-                DataStructure = conceptInfo.Entity,
+                DataStructure = conceptInfo.DataStructure,
                 Name = "Owner",
                 ReferencedDataStructure = user,
             };
 
             var callback = new CallbackInfo
             {
-                WPPlugin = conceptInfo.Entity.WPPlugin,
-                Name = $@"{conceptInfo.Entity.Name}_Filter_OwnerContext",
+                WPPlugin = conceptInfo.DataStructure.WPPlugin,
+                Name = $@"{conceptInfo.DataStructure.Name}_Filter_OwnerContext",
                 Script = $@"$conditions[] = array( 'Name' => 'owner_id', 'Value' => get_current_user_id(), 'Format' => '%d' ); return $conditions;"
             };
 
             var hook = new FilterHookInfo
             {
-                WPPlugin = conceptInfo.Entity.WPPlugin,
+                WPPlugin = conceptInfo.DataStructure.WPPlugin,
                 HookName = "TestPlugin_TestEntity_filter",
                 Callback = callback,
                 Priority = "20",
