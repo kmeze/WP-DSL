@@ -46,6 +46,7 @@ namespace KMeze.WP.DSL
     }}
 
     public function insert( array $data ): ?int {{
+        $data = apply_filters( '{info.WPPlugin.Name}_{info.Name}_insert', $data );
         $this->wpdb->insert( $this->{info.Name}_table_name, $data );
 
         return $this->wpdb->insert_id;
