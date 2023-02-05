@@ -84,7 +84,23 @@ namespace KMeze.WP.DSL
                 Args = "$data"
             };
 
-            newConcepts.AddRange(new IConceptInfo[] { callback_filter, hook_filter, callback_insert, hook_insert });
+            var callback_update = new CallbackInfo
+            {
+                WPPlugin = conceptInfo.DataStructure.WPPlugin,
+                Name = $@"{conceptInfo.DataStructure.Name}_Update_OwnerContext",
+                Script = $@"unset($data['Owner_id']); return $data;"
+            };
+
+            var hook_update = new FilterHookInfo
+            {
+                WPPlugin = conceptInfo.DataStructure.WPPlugin,
+                HookName = $@"{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.DataStructure.Name}_update",
+                Callback = callback_update,
+                Priority = "10",
+                Args = "$data"
+            };
+
+            newConcepts.AddRange(new IConceptInfo[] { callback_filter, hook_filter, callback_insert, hook_insert, callback_update, hook_update });
 
             return newConcepts;
         }
