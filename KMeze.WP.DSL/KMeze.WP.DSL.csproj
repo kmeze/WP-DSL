@@ -4,7 +4,7 @@
     <PackageId>KMeze.WP.DSL</PackageId>
     <Description>WP-DSL simplifies WordPress plugin development in the way that developers (mostly) use a specific high-level programming language to create WordPress plugins instead of writing extensive PHP code.</Description>
     <PackageTags>WordPress;WordPress DSL;Rhetos;</PackageTags>
-    <Version>1.0.0-alpha.2</Version>
+    <Version>1.0.0-alpha.3</Version>
     <Authors>Krešimir Meze</Authors>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
