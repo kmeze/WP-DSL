@@ -23,34 +23,7 @@ namespace KMeze.WP.DSL
         ";
             codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassConstructorTag, info);
 
-            snippet = $@"public function transform_conditions($conditions) {{
-        $name_value = array();
-        $formats    = array();
-        $segments   = array();
-        $args             = array();
-        foreach ( $conditions as $condition ) {{
-            $name   = $condition['Name'];
-            $value  = $condition['Value'];
-            $format = $condition['Format'];
-
-            // For update & delete
-            $name_value[ $name ] = $value;
-            $formats[]           = $format;
-
-            // For prepare method
-            $segments[] = ""($name=$format)"";
-            $args[]           = $value;
-        }}
-
-        return array(
-            'NAME_VALUE' => $name_value,
-            'FORMATS' => $formats,
-            'SEGMENTS' => $segments,
-            'ARGS' => $args,
-        );
-    }}
-
-    public function get() {{
+            snippet = $@"public function get() {{
         $conditions = [];
         $conditions = apply_filters( '{info.WPPlugin.Name}_{info.Name}_filter', $conditions );
         $transformed = $this->transform_conditions($conditions);
@@ -61,23 +34,42 @@ namespace KMeze.WP.DSL
     }}
 
     public function get_by_ID( int $id ) {{
-        $row = $this->wpdb->get_row( $this->wpdb->prepare( ""SELECT * FROM $this->{info.Name}_table_name WHERE ID=%d;"", $id ) );
+        $conditions = [];
+        $conditions = apply_filters( '{info.WPPlugin.Name}_{info.Name}_filter', $conditions );
+        $conditions[] = array( 'Name' => 'ID', 'Value' => $id, 'Format' => '%d' );
+        $transformed = $this->transform_conditions($conditions);
+        $where_part = ! empty( $transformed['SEGMENTS'] ) ? 'AND ' . implode( ' AND ', $transformed['SEGMENTS'] ) : '';
+        $sql = $this->wpdb->prepare( ""SELECT * FROM $this->{info.Name}_table_name WHERE (1=1) {{$where_part}};"", $transformed['ARGS'] );
+        $row = $this->wpdb->get_row( $sql );
 
         return {info.WPPlugin.Name}_{info.Name}::parse( $row );
     }}
 
-    public function insert( array $data ): int {{
+    public function insert( array $data ): ?int {{
+        $data = apply_filters( '{info.WPPlugin.Name}_{info.Name}_insert', $data );
         $this->wpdb->insert( $this->{info.Name}_table_name, $data );
 
-        return $this->insert_id;
+        return $this->wpdb->insert_id;
     }}
 
     public function update( int $id, array $data ) {{
-	    $this->wpdb->update( $this->{info.Name}_table_name, $data, array( 'ID' => $id ) );
+        $conditions = [];
+        $conditions = apply_filters( '{info.WPPlugin.Name}_{info.Name}_filter', $conditions );
+        $conditions[] = array( 'Name' => 'ID', 'Value' => $id, 'Format' => '%d' );
+        $transformed = $this->transform_conditions($conditions);
+        $data = apply_filters( '{info.WPPlugin.Name}_{info.Name}_update', $data );
+
+	    return $this->wpdb->update( $this->{info.Name}_table_name, $data, $transformed['NAME_VALUE'], null, $transformed['ARGS']);
     }}
 
     public function delete( int $id ) {{
-	    $this->wpdb->delete( $this->{info.Name}_table_name, array( 'ID' => $id ) );
+        $conditions = [];
+        $conditions = apply_filters( '{info.WPPlugin.Name}_{info.Name}_filter', $conditions );
+        $conditions[] = array( 'Name' => 'ID', 'Value' => $id, 'Format' => '%d' );
+        $transformed = $this->transform_conditions($conditions);
+        $data = apply_filters( '{info.WPPlugin.Name}_{info.Name}_delete', $data );
+
+	    return $this->wpdb->delete( $this->{info.Name}_table_name, $transformed['NAME_VALUE'], $transformed['ARGS'] );
     }}
 
 ";
