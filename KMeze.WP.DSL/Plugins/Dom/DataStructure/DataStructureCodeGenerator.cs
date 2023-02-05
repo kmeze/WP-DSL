@@ -125,6 +125,9 @@ namespace KMeze.WP.DSL
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DataStructureClassesTag, info.WPPlugin);
 
+            snippet = $@"( new {info.WPPlugin.Name}_{info.Name}_REST_Controller() )->register_routes();
+    ";
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.RegisterRestRoutesTag, info.WPPlugin);
         }
     }
 }

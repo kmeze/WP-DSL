@@ -15,6 +15,7 @@ namespace KMeze.WP.DSL
         public static readonly CsTag<WPPluginInfo> FilterHooksTag = "FilterHooks";
         public static readonly CsTag<WPPluginInfo> CallbacksTag = "Callbacks";
         public static readonly CsTag<WPPluginInfo> DataStructureClassesTag = "DataStructureClasses";
+        public static readonly CsTag<WPPluginInfo> RegisterRestRoutesTag = "RegisterRestRoutes";
         public static readonly CsTag<WPPluginInfo> CodeTag = "CodeTag";
         public static readonly CsTag<WPPluginInfo> ActivationHookTag = "ActivationHook";
         public static readonly CsTag<WPPluginInfo> DeactivationHookTag = "DeactivationHook";
@@ -37,6 +38,7 @@ defined( 'ABSPATH' ) || exit;
  * Action Hooks
  */
 {ActionHooksTag.Evaluate(info)}
+add_action( 'rest_api_init', '{info.Name}_register_rest_routes', 10, 0);
 
 /**
  * Filter Hooks
@@ -47,6 +49,9 @@ defined( 'ABSPATH' ) || exit;
  * Callbacks
  */
 {CallbacksTag.Evaluate(info)}
+function {info.Name}_register_rest_routes() {{
+    {RegisterRestRoutesTag.Evaluate(info)}
+}}
 function {info.Name}_uninstall() {{
     {UninstallHookTag.Evaluate(info)}
 }}
