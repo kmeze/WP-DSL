@@ -47,10 +47,10 @@ namespace KMeze.WP.DSL
                 var soruceDataStructueOwnerContext = existingConcepts.FindByReference<OwnerContextInfo>(ci => ci.DataStructure, ((ListInfo)conceptInfo.DataStructure).Source);
 
                 if (soruceDataStructueOwnerContext == null)
-                    throw new DslSyntaxException(conceptInfo, $@"Source propertty must also apply OwnerContext concept.");
+                    throw new DslSyntaxException(conceptInfo, $@"Source property must also apply the OwnerContext concept.");
             }
             else
-                throw new DslSyntaxException(conceptInfo, $@"OwnerContext can be used only on Entity or List concept.");
+                throw new DslSyntaxException(conceptInfo, $@"OwnerContext can be used only on Entity or List concepts.");
 
             var callback_filter = new CallbackInfo
             {
