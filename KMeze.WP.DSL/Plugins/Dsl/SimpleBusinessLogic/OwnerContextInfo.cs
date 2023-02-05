@@ -34,7 +34,7 @@ namespace KMeze.WP.DSL
                     ReferencedDataStructure = user,
                 };
 
-                 newConcepts.AddRange(new IConceptInfo[] { reference, user });
+                newConcepts.AddRange(new IConceptInfo[] { reference, user });
 
                 // Add OwnerContext also to all ListInfo DatStructures that uses this Entity as Source
                 newConcepts.AddRange(
@@ -68,7 +68,27 @@ namespace KMeze.WP.DSL
                 Args = "$conditions"
             };
 
-            newConcepts.AddRange(new IConceptInfo[] { callback_filter, hook_filter });
+            var callback_insert = new CallbackInfo
+            {
+                WPPlugin = conceptInfo.DataStructure.WPPlugin,
+                Name = $@"{conceptInfo.DataStructure.Name}_Insert_OwnerContext",
+                Script = $@"$data['Owner_id'] = get_current_user_id(); return $data;"
+            };
+
+            var hook_insert = new FilterHookInfo
+            {
+                WPPlugin = conceptInfo.DataStructure.WPPlugin,
+                HookName = $@"{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.DataStructure.Name}_insert",
+                Callback = callback_insert,
+                Priority = "10",
+                Args = "$data"
+            };
+
+
+            // DODATI CALLBACK I HOOK za _insert_before
+            // I ŠTO KOD UPDATEA (DA LI OPĆE NE DOZVOLITI PROMJENU ILI ŠTO AKO POŠALJE owner_id NULL)
+
+            newConcepts.AddRange(new IConceptInfo[] { callback_filter, hook_filter, callback_insert, hook_insert });
 
             return newConcepts;
         }
