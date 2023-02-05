@@ -84,10 +84,6 @@ namespace KMeze.WP.DSL
                 Args = "$data"
             };
 
-
-            // DODATI CALLBACK I HOOK za _insert_before
-            // I ŠTO KOD UPDATEA (DA LI OPĆE NE DOZVOLITI PROMJENU ILI ŠTO AKO POŠALJE owner_id NULL)
-
             newConcepts.AddRange(new IConceptInfo[] { callback_filter, hook_filter, callback_insert, hook_insert });
 
             return newConcepts;
