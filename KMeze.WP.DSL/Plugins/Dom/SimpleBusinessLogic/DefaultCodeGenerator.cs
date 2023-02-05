@@ -17,8 +17,11 @@ namespace KMeze.WP.DSL
         {
             var info = (DefaultInfo)conceptInfo;
 
+            var properyName = info.Property.Name;
+            if (info.Property is ReferencePropertyInfo) properyName = $@"{info.Property.Name}_id";
+
             string snippet = $@"${info.Property.Name}DefaultValue = fn () => {info.Expression};
-        $this->{info.Property.Name} = ${info.Property.Name}DefaultValue();
+        $this->{properyName} = ${info.Property.Name}DefaultValue();
         ";
             codeBuilder.InsertCode(snippet, PropertyCodeGenerator.ClassConstructorPropertyTag, info.Property);
         }
