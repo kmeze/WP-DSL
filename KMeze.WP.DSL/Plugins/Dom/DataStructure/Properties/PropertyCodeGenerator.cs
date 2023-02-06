@@ -11,8 +11,7 @@ namespace KMeze.WP.DSL
     [ExportMetadata(MefProvider.Implements, typeof(PropertyInfo))]
     public class PropertyCodeGenerator : IWPPluginConceptCodeGenerator
     {
-        // TODO: fix tag string (remove Tax sufix)
-        public static readonly CsTag<PropertyInfo> ClassConstructorPropertyTag = "ClassConstructorPropertyTag";
+        public static readonly CsTag<PropertyInfo> ClassConstructorPropertyTag = "ClassConstructorProperty";
         public static readonly CsTag<PropertyInfo> DbDeltaPropertyColumnTag = "DbDeltaPropertyColumn";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
