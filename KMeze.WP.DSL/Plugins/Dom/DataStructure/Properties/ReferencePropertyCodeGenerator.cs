@@ -28,10 +28,6 @@ namespace KMeze.WP.DSL
                 snippet = $@",{info.Name}_id BIGINT(20) UNSIGNED";
                 codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnTag, info);
 
-                snippet = $@",KEY key_{info.DataStructure.Name}_{info.Name}_id ({info.Name}_id)
-                        ";
-                codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaKeyTag, info.DataStructure);
-
                 // Fast hack to enable adding reference to wp_users table
                 string referencedTable = $@"{info.ReferencedDataStructure.WPPlugin.Name}_{info.ReferencedDataStructure.Name}";
                 if (info.ReferencedDataStructure is WPDataStructureInfo && info.ReferencedDataStructure.Name == "User") referencedTable = "users";
