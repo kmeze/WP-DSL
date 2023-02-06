@@ -25,9 +25,8 @@ namespace KMeze.WP.DSL
 
             if (info.DataStructure is EntityInfo)
             {
-                snippet = $@",{info.Name} VARCHAR(256)
-                        ";
-                codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaColumnTag, info.DataStructure);
+                snippet = $@",{info.Name} VARCHAR(256)";
+                codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnTag, info);
             }
         }
     }

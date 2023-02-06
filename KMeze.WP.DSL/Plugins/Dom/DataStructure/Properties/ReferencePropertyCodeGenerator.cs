@@ -25,9 +25,8 @@ namespace KMeze.WP.DSL
 
             if (info.DataStructure is EntityInfo)
             {
-                snippet = $@",{info.Name}_id BIGINT(20) DEFAULT NULL
-                        ";
-                codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaColumnTag, info.DataStructure);
+                snippet = $@",{info.Name}_id BIGINT(20)";
+                codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnTag, info);
 
                 snippet = $@",KEY ind_{info.DataStructure.Name}_{info.Name}_id ({info.Name}_id)
                         ";
