@@ -34,7 +34,7 @@ namespace KMeze.WP.DSL
 
                 snippet = $@"$referenced_table_name = $wpdb->prefix . '{referencedTable}';
     $db_name               = DB_NAME;
-	$key_name              = ""fk_{info.DataStructure.Name}_{info.Name}_id"";
+	$key_name              = ""fk_{info.DataStructure.WPPlugin.Name}_{info.DataStructure.Name}_{info.Name}_id"";
 	$sql                   = ""SELECT CONSTRAINT_NAME FROM information_schema.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = '$db_name' AND CONSTRAINT_NAME = '$key_name' AND CONSTRAINT_TYPE = 'FOREIGN KEY';"";
 
 	if ( is_null( $wpdb->get_var( $sql ) ) ) {{

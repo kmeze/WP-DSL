@@ -15,7 +15,16 @@ namespace KMeze.WP.DSL
         {
             var info = (UniqueInfo)conceptInfo;
 
-            string snippet = $@",UNIQUE key_{info.Property.DataStructure.Name}_{info.Property.Name} ({info.Property.Name})
+            // Fast hack for to enable Unique key for reference (ignores NULL)
+            string keyName = $@"ukey_{info.Property.DataStructure.WPPlugin.Name}_{info.Property.DataStructure.Name}_{info.Property.Name}"; 
+            string column = $@"{info.Property.Name}";
+            if (info.Property is ReferencePropertyInfo)
+            {
+                keyName = $@"{keyName}_id";
+                column = $@"{column}_id";
+            }
+
+            string snippet = $@",UNIQUE {keyName} ({column})
                         ";
             codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaKeyTag, info.Property.DataStructure);
         }
