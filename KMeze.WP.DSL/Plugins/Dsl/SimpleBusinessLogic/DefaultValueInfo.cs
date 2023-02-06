@@ -13,4 +13,27 @@ namespace KMeze.WP.DSL
         [ConceptKey]
         public string Value { get; set; }
     }
+
+    [Export(typeof(IConceptInfo))]
+    [ConceptKeyword("DefaultZero")]
+    public class DefaultValueZeroInfo : IConceptInfo
+    {
+        [ConceptKey]
+        public PropertyInfo Property { get; set; }
+    }
+
+    [Export(typeof(IConceptMacro))]
+    public class DefaultZeroMacro : IConceptMacro<DefaultValueZeroInfo>
+    {
+        public IEnumerable<IConceptInfo> CreateNewConcepts(DefaultValueZeroInfo conceptInfo, IDslModel existingConcepts)
+        {
+            var defaultValue = new DefaultValueInfo
+            {
+                Property = conceptInfo.Property,
+                Value = "0",
+            };
+
+            return new IConceptInfo[] { defaultValue };
+        }
+    }
 }
