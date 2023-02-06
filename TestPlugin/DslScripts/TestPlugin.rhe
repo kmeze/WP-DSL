@@ -8,7 +8,7 @@ WPPlugin TestPlugin
         Bool BoolVal { Required; DefaultTrue; }
         Bool BoolVal2 { Required; DefaultFalse; }
 
-        Reference Ref TestPlugin.TestEntity { }
+        Reference Ref TestPlugin.TestEntity;
 
         DropOnDeactivate;
     }
