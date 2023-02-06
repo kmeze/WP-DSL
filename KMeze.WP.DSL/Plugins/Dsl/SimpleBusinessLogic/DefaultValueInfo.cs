@@ -4,6 +4,7 @@ using Rhetos.Dsl;
 namespace KMeze.WP.DSL
 {
     // TODO: only one default value is allowed on property: else throw DSL syntax exception;
+    // TODO: check is Property.DataStructure is Entity
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("DefaultValue")]
     public class DefaultValueInfo : IConceptInfo
