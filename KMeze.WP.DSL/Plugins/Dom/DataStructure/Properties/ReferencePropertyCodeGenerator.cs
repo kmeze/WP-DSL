@@ -28,7 +28,7 @@ namespace KMeze.WP.DSL
                 snippet = $@",{info.Name}_id BIGINT(20) UNSIGNED";
                 codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnTag, info);
 
-                snippet = $@",KEY ind_{info.DataStructure.Name}_{info.Name}_id ({info.Name}_id)
+                snippet = $@",KEY key_{info.DataStructure.Name}_{info.Name}_id ({info.Name}_id)
                         ";
                 codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaKeyTag, info.DataStructure);
 
