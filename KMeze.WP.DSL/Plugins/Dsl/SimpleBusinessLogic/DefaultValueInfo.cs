@@ -23,7 +23,7 @@ namespace KMeze.WP.DSL
     }
 
     [Export(typeof(IConceptMacro))]
-    public class DefaultZeroMacro : IConceptMacro<DefaultValueZeroInfo>
+    public class DefaultValueZeroMacro : IConceptMacro<DefaultValueZeroInfo>
     {
         public IEnumerable<IConceptInfo> CreateNewConcepts(DefaultValueZeroInfo conceptInfo, IDslModel existingConcepts)
         {
