@@ -22,7 +22,7 @@ namespace KMeze.WP.DSL
             var callback = new CallbackInfo
             {
                 WPPlugin = conceptInfo.WPPlugin,
-                Name = $@"_{conceptInfo.Name}_register_routes",
+                Name = $@"{conceptInfo.Name}_register_routes",
                 Script = $@"( new {conceptInfo.WPPlugin.Name}_{conceptInfo.Name}_REST_Controller() )->register_routes();"
             };
 
