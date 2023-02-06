@@ -29,8 +29,6 @@ namespace KMeze.WP.DSL
     {
         public IEnumerable<IConceptInfo> CreateNewConcepts(FilterInfo conceptInfo, IDslModel existingConcepts)
         {
-            var newConcepts = new List<IConceptInfo>();
-
             var callback = new CallbackInfo
             {
                 WPPlugin = conceptInfo.Entity.WPPlugin,
