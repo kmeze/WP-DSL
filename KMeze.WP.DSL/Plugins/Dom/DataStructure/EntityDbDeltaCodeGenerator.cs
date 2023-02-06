@@ -22,7 +22,7 @@ namespace KMeze.WP.DSL
     global $wpdb;
     $table_name = $wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
     dbDelta( ""CREATE TABLE {{$table_name}} (
-                        ID BIGINT(20) NOT NULL AUTO_INCREMENT
+                        ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT
                         {DbDeltaColumnTag.Evaluate(info)}
                         ,PRIMARY KEY  (ID)
                         {DbDeltaKeyTag.Evaluate(info)}
