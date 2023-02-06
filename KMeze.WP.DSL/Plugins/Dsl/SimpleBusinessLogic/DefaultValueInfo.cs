@@ -19,7 +19,7 @@ namespace KMeze.WP.DSL
     public class DefaultValueZeroInfo : IConceptInfo
     {
         [ConceptKey]
-        public PropertyInfo Property { get; set; }
+        public IntegerPropertyInfo Property { get; set; }
     }
 
     [Export(typeof(IConceptMacro))]
@@ -65,7 +65,7 @@ namespace KMeze.WP.DSL
     public class DefaultValueTrueInfo : IConceptInfo
     {
         [ConceptKey]
-        public PropertyInfo Property { get; set; }
+        public BoolPropertyInfo Property { get; set; }
     }
 
     [Export(typeof(IConceptMacro))]
@@ -88,7 +88,7 @@ namespace KMeze.WP.DSL
     public class DefaultValueFalseInfo : IConceptInfo
     {
         [ConceptKey]
-        public PropertyInfo Property { get; set; }
+        public BoolPropertyInfo Property { get; set; }
     }
 
     [Export(typeof(IConceptMacro))]
