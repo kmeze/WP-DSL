@@ -11,4 +11,20 @@ namespace KMeze.WP.DSL
         [ConceptKey]
         public string Name { get; set; }
     }
+
+    [Export(typeof(IConceptMacro))]
+    public class WPPluginMacro : IConceptMacro<WPPluginInfo>
+    {
+        public IEnumerable<IConceptInfo> CreateNewConcepts(WPPluginInfo conceptInfo, IDslModel existingConcepts)
+        {
+            var newConcepts = new List<IConceptInfo>();
+            newConcepts.Add(new WPDataStructureInfo
+            {
+                WPPlugin = conceptInfo,
+                Name = "User",
+            });
+
+            return newConcepts;
+        }
+    }
 }

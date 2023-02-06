@@ -13,6 +13,7 @@ namespace KMeze.WP.DSL
     {
         public static readonly CsTag<DataStructureInfo> DbDeltaColumnTag = "DbDeltaColumn";
         public static readonly CsTag<DataStructureInfo> DbDeltaKeyTag = "DbDeltaKey";
+        public static readonly CsTag<DataStructureInfo> DbDeltaAfterTag = "DbDeltaAfter";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -27,6 +28,8 @@ namespace KMeze.WP.DSL
                         ,PRIMARY KEY  (ID)
                         {DbDeltaKeyTag.Evaluate(info)}
                         ) {{$wpdb->get_charset_collate()}};"" );
+
+    {DbDeltaAfterTag.Evaluate(info)}
 
     ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationHookTag, info.WPPlugin);

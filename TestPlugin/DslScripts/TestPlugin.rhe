@@ -2,15 +2,15 @@ WPPlugin TestPlugin
 {
     Entity Empty
     {
+        DropOnDeactivate;
+
         ShortString StringVal { Required; DefaultValue "'Test value'"; }
         ShortString StringVal2 { Required; DefaultEmpty; }
         Integer IntVal { Required; DefaultZero; }
         Bool BoolVal { Required; DefaultTrue; }
         Bool BoolVal2 { Required; DefaultFalse; }
-
-        Reference Ref TestPlugin.TestEntity;
-
-        DropOnDeactivate;
+        Reference Parent TestPlugin.Empty;
+        Reference User TestPlugin.User { Required; }
     }
 
     // DataStructures
