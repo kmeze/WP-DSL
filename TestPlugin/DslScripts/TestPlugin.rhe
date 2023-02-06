@@ -3,8 +3,11 @@ WPPlugin TestPlugin
     Entity Empty
     {
         ShortString StringVal { Required; DefaultValue "'Test value'"; }
-        Integer IntVal { Required; DefaultValue "2"; }
-        Bool BoolVal { Required; DefaultValue "1"; }
+        ShortString StringVal2 { Required; DefaultEmpty; }
+        Integer IntVal { Required; DefaultZero; }
+        Bool BoolVal { Required; DefaultTrue; }
+        Bool BoolVal2 { Required; DefaultFalse; }
+
         Reference Ref TestPlugin.TestEntity { }
 
         DropOnDeactivate;
