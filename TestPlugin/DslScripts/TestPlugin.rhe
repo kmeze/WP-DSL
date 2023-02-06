@@ -10,7 +10,7 @@ WPPlugin TestPlugin
         Bool BoolVal { Required; DefaultTrue; }
         Bool BoolVal2 { Required; DefaultFalse; }
         Reference Parent TestPlugin.Empty;
-        Reference User TestPlugin.User;
+        Reference User TestPlugin.User { Required; }
     }
 
     // DataStructures
