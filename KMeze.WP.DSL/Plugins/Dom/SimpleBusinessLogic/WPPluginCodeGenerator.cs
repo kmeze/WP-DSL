@@ -17,6 +17,9 @@ namespace KMeze.WP.DSL
         public static readonly CsTag<WPPluginInfo> DataStructureClassesTag = "DataStructureClasses";
         public static readonly CsTag<WPPluginInfo> CodeTag = "CodeTag";
         public static readonly CsTag<WPPluginInfo> ActivationHookTag = "ActivationHook";
+        public static readonly CsTag<WPPluginInfo> ActivationBeforeDbDeltaHookTag = "ActivationBeforeDbDeltaHook";
+        public static readonly CsTag<WPPluginInfo> ActivationDbDeltaHookTag = "ActivationDbDeltaHook";
+        public static readonly CsTag<WPPluginInfo> ActivationAfterDbDeltaHookTag = "ActivationAfterDbDeltaHook";
         public static readonly CsTag<WPPluginInfo> DeactivationHookTag = "DeactivationHook";
         public static readonly CsTag<WPPluginInfo> UninstallHookTag = "UninstallHook";
 
@@ -62,6 +65,9 @@ function {info.Name}_uninstall() {{
 {CodeTag.Evaluate(info)}
 
 register_activation_hook( __FILE__, function () {{
+    {ActivationBeforeDbDeltaHookTag.Evaluate(info)}
+    {ActivationDbDeltaHookTag.Evaluate(info)}
+    {ActivationAfterDbDeltaHookTag.Evaluate(info)}
     {ActivationHookTag.Evaluate(info)}
 }} );
 register_deactivation_hook( __FILE__, function () {{
