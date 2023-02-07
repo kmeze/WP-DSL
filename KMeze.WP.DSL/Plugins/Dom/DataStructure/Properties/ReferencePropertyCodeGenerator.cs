@@ -33,6 +33,7 @@ namespace KMeze.WP.DSL
                 if (info.ReferencedDataStructure is WPDataStructureInfo && info.ReferencedDataStructure.Name == "User") referencedTable = "users";
 
                 snippet = $@"$referenced_table_name = $wpdb->prefix . '{referencedTable}';
+    $table_name            = $wpdb->prefix . '{info.DataStructure.WPPlugin.Name}_{info.DataStructure.Name}';
     $db_name               = DB_NAME;
 	$key_name              = ""fk_{info.DataStructure.WPPlugin.Name}_{info.DataStructure.Name}_{info.Name}_id"";
 	$sql                   = ""SELECT CONSTRAINT_NAME FROM information_schema.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = '$db_name' AND CONSTRAINT_NAME = '$key_name' AND CONSTRAINT_TYPE = 'FOREIGN KEY';"";
@@ -44,7 +45,7 @@ namespace KMeze.WP.DSL
 	}}
 
     ";
-                codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaAfterTag, info.DataStructure);
+                codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationAfterDbDeltaHookTag, info.DataStructure.WPPlugin);
             }
         }
     }
