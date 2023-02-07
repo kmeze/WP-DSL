@@ -34,7 +34,12 @@ namespace KMeze.WP.DSL
                     ReferencedDataStructure = user,
                 };
 
-                newConcepts.AddRange(new IConceptInfo[] { reference, user });
+                var required = new RequiredInfo
+                {
+                    Property = reference,
+                };
+
+                newConcepts.AddRange(new IConceptInfo[] { required, reference, user });
 
                 // Add OwnerContext also to all ListInfo DatStructures that uses this Entity as Source
                 newConcepts.AddRange(

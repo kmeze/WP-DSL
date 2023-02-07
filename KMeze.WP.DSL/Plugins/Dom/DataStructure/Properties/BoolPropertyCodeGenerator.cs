@@ -27,7 +27,7 @@ namespace KMeze.WP.DSL
             if (info.DataStructure is EntityInfo)
             {
                 snippet = $@",{info.Name} BOOLEAN";
-                codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnTag, info);
+                codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnNameTag, info);
             }
         }
     }

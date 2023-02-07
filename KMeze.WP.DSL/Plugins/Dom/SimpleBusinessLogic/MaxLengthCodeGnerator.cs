@@ -9,17 +9,17 @@ using KMeze.WP.DSL;
 namespace KMeze.WP.DSL
 {
     [Export(typeof(IWPPluginConceptCodeGenerator))]
-    [ExportMetadata(MefProvider.Implements, typeof(RequiredInfo))]
-    public class RequiredCodeGenerator : IWPPluginConceptCodeGenerator
+    [ExportMetadata(MefProvider.Implements, typeof(MaxLengthInfo))]
+    public class MaxLengthCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
-            var info = (RequiredInfo)conceptInfo;
+            var info = (MaxLengthInfo)conceptInfo;
 
             if (info.Property.DataStructure is EntityInfo)
             {
-                string snippet = $@" NOT NULL";
-                codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnAttributesTag, info.Property);
+                string snippet = $@" ({info.Value})";
+                codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnLengthTag, info.Property);
             }
         }
     }

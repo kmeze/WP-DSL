@@ -32,7 +32,7 @@ namespace KMeze.WP.DSL
     {DbDeltaAfterTag.Evaluate(info)}
 
     ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationHookTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationDbDeltaHookTag, info.WPPlugin);
         }
     }
 }

@@ -43,8 +43,9 @@ namespace KMeze.WP.DSL
     [ConceptKeyword("DefaultEmpty")]
     public class DefaultValueEmptyInfo : IConceptInfo
     {
+        // TODO: Allow concept only on ShortString and Char
         [ConceptKey]
-        public ShortStringPropertyInfo Property { get; set; }
+        public PropertyInfo Property { get; set; }
     }
 
     [Export(typeof(IConceptMacro))]

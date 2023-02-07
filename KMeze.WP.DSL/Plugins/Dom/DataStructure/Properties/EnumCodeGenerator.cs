@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel.Composition;
 using Rhetos.Compiler;
 using Rhetos.Dom.DefaultConcepts;
@@ -8,12 +8,12 @@ using Rhetos.Extensibility;
 namespace KMeze.WP.DSL
 {
     [Export(typeof(IWPPluginConceptCodeGenerator))]
-    [ExportMetadata(MefProvider.Implements, typeof(ShortStringPropertyInfo))]
-    public class ShortStringPropertyCodeGenerator : IWPPluginConceptCodeGenerator
+    [ExportMetadata(MefProvider.Implements, typeof(EnumInfo))]
+    public class EnumCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
-            var info = (ShortStringPropertyInfo)conceptInfo;
+            var info = (EnumInfo)conceptInfo;
 
             string snippet = $@"public ?string ${info.Name} = null;
     ";
@@ -25,7 +25,7 @@ namespace KMeze.WP.DSL
 
             if (info.DataStructure is EntityInfo)
             {
-                snippet = $@",{info.Name} VARCHAR(256)";
+                snippet = $@",{info.Name} ENUM ({info.Values})";
                 codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnNameTag, info);
             }
         }
