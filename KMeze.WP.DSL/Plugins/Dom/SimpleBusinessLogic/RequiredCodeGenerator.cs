@@ -19,7 +19,7 @@ namespace KMeze.WP.DSL
             if (info.Property.DataStructure is EntityInfo)
             {
                 string snippet = $@" NOT NULL";
-                codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnTag, info.Property);
+                codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnAttributesTag, info.Property);
             }
         }
     }

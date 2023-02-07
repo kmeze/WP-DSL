@@ -26,7 +26,7 @@ namespace KMeze.WP.DSL
             if (info.DataStructure is EntityInfo)
             {
                 snippet = $@",{info.Name}_id BIGINT(20) UNSIGNED";
-                codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnTag, info);
+                codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnNameTag, info);
 
                 // Fast hack to enable adding reference to wp_users table
                 string referencedTable = $@"{info.ReferencedDataStructure.WPPlugin.Name}_{info.ReferencedDataStructure.Name}";

@@ -12,7 +12,9 @@ namespace KMeze.WP.DSL
     public class PropertyCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public static readonly CsTag<PropertyInfo> ClassConstructorPropertyTag = "ClassConstructorProperty";
-        public static readonly CsTag<PropertyInfo> DbDeltaPropertyColumnTag = "DbDeltaPropertyColumn";
+        public static readonly CsTag<PropertyInfo> DbDeltaPropertyColumnNameTag = "DbDeltaPropertyColumnName";
+        public static readonly CsTag<PropertyInfo> DbDeltaPropertyColumnLengthTag = "DbDeltaPropertyColumnLength";
+        public static readonly CsTag<PropertyInfo> DbDeltaPropertyColumnAttributesTag = "DbDeltaPropertyColumnAttributes";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -25,7 +27,7 @@ namespace KMeze.WP.DSL
 
             if (info.DataStructure is EntityInfo)
             {
-                snippet = $@"{DbDeltaPropertyColumnTag.Evaluate(info)} 
+                snippet = $@"{DbDeltaPropertyColumnNameTag.Evaluate(info)}{DbDeltaPropertyColumnLengthTag.Evaluate(info)}{DbDeltaPropertyColumnAttributesTag.Evaluate(info)}
                         ";
                 codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaColumnTag, info.DataStructure);
             }
