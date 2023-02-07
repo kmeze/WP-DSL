@@ -34,8 +34,7 @@ namespace KMeze.WP.DSL
         ";
             codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassConstructorTag, info);
 
-            snippet = $@"public function get() {{
-                $conditions = [];
+            snippet = $@"public function get($conditions = []) {{
                 $conditions = apply_filters( '{info.WPPlugin.Name}_{info.Name}_filter', $conditions );
                 $transformed = $this->transform_conditions($conditions);
                 $where_part = ! empty( $transformed['SEGMENTS'] ) ? 'AND ' . implode( ' AND ', $transformed['SEGMENTS'] ) : '';
@@ -61,7 +60,10 @@ namespace KMeze.WP.DSL
             codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info);
 
             snippet = $@"public function get_items( $request ) {{
-        return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get();
+        $parameters = $request->get_params();
+		$conditions = $this->request_parameters_to_condition( $parameters );
+
+        return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get($conditions);
     }}
 
 ";

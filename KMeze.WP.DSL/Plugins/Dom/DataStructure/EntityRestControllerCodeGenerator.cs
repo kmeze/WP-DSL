@@ -48,8 +48,10 @@ namespace KMeze.WP.DSL
             codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info);
 
             snippet = $@"public function get_items( $request ): array {{
+        $parameters = $request->get_params();
+		$conditions = $this->request_parameters_to_condition( $parameters );
 
-        return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get();
+        return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get($conditions);
     }}
 
     public function get_item( $request ) {{

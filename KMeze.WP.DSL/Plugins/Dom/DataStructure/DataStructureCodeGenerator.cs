@@ -22,6 +22,7 @@ namespace KMeze.WP.DSL
         public static readonly CsTag<DataStructureInfo> RestControllerClassPropertyTag = "RestControllerClassProperty";
         public static readonly CsTag<DataStructureInfo> RestControllerClassConstructorTag = "RestControllerClassConstructor";
         public static readonly CsTag<DataStructureInfo> RestControllerClassRegisterRoutesTag = "RestControllerClassRegisterRoutes";
+        public static readonly CsTag<DataStructureInfo> RestControllerClassParamToConditionTag = "RestControllerClassParamToCondition";
         public static readonly CsTag<DataStructureInfo> RestControllerClassMethodTag = "RestControllerClassMethod";
         public static readonly CsTag<DataStructureInfo> RestControllerAuthorizationTag = "Authorization";
 
@@ -81,8 +82,12 @@ namespace KMeze.WP.DSL
             $formats[]           = $format;
 
             // For prepare method
-            $segments[] = ""($name=$format)"";
-            $args[]           = $value;
+	        if ($value === 'null') {{
+		        $segments[] = ""($name IS NULL)"";
+	        }} else {{
+		        $segments[] = ""($name=$format)"";
+		        $args[]           = $value;
+	        }}
         }}
 
         return array(
@@ -119,6 +124,16 @@ namespace KMeze.WP.DSL
 
         return false;
     }}
+
+    protected function request_parameters_to_condition( $params = null ): array {{
+		$conditions = [];
+
+        if( $params !==  null ) {{
+            {RestControllerClassParamToConditionTag.Evaluate(info)}
+        }}
+
+		return $conditions;
+	}}
 
     {RestControllerClassMethodTag.Evaluate(info)}
 }}
