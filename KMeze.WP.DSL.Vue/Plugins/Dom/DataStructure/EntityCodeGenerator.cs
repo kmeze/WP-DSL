@@ -22,7 +22,7 @@ namespace KMeze.WP.DSL.Vue.Pinia
 
             // Generate entity actions in Pinia store
             snippet = $@"async fetch{info.Name}() {{
-            const res = await axios.get(`${{this.apiUrl}}/wp-json/TestPlugin/v1/{info.Name}`).then(res => {{
+            const res = await axios.get(`${{this.apiUrl}}/wp-json/{info.WPPlugin.Name}/v1/{info.Name}`).then(res => {{
                 this.{info.Name} = res.data;
             }})
         }},
