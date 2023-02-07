@@ -28,17 +28,13 @@ namespace KMeze.WP.DSL
                 snippet = $@",{info.Name}_id BIGINT(20) UNSIGNED";
                 codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnTag, info);
 
-                snippet = $@",KEY ind_{info.DataStructure.Name}_{info.Name}_id ({info.Name}_id)
-                        ";
-                codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaKeyTag, info.DataStructure);
-
                 // Fast hack to enable adding reference to wp_users table
                 string referencedTable = $@"{info.ReferencedDataStructure.WPPlugin.Name}_{info.ReferencedDataStructure.Name}";
                 if (info.ReferencedDataStructure is WPDataStructureInfo && info.ReferencedDataStructure.Name == "User") referencedTable = "users";
 
                 snippet = $@"$referenced_table_name = $wpdb->prefix . '{referencedTable}';
     $db_name               = DB_NAME;
-	$key_name              = ""fk_{info.DataStructure.Name}_{info.Name}_id"";
+	$key_name              = ""fk_{info.DataStructure.WPPlugin.Name}_{info.DataStructure.Name}_{info.Name}_id"";
 	$sql                   = ""SELECT CONSTRAINT_NAME FROM information_schema.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = '$db_name' AND CONSTRAINT_NAME = '$key_name' AND CONSTRAINT_TYPE = 'FOREIGN KEY';"";
 
 	if ( is_null( $wpdb->get_var( $sql ) ) ) {{

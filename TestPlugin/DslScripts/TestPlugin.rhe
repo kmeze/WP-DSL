@@ -6,11 +6,13 @@ WPPlugin TestPlugin
 
         ShortString StringVal { Required; DefaultValue "'Test value'"; }
         ShortString StringVal2 { Required; DefaultEmpty; }
-        Integer IntVal { Required; DefaultZero; }
+        Integer IntVal { Required; DefaultZero; Unique; }
         Bool BoolVal { Required; DefaultTrue; }
         Bool BoolVal2 { Required; DefaultFalse; }
         Reference Parent TestPlugin.Empty;
         Reference User TestPlugin.User { Required; }
+
+        Unique 'stringVal, StringVal1';
     }
 
     // DataStructures
@@ -42,6 +44,8 @@ WPPlugin TestPlugin
 
         ShortString child_title;
         Reference parent TestPlugin.TestEntity;
+
+        AllowAll;
     }
 
     Select FlatSelect "
