@@ -22,14 +22,14 @@ namespace KMeze.WP.DSL
         ) );
 
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info.DataStructure);
 
             snippet = $@"   public function post_{info.Action.Name}( $request ) {{
         return {info.Action.WPPlugin.Name}_{info.Action.Name}( $request );
     }}
 
     ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassMethodTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerClassMethodTag, info.DataStructure);
 
             snippet = $@" $request ";
             codeBuilder.InsertCode(snippet, CallbackCodeGenerator.CallbackArgTag, info.Action);

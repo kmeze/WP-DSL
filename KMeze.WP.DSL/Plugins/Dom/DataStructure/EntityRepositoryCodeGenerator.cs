@@ -17,11 +17,11 @@ namespace KMeze.WP.DSL
 
             string snippet = $@"protected ?string ${info.Name}_table_name = null;
     ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassPropertyTag, info);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassPropertyTag, info);
 
             snippet = $@"$this->{info.Name}_table_name = $this->wpdb->prefix . '{info.WPPlugin.Name}_{info.Name}';
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassConstructorTag, info);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassConstructorTag, info);
 
             snippet = $@"public function get($conditions = []) {{
         $conditions = apply_filters( '{info.WPPlugin.Name}_{info.Name}_filter', $conditions );
@@ -71,7 +71,7 @@ namespace KMeze.WP.DSL
     }}
 
 ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassMethodTag, info);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassMethodTag, info);
         }
     }
 }

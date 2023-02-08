@@ -23,9 +23,13 @@ namespace KMeze.WP.DSL
         ";
             codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataClassParsePropertyTag, info.DataStructure);
 
-            snippet = $@"if ( $params['{info.Name}'] !== null ) $conditions[] = array( 'Name' => '{info.Name}', 'Value' => $params['{info.Name}'], 'Format' => '%s' );
+            if (info.DataStructure is RepositoryDataStructureInfo)
+            {
+
+                snippet = $@"if ( $params['{info.Name}'] !== null ) $conditions[] = array( 'Name' => '{info.Name}', 'Value' => $params['{info.Name}'], 'Format' => '%s' );
             ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassParamToConditionTag, info.DataStructure);
+                codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerClassParamToConditionTag, info.DataStructure);
+            }
 
             if (info.DataStructure is EntityInfo)
             {

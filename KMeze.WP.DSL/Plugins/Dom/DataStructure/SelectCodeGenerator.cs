@@ -23,7 +23,7 @@ namespace KMeze.WP.DSL
     }}
 
 ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassMethodTag, info);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassMethodTag, info);
 
             snippet = $@"register_rest_route( $this->namespace, $this->resource_name, array(
             'methods'             => 'GET',
@@ -32,14 +32,14 @@ namespace KMeze.WP.DSL
         ) );
 
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info);
 
             snippet = $@"public function get_items( $request ): array {{
 	    return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get();
     }}
 
 ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassMethodTag, info);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerClassMethodTag, info);
         }
     }
 }

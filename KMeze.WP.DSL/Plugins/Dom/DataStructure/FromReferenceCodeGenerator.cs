@@ -17,11 +17,11 @@ namespace KMeze.WP.DSL
 
             string snippet = $@"protected ?string $join_{info.SourceReferencePropertyInfo.Name}_table_name = null;
     ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassPropertyTag, info.List);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassPropertyTag, info.List);
 
             snippet = $@"$this->join_{info.SourceReferencePropertyInfo.Name}_table_name = $this->wpdb->prefix . '{info.SourceReferencePropertyInfo.ReferencedDataStructure.WPPlugin.Name}_{info.SourceReferencePropertyInfo.ReferencedDataStructure.Name}';
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassConstructorTag, info.List);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassConstructorTag, info.List);
 
 
             // TODO: IMPORTANT CVIS_ MUST BE wpdb->prefilx
