@@ -42,7 +42,7 @@ namespace KMeze.WP.DSL
             var filterHook = new FilterHookInfo
             {
                 WPPlugin = conceptInfo.Entity.WPPlugin,
-                HookName = $@"{conceptInfo.Entity.WPPlugin.Name}_{conceptInfo.Entity.Name}_filter",
+                Hook = $@"{conceptInfo.Entity.WPPlugin.Name}_{conceptInfo.Entity.Name}_filter",
                 Callback = callback,
                 Priority = "DefaultPriority",
                 Args = "$conditions"

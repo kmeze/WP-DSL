@@ -67,7 +67,7 @@ namespace KMeze.WP.DSL
             var hook_filter = new FilterHookInfo
             {
                 WPPlugin = conceptInfo.DataStructure.WPPlugin,
-                HookName = $@"{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.DataStructure.Name}_filter",
+                Hook = $@"{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.DataStructure.Name}_filter",
                 Callback = callback_filter,
                 Priority = "20",
                 Args = "$conditions"
@@ -83,7 +83,7 @@ namespace KMeze.WP.DSL
             var hook_insert = new FilterHookInfo
             {
                 WPPlugin = conceptInfo.DataStructure.WPPlugin,
-                HookName = $@"{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.DataStructure.Name}_insert",
+                Hook = $@"{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.DataStructure.Name}_insert",
                 Callback = callback_insert,
                 Priority = "10",
                 Args = "$data"
@@ -99,7 +99,7 @@ namespace KMeze.WP.DSL
             var hook_update = new FilterHookInfo
             {
                 WPPlugin = conceptInfo.DataStructure.WPPlugin,
-                HookName = $@"{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.DataStructure.Name}_update",
+                Hook = $@"{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.DataStructure.Name}_update",
                 Callback = callback_update,
                 Priority = "10",
                 Args = "$data"
