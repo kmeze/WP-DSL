@@ -16,10 +16,8 @@ namespace KMeze.WP.DSL
         [ConceptKey]
         public CallbackInfo Callback { get; set; }
 
-        [ConceptKey]
         public string Priority { get; set; }
 
-        [ConceptKey]
         public string Args { get; set; }
     }
 }
