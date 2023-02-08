@@ -8,7 +8,7 @@ namespace KMeze.WP.DSL
     public class DefaultRoleInfo : IConceptInfo
     {
         [ConceptKey]
-        public WPPluginInfo WPPlugin { get; set; }
+        public WPPluginInfo Plugin { get; set; }
 
         [ConceptKey]
         public RoleInfo Role { get; set; }
