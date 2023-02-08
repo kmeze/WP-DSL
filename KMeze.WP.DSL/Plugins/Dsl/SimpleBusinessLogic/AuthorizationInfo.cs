@@ -11,7 +11,7 @@ namespace KMeze.WP.DSL
         public DataStructureInfo DataStructure { get; set; }
 
         [ConceptKey]
-        public CallbackInfo Action { get; set; }
+        public CallbackInfo Callback { get; set; }
     }
 
     [Export(typeof(IConceptInfo))]
@@ -41,7 +41,7 @@ namespace KMeze.WP.DSL
             newConcepts.Add(new AuthorizationInfo
             {
                 DataStructure = conceptInfo.DataStructure,
-                Action = action,
+                Callback = action,
             });
 
             return newConcepts;
@@ -75,7 +75,7 @@ namespace KMeze.WP.DSL
             newConcepts.Add(new AuthorizationInfo
             {
                 DataStructure = conceptInfo.DataStructure,
-                Action = action,
+                Callback = action,
             });
 
             return newConcepts;
@@ -118,7 +118,7 @@ namespace KMeze.WP.DSL
             newConcepts.Add(new AuthorizationInfo
             {
                 DataStructure = conceptInfo.DataStructure,
-                Action = action,
+                Callback = action,
             });
 
             return newConcepts;
@@ -160,7 +160,7 @@ namespace KMeze.WP.DSL
             newConcepts.Add(new AuthorizationInfo
             {
                 DataStructure = conceptInfo.DataStructure,
-                Action = action,
+                Callback = action,
             });
 
             return newConcepts;
