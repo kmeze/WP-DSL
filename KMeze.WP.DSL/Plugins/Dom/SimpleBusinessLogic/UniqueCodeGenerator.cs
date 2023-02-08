@@ -26,7 +26,7 @@ namespace KMeze.WP.DSL
 
             string snippet = $@",UNIQUE {keyName} ({column})
                         ";
-            codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaKeyTag, info.Property.DataStructure);
+            codeBuilder.InsertCode(snippet, EntityCodeGenerator.DbDeltaKeyTag, (EntityInfo) info.Property.DataStructure);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace KMeze.WP.DSL
 
             string snippet = $@",UNIQUE key_{info.Entity.Plugin.Slug}_{info.Entity.Name}_{info.Columns.Trim().Replace(" ", "").Replace(",", "_")} ({info.Columns.Trim()})
                         ";
-            codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaKeyTag, info.Entity);
+            codeBuilder.InsertCode(snippet, EntityCodeGenerator.DbDeltaKeyTag, info.Entity);
         }
     }
 }
