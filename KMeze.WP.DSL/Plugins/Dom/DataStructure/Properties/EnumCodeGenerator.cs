@@ -8,12 +8,12 @@ using Rhetos.Extensibility;
 namespace KMeze.WP.DSL
 {
     [Export(typeof(IWPPluginConceptCodeGenerator))]
-    [ExportMetadata(MefProvider.Implements, typeof(EnumInfo))]
+    [ExportMetadata(MefProvider.Implements, typeof(EnumPropertyInfo))]
     public class EnumCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
-            var info = (EnumInfo)conceptInfo;
+            var info = (EnumPropertyInfo)conceptInfo;
 
             string snippet = $@"public ?string ${info.Name} = null;
     ";
