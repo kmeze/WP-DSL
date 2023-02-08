@@ -8,7 +8,7 @@ namespace KMeze.WP.DSL
     public class CapabilityInfo : IConceptInfo
     {
         [ConceptKey]
-        public WPPluginInfo WPPlugin { get; set; }
+        public WPPluginInfo Plugin { get; set; }
 
         [ConceptKey]
         public string Slug { get; set; }
