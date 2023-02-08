@@ -14,8 +14,8 @@ namespace KMeze.WP.DSL
     {
         public static readonly CsTag<DataStructureInfo> ClassPropertyTag = "ClassProperty";
         public static readonly CsTag<DataStructureInfo> ClassConstructorTag = "ClassConstructor";
+        public static readonly CsTag<DataStructureInfo> ClassParsePropertyTag = "ClassParseProperty";
         public static readonly CsTag<DataStructureInfo> ClassMethodTag = "ClassMethod";
-        public static readonly CsTag<DataStructureInfo> DataClassParsePropertyTag = "DataClassParseProperty";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
@@ -33,7 +33,7 @@ namespace KMeze.WP.DSL
         if (! isset( $object ) ) return null;
         
         $dataStructure = new {info.WPPlugin.Name}_{info.Name}();
-        {DataClassParsePropertyTag.Evaluate(info)}
+        {ClassParsePropertyTag.Evaluate(info)}
 
         return $dataStructure;
     }}

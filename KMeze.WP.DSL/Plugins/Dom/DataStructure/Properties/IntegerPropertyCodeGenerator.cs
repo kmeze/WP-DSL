@@ -21,7 +21,7 @@ namespace KMeze.WP.DSL
 
             snippet = $@"$dataStructure->{info.Name} = is_null($object->{info.Name}) ? null : (int) $object->{info.Name};
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataClassParsePropertyTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassParsePropertyTag, info.DataStructure);
 
             if (info.DataStructure is RepositoryDataStructureInfo)
             {

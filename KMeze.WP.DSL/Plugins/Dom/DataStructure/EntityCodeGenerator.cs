@@ -22,7 +22,7 @@ namespace KMeze.WP.DSL
 
             snippet = $@"$dataStructure->id = (int) $object->ID;
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataClassParsePropertyTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassParsePropertyTag, info);
         }
     }
 }
