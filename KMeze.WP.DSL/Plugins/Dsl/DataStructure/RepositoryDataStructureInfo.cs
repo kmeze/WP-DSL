@@ -14,21 +14,14 @@ namespace KMeze.WP.DSL
     {
         public IEnumerable<IConceptInfo> CreateNewConcepts(RepositoryDataStructureInfo conceptInfo, IDslModel existingConcepts)
         {
-            var callback = new CallbackInfo
-            {
-                Plugin = conceptInfo.Plugin,
-                Name = $@"{conceptInfo.Name}_register_routes",
-                Script = $@"( new {conceptInfo.Plugin.Slug}_{conceptInfo.Name}_REST_Controller() )->register_routes();"
-            };
-
-            var actionHook = new ActionHookWithDefaultPriorityInfo
+            var actionHook = new ActionHookWithAnonymousCallbackWithDefaultPriorityInfo
             {
                 Plugin = conceptInfo.Plugin,
                 Hook = "rest_api_init",
-                Callback = callback,
+                Script = $@"fn () => ( new {conceptInfo.Plugin.Slug}_{conceptInfo.Name}_REST_Controller() )->register_routes()",
             };
 
-            return new IConceptInfo[] { callback, actionHook };
+            return new IConceptInfo[] { actionHook };
         }
     }
 }
