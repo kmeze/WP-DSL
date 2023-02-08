@@ -107,7 +107,7 @@ namespace KMeze.WP.DSL
                 Script = $@"if (! is_user_logged_in() ) return false;
 
     $user = wp_get_current_user();
-    if (in_array( '{conceptInfo.Role.WPPlugin.Name}_{conceptInfo.Role.Slug}', (array) $user->roles )) return true;
+    if (in_array( '{conceptInfo.Role.Plugin.Name}_{conceptInfo.Role.Slug}', (array) $user->roles )) return true;
 
     return false;
 ",
