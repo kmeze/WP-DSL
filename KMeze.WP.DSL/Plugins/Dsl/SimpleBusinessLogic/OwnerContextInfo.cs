@@ -39,7 +39,39 @@ namespace KMeze.WP.DSL
                     Property = reference,
                 };
 
-                newConcepts.AddRange(new IConceptInfo[] { required, reference, user });
+                var callback_insert = new CallbackInfo
+                {
+                    Plugin = conceptInfo.DataStructure.Plugin,
+                    Name = $@"{conceptInfo.DataStructure.Name}_Insert_OwnerContext",
+                    Script = $@"$data['Owner_id'] = get_current_user_id(); return $data;"
+                };
+
+                var hook_insert = new FilterHookInfo
+                {
+                    WPPlugin = conceptInfo.DataStructure.Plugin,
+                    Hook = $@"{conceptInfo.DataStructure.Plugin.Slug}_{conceptInfo.DataStructure.Name}_insert",
+                    Callback = callback_insert,
+                    Priority = "10",
+                    Args = "$data"
+                };
+
+                var callback_update = new CallbackInfo
+                {
+                    Plugin = conceptInfo.DataStructure.Plugin,
+                    Name = $@"{conceptInfo.DataStructure.Name}_Update_OwnerContext",
+                    Script = $@"unset($data['Owner_id']); return $data;"
+                };
+
+                var hook_update = new FilterHookInfo
+                {
+                    WPPlugin = conceptInfo.DataStructure.Plugin,
+                    Hook = $@"{conceptInfo.DataStructure.Plugin.Slug}_{conceptInfo.DataStructure.Name}_update",
+                    Callback = callback_update,
+                    Priority = "10",
+                    Args = "$data"
+                };
+
+                newConcepts.AddRange(new IConceptInfo[] { callback_insert, hook_insert, callback_update, hook_update, required, reference, user });
 
                 // Add OwnerContext also to all ListInfo DatStructures that uses this Entity as Source
                 newConcepts.AddRange(
@@ -73,39 +105,8 @@ namespace KMeze.WP.DSL
                 Args = "$conditions"
             };
 
-            var callback_insert = new CallbackInfo
-            {
-                Plugin = conceptInfo.DataStructure.Plugin,
-                Name = $@"{conceptInfo.DataStructure.Name}_Insert_OwnerContext",
-                Script = $@"$data['Owner_id'] = get_current_user_id(); return $data;"
-            };
 
-            var hook_insert = new FilterHookInfo
-            {
-                WPPlugin = conceptInfo.DataStructure.Plugin,
-                Hook = $@"{conceptInfo.DataStructure.Plugin.Slug}_{conceptInfo.DataStructure.Name}_insert",
-                Callback = callback_insert,
-                Priority = "10",
-                Args = "$data"
-            };
-
-            var callback_update = new CallbackInfo
-            {
-                Plugin = conceptInfo.DataStructure.Plugin,
-                Name = $@"{conceptInfo.DataStructure.Name}_Update_OwnerContext",
-                Script = $@"unset($data['Owner_id']); return $data;"
-            };
-
-            var hook_update = new FilterHookInfo
-            {
-                WPPlugin = conceptInfo.DataStructure.Plugin,
-                Hook = $@"{conceptInfo.DataStructure.Plugin.Slug}_{conceptInfo.DataStructure.Name}_update",
-                Callback = callback_update,
-                Priority = "10",
-                Args = "$data"
-            };
-
-            newConcepts.AddRange(new IConceptInfo[] { callback_filter, hook_filter, callback_insert, hook_insert, callback_update, hook_update });
+            newConcepts.AddRange(new IConceptInfo[] { callback_filter, hook_filter });
 
             return newConcepts;
         }
