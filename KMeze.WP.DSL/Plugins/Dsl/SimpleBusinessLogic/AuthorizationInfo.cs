@@ -109,8 +109,7 @@ namespace KMeze.WP.DSL
     $user = wp_get_current_user();
     if (in_array( '{conceptInfo.Role.Plugin.Slug}_{conceptInfo.Role.Slug}', (array) $user->roles )) return true;
 
-    return false;
-",
+    return false;",
             };
 
             newConcepts.Add(action);
@@ -151,8 +150,7 @@ namespace KMeze.WP.DSL
 
     if ( current_user_can( '{conceptInfo.DataStructure.Plugin.Slug}_{conceptInfo.Capability.Slug}' ) ) return true;
 
-    return false;
-",
+    return false;",
             };
 
             newConcepts.Add(action);
