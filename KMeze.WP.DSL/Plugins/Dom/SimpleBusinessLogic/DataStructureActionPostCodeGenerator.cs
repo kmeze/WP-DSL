@@ -8,12 +8,12 @@ using Rhetos.Extensibility;
 namespace KMeze.WP.DSL
 {
     [Export(typeof(IWPPluginConceptCodeGenerator))]
-    [ExportMetadata(MefProvider.Implements, typeof(DataStructureActionPostInfo))]
+    [ExportMetadata(MefProvider.Implements, typeof(ActionPostInfo))]
     public class DataStructureActionPostCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
-            var info = (DataStructureActionPostInfo)conceptInfo;
+            var info = (ActionPostInfo)conceptInfo;
 
             string snippet = $@"register_rest_route( $this->namespace, $this->resource_name . '/{info.Callback.Name}', array(
             'methods'             => 'POST',
