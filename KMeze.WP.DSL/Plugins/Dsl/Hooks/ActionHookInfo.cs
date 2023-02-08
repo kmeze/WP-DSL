@@ -11,7 +11,7 @@ namespace KMeze.WP.DSL
         public WPPluginInfo WPPlugin { get; set; }
 
         [ConceptKey]
-        public string HookName { get; set; }
+        public string Hook { get; set; }
 
         [ConceptKey]
         public CallbackInfo Callback { get; set; }

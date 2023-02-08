@@ -30,7 +30,7 @@ namespace KMeze.WP.DSL
             newConcepts.Add(new ActionHookInfo
             {
                 WPPlugin = conceptInfo.WPPlugin,
-                HookName = conceptInfo.HookName,
+                Hook = conceptInfo.HookName,
                 Callback = conceptInfo.Callback,
                 Priority = conceptInfo.Priority,
                 Args = "",
