@@ -8,7 +8,7 @@ namespace KMeze.WP.DSL
     public class DataStructureActionInfo : IConceptInfo
     {
         [ConceptKey]
-        public DataStructureInfo DataStructure { get; set; }
+        public RepositoryDataStructureInfo DataStructure { get; set; }
 
         [ConceptKey]
         public CallbackInfo Callback { get; set; }
