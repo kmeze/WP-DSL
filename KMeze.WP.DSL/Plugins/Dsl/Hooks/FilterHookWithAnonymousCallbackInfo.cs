@@ -18,6 +18,6 @@ namespace KMeze.WP.DSL
 
         public string Priority { get; set; }
 
-        public string Args { get; set; }
+        public string AcceptedArgs { get; set; }
     }
 }
