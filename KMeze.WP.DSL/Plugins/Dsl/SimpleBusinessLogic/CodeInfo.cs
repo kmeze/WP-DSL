@@ -8,7 +8,7 @@ namespace KMeze.WP.DSL
     public class CodeInfo : IConceptInfo
     {
         [ConceptKey]
-        public WPPluginInfo WPPlugin { get; set; }
+        public WPPluginInfo Plugin { get; set; }
 
         [ConceptKey]
         public string Script { get; set; }
