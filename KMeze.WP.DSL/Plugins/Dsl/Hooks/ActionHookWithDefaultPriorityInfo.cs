@@ -26,7 +26,7 @@ namespace KMeze.WP.DSL
 
             newConcepts.Add(new ActionHookInfo
             {
-                WPPlugin = conceptInfo.WPPlugin,
+                Plugin = conceptInfo.WPPlugin,
                 Hook = conceptInfo.HookName,
                 Callback = conceptInfo.Callback,
                 Priority = "DefaultPriority",

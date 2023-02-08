@@ -25,7 +25,7 @@ namespace KMeze.WP.DSL
 
             string snippet = $@"add_action( '{info.Hook}', '{info.Callback.WPPlugin.Name}_{info.Callback.Name}', {priority}, {acceptedArgs.Count()});
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActionHooksTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActionHooksTag, info.Plugin);
 
             snippet = $@"{String.Join(", ", acceptedArgs)}";
             codeBuilder.InsertCode(snippet, CallbackCodeGenerator.CallbackArgTag, info.Callback);

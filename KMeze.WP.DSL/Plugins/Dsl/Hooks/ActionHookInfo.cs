@@ -8,7 +8,7 @@ namespace KMeze.WP.DSL
     public class ActionHookInfo : IConceptInfo
     {
         [ConceptKey]
-        public WPPluginInfo WPPlugin { get; set; }
+        public WPPluginInfo Plugin { get; set; }
 
         [ConceptKey]
         public string Hook { get; set; }
