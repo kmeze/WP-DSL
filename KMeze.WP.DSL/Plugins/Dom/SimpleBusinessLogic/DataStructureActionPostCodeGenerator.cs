@@ -15,24 +15,24 @@ namespace KMeze.WP.DSL
         {
             var info = (DataStructureActionPostInfo)conceptInfo;
 
-            string snippet = $@"register_rest_route( $this->namespace, $this->resource_name . '/{info.Action.Name}', array(
+            string snippet = $@"register_rest_route( $this->namespace, $this->resource_name . '/{info.Callback.Name}', array(
             'methods'             => 'POST',
-            'callback'            => array( $this, 'post_{info.Action.Name}' ),
+            'callback'            => array( $this, 'post_{info.Callback.Name}' ),
             'permission_callback' => array( $this, 'item_permissions_check' ),
         ) );
 
         ";
             codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info.DataStructure);
 
-            snippet = $@"   public function post_{info.Action.Name}( $request ) {{
-        return {info.Action.Plugin.Name}_{info.Action.Name}( $request );
+            snippet = $@"   public function post_{info.Callback.Name}( $request ) {{
+        return {info.Callback.Plugin.Name}_{info.Callback.Name}( $request );
     }}
 
     ";
             codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerClassMethodTag, info.DataStructure);
 
             snippet = $@" $request ";
-            codeBuilder.InsertCode(snippet, CallbackCodeGenerator.CallbackArgTag, info.Action);
+            codeBuilder.InsertCode(snippet, CallbackCodeGenerator.CallbackArgTag, info.Callback);
         }
     }
 }
