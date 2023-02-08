@@ -59,7 +59,7 @@ namespace KMeze.WP.DSL
 
             var callback_filter = new CallbackInfo
             {
-                WPPlugin = conceptInfo.DataStructure.Plugin,
+                Plugin = conceptInfo.DataStructure.Plugin,
                 Name = $@"{conceptInfo.DataStructure.Name}_Filter_OwnerContext",
                 Script = $@"$conditions[] = array( 'Name' => 'owner_id', 'Value' => get_current_user_id(), 'Format' => '%d' ); return $conditions;"
             };
@@ -75,7 +75,7 @@ namespace KMeze.WP.DSL
 
             var callback_insert = new CallbackInfo
             {
-                WPPlugin = conceptInfo.DataStructure.Plugin,
+                Plugin = conceptInfo.DataStructure.Plugin,
                 Name = $@"{conceptInfo.DataStructure.Name}_Insert_OwnerContext",
                 Script = $@"$data['Owner_id'] = get_current_user_id(); return $data;"
             };
@@ -91,7 +91,7 @@ namespace KMeze.WP.DSL
 
             var callback_update = new CallbackInfo
             {
-                WPPlugin = conceptInfo.DataStructure.Plugin,
+                Plugin = conceptInfo.DataStructure.Plugin,
                 Name = $@"{conceptInfo.DataStructure.Name}_Update_OwnerContext",
                 Script = $@"unset($data['Owner_id']); return $data;"
             };

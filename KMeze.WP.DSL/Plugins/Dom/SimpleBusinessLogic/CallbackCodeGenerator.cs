@@ -17,11 +17,11 @@ namespace KMeze.WP.DSL
         {
             var info = (CallbackInfo)conceptInfo;
 
-            string snippet = $@"function {info.WPPlugin.Name}_{info.Name} ( {CallbackArgTag.Evaluate(info)} ) {{
+            string snippet = $@"function {info.Plugin.Name}_{info.Name} ( {CallbackArgTag.Evaluate(info)} ) {{
     {info.Script}
 }}
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.CallbacksTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.CallbacksTag, info.Plugin);
         }
     }
 }

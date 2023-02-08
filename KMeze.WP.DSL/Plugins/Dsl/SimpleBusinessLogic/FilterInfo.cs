@@ -31,7 +31,7 @@ namespace KMeze.WP.DSL
         {
             var callback = new CallbackInfo
             {
-                WPPlugin = conceptInfo.Entity.Plugin,
+                Plugin = conceptInfo.Entity.Plugin,
                 Name = conceptInfo.Name,
                 Script = $@"$conditions[] = array( 'Name' => '{conceptInfo.PropertyName}', 'Value' => '{conceptInfo.PropertyValue}', 'Format' => '{conceptInfo.Format}' );
 

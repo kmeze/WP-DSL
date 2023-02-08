@@ -16,7 +16,7 @@ namespace KMeze.WP.DSL
         {
             var callback = new CallbackInfo
             {
-                WPPlugin = conceptInfo.Plugin,
+                Plugin = conceptInfo.Plugin,
                 Name = $@"{conceptInfo.Name}_register_rest_field",
                 Script = $@"register_rest_field( 'user', '{conceptInfo.Plugin.Name}_{conceptInfo.Name}', array(
             'get_callback' => function ( $user, $key ) {{

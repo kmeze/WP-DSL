@@ -31,7 +31,7 @@ namespace KMeze.WP.DSL
 
             CallbackInfo action = new CallbackInfo
             {
-                WPPlugin = conceptInfo.DataStructure.Plugin,
+                Plugin = conceptInfo.DataStructure.Plugin,
                 Name = "AllowAll",
                 Script = "return true;",
             };
@@ -65,7 +65,7 @@ namespace KMeze.WP.DSL
 
             CallbackInfo action = new CallbackInfo
             {
-                WPPlugin = conceptInfo.DataStructure.Plugin,
+                Plugin = conceptInfo.DataStructure.Plugin,
                 Name = "AllowLoggedIn",
                 Script = "return is_user_logged_in();",
             };
@@ -102,7 +102,7 @@ namespace KMeze.WP.DSL
 
             CallbackInfo action = new CallbackInfo
             {
-                WPPlugin = conceptInfo.DataStructure.Plugin,
+                Plugin = conceptInfo.DataStructure.Plugin,
                 Name = "AllowRole",
                 Script = $@"if (! is_user_logged_in() ) return false;
 
@@ -145,7 +145,7 @@ namespace KMeze.WP.DSL
 
             CallbackInfo action = new CallbackInfo
             {
-                WPPlugin = conceptInfo.DataStructure.Plugin,
+                Plugin = conceptInfo.DataStructure.Plugin,
                 Name = "AllowCapability",
                 Script = $@"if (! is_user_logged_in() ) return false;
 

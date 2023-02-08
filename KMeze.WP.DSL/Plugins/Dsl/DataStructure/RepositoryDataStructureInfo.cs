@@ -16,7 +16,7 @@ namespace KMeze.WP.DSL
         {
             var callback = new CallbackInfo
             {
-                WPPlugin = conceptInfo.Plugin,
+                Plugin = conceptInfo.Plugin,
                 Name = $@"{conceptInfo.Name}_register_routes",
                 Script = $@"( new {conceptInfo.Plugin.Name}_{conceptInfo.Name}_REST_Controller() )->register_routes();"
             };
