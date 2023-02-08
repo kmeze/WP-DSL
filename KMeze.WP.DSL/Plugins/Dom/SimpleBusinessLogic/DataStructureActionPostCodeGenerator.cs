@@ -9,7 +9,7 @@ namespace KMeze.WP.DSL
 {
     [Export(typeof(IWPPluginConceptCodeGenerator))]
     [ExportMetadata(MefProvider.Implements, typeof(ActionPostInfo))]
-    public class DataStructureActionPostCodeGenerator : IWPPluginConceptCodeGenerator
+    public class ActionPostCodeGenerator : IWPPluginConceptCodeGenerator
     {
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
         {
