@@ -35,7 +35,7 @@ namespace KMeze.WP.DSL
             codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info);
 
             snippet = $@"public function get_items( $request ): array {{
-	    return ( new {info.Plugin.Name}_{info.Name}_Repository() )->get();
+	    return ( new {info.Plugin.Slug}_{info.Name}_Repository() )->get();
     }}
 
 ";

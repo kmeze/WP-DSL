@@ -18,7 +18,7 @@ namespace KMeze.WP.DSL
             {
                 Plugin = conceptInfo.Plugin,
                 Name = $@"{conceptInfo.Name}_register_routes",
-                Script = $@"( new {conceptInfo.Plugin.Name}_{conceptInfo.Name}_REST_Controller() )->register_routes();"
+                Script = $@"( new {conceptInfo.Plugin.Slug}_{conceptInfo.Name}_REST_Controller() )->register_routes();"
             };
 
             var actionHook = new ActionHookWithDefaultPriorityInfo

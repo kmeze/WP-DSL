@@ -30,12 +30,12 @@ namespace KMeze.WP.DSL
     ";
             codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassPropertyTag, info);
 
-            snippet = $@"$this->source_table_name = $this->wpdb->prefix . '{info.Source.Plugin.Name}_{info.Source.Name}';
+            snippet = $@"$this->source_table_name = $this->wpdb->prefix . '{info.Source.Plugin.Slug}_{info.Source.Name}';
         ";
             codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassConstructorTag, info);
 
             snippet = $@"public function get($conditions = []) {{
-                $conditions = apply_filters( '{info.Plugin.Name}_{info.Name}_filter', $conditions );
+                $conditions = apply_filters( '{info.Plugin.Slug}_{info.Name}_filter', $conditions );
                 $transformed = $this->transform_conditions($conditions);
                 $where_part = ! empty( $transformed['SEGMENTS'] ) ? 'AND ' . implode( ' AND ', $transformed['SEGMENTS'] ) : '';
                 $sql = $this->wpdb->prepare( ""SELECT $this->source_table_name.ID AS ID
@@ -63,7 +63,7 @@ namespace KMeze.WP.DSL
         $parameters = $request->get_params();
 		$conditions = $this->request_parameters_to_condition( $parameters );
 
-        return ( new {info.Plugin.Name}_{info.Name}_Repository() )->get($conditions);
+        return ( new {info.Plugin.Slug}_{info.Name}_Repository() )->get($conditions);
     }}
 
 ";

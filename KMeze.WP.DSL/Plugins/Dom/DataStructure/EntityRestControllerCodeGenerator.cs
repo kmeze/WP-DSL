@@ -51,23 +51,23 @@ namespace KMeze.WP.DSL
         $parameters = $request->get_params();
 		$conditions = $this->request_parameters_to_condition( $parameters );
 
-        return ( new {info.Plugin.Name}_{info.Name}_Repository() )->get($conditions);
+        return ( new {info.Plugin.Slug}_{info.Name}_Repository() )->get($conditions);
     }}
 
     public function get_item( $request ) {{
-        return ( new {info.Plugin.Name}_{info.Name}_Repository() )->get_by_ID( $request->get_param( 'id' ) );
+        return ( new {info.Plugin.Slug}_{info.Name}_Repository() )->get_by_ID( $request->get_param( 'id' ) );
     }}
 
     public function create_item( $request ) {{
-        return ( new {info.Plugin.Name}_{info.Name}_Repository() )->insert( $request->get_json_params() );
+        return ( new {info.Plugin.Slug}_{info.Name}_Repository() )->insert( $request->get_json_params() );
     }}
 
     public function update_item( $request ) {{
-        return ( new {info.Plugin.Name}_{info.Name}_Repository() )->update( $request->get_param( 'id' ), $request->get_json_params() );
+        return ( new {info.Plugin.Slug}_{info.Name}_Repository() )->update( $request->get_param( 'id' ), $request->get_json_params() );
     }}
 
     public function delete_item( $request ) {{
-        return ( new {info.Plugin.Name}_{info.Name}_Repository() )->delete( $request->get_param( 'id' ) );
+        return ( new {info.Plugin.Slug}_{info.Name}_Repository() )->delete( $request->get_param( 'id' ) );
     }}
 
 ";

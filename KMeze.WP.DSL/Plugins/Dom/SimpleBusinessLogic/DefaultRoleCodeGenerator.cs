@@ -15,7 +15,7 @@ namespace KMeze.WP.DSL
         {
             var info = (DefaultRoleInfo)conceptInfo;
 
-            string snippet = $@"update_option(' default_role', '{info.Plugin.Name}_{info.Role.Slug}' );
+            string snippet = $@"update_option(' default_role', '{info.Plugin.Slug}_{info.Role.Slug}' );
 
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationHookTag, info.Plugin);

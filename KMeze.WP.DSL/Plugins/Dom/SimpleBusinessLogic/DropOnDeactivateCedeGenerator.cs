@@ -16,7 +16,7 @@ namespace KMeze.WP.DSL
             var info = (DropOnDeactivateInfo)conceptInfo;
 
             string snippet = $@"global $wpdb;
-    $table_name = $wpdb->prefix . '{info.Entity.Plugin.Name}_{info.Entity.Name}';
+    $table_name = $wpdb->prefix . '{info.Entity.Plugin.Slug}_{info.Entity.Name}';
     $wpdb->query( ""DROP TABLE IF EXISTS {{$table_name}}"" );
 
     ";

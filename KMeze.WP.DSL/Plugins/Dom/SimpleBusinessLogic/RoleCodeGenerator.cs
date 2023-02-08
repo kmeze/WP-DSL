@@ -17,14 +17,14 @@ namespace KMeze.WP.DSL
         {
             var info = (RoleInfo)conceptInfo;
 
-            string snippet = $@"add_role( '{info.Plugin.Name}_{info.Slug}', '{info.Name}', array(
+            string snippet = $@"add_role( '{info.Plugin.Slug}_{info.Slug}', '{info.Name}', array(
         {CapabilityTag.Evaluate(info)}
     ) );
 
     ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationHookTag, info.Plugin);
 
-            snippet = $@"remove_role( '{info.Plugin.Name}_{info.Slug}' );
+            snippet = $@"remove_role( '{info.Plugin.Slug}_{info.Slug}' );
 
     ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DeactivationHookTag, info.Plugin);

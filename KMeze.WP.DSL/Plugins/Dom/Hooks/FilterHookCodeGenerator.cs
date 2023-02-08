@@ -21,7 +21,7 @@ namespace KMeze.WP.DSL
             var args = info.Args;
             var acceptedArgs = args.Split(",", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
-            string snippet = $@"add_filter( '{info.Hook}', '{info.Callback.Plugin.Name}_{info.Callback.Name}', {priority}, {acceptedArgs.Count()});
+            string snippet = $@"add_filter( '{info.Hook}', '{info.Callback.Plugin.Slug}_{info.Callback.Name}', {priority}, {acceptedArgs.Count()});
 ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.FilterHooksTag, info.WPPlugin);
 

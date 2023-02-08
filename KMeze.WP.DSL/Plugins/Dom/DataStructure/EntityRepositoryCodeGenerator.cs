@@ -19,12 +19,12 @@ namespace KMeze.WP.DSL
     ";
             codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassPropertyTag, info);
 
-            snippet = $@"$this->{info.Name}_table_name = $this->wpdb->prefix . '{info.Plugin.Name}_{info.Name}';
+            snippet = $@"$this->{info.Name}_table_name = $this->wpdb->prefix . '{info.Plugin.Slug}_{info.Name}';
         ";
             codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassConstructorTag, info);
 
             snippet = $@"public function get($conditions = []) {{
-        $conditions = apply_filters( '{info.Plugin.Name}_{info.Name}_filter', $conditions );
+        $conditions = apply_filters( '{info.Plugin.Slug}_{info.Name}_filter', $conditions );
         $transformed = $this->transform_conditions($conditions);
         $where_part = ! empty( $transformed['SEGMENTS'] ) ? 'AND ' . implode( ' AND ', $transformed['SEGMENTS'] ) : '';
         $sql = $this->wpdb->prepare( ""SELECT * FROM $this->{info.Name}_table_name WHERE (1=1) {{$where_part}};"", $transformed['ARGS'] );
@@ -34,18 +34,18 @@ namespace KMeze.WP.DSL
 
     public function get_by_ID( int $id ) {{
         $conditions = [];
-        $conditions = apply_filters( '{info.Plugin.Name}_{info.Name}_filter', $conditions );
+        $conditions = apply_filters( '{info.Plugin.Slug}_{info.Name}_filter', $conditions );
         $conditions[] = array( 'Name' => 'ID', 'Value' => $id, 'Format' => '%d' );
         $transformed = $this->transform_conditions($conditions);
         $where_part = ! empty( $transformed['SEGMENTS'] ) ? 'AND ' . implode( ' AND ', $transformed['SEGMENTS'] ) : '';
         $sql = $this->wpdb->prepare( ""SELECT * FROM $this->{info.Name}_table_name WHERE (1=1) {{$where_part}};"", $transformed['ARGS'] );
         $row = $this->wpdb->get_row( $sql );
 
-        return {info.Plugin.Name}_{info.Name}::parse( $row );
+        return {info.Plugin.Slug}_{info.Name}::parse( $row );
     }}
 
     public function insert( array $data ): ?int {{
-        $data = apply_filters( '{info.Plugin.Name}_{info.Name}_insert', $data );
+        $data = apply_filters( '{info.Plugin.Slug}_{info.Name}_insert', $data );
         $this->wpdb->insert( $this->{info.Name}_table_name, $data );
 
         return $this->wpdb->insert_id;
@@ -53,17 +53,17 @@ namespace KMeze.WP.DSL
 
     public function update( int $id, array $data ) {{
         $conditions = [];
-        $conditions = apply_filters( '{info.Plugin.Name}_{info.Name}_filter', $conditions );
+        $conditions = apply_filters( '{info.Plugin.Slug}_{info.Name}_filter', $conditions );
         $conditions[] = array( 'Name' => 'ID', 'Value' => $id, 'Format' => '%d' );
         $transformed = $this->transform_conditions($conditions);
-        $data = apply_filters( '{info.Plugin.Name}_{info.Name}_update', $data );
+        $data = apply_filters( '{info.Plugin.Slug}_{info.Name}_update', $data );
 
 	    return $this->wpdb->update( $this->{info.Name}_table_name, $data, $transformed['NAME_VALUE'], null, $transformed['ARGS']);
     }}
 
     public function delete( int $id ) {{
         $conditions = [];
-        $conditions = apply_filters( '{info.Plugin.Name}_{info.Name}_filter', $conditions );
+        $conditions = apply_filters( '{info.Plugin.Slug}_{info.Name}_filter', $conditions );
         $conditions[] = array( 'Name' => 'ID', 'Value' => $id, 'Format' => '%d' );
         $transformed = $this->transform_conditions($conditions);
 

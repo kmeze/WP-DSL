@@ -107,7 +107,7 @@ namespace KMeze.WP.DSL
                 Script = $@"if (! is_user_logged_in() ) return false;
 
     $user = wp_get_current_user();
-    if (in_array( '{conceptInfo.Role.Plugin.Name}_{conceptInfo.Role.Slug}', (array) $user->roles )) return true;
+    if (in_array( '{conceptInfo.Role.Plugin.Slug}_{conceptInfo.Role.Slug}', (array) $user->roles )) return true;
 
     return false;
 ",
@@ -149,7 +149,7 @@ namespace KMeze.WP.DSL
                 Name = "AllowCapability",
                 Script = $@"if (! is_user_logged_in() ) return false;
 
-    if ( current_user_can( '{conceptInfo.DataStructure.Plugin.Name}_{conceptInfo.Capability.Slug}' ) ) return true;
+    if ( current_user_can( '{conceptInfo.DataStructure.Plugin.Slug}_{conceptInfo.Capability.Slug}' ) ) return true;
 
     return false;
 ",

@@ -36,13 +36,13 @@ namespace KMeze.WP.DSL
                 codeBuilder.InsertCode(snippet, PropertyCodeGenerator.DbDeltaPropertyColumnNameTag, info);
 
                 // Fast hack to enable adding reference to wp_users table
-                string referencedTable = $@"{info.ReferencedDataStructure.Plugin.Name}_{info.ReferencedDataStructure.Name}";
+                string referencedTable = $@"{info.ReferencedDataStructure.Plugin.Slug}_{info.ReferencedDataStructure.Name}";
                 if (info.ReferencedDataStructure is WPDataStructureInfo && info.ReferencedDataStructure.Name == "User") referencedTable = "users";
 
                 snippet = $@"$referenced_table_name = $wpdb->prefix . '{referencedTable}';
-    $table_name            = $wpdb->prefix . '{info.DataStructure.Plugin.Name}_{info.DataStructure.Name}';
+    $table_name            = $wpdb->prefix . '{info.DataStructure.Plugin.Slug}_{info.DataStructure.Name}';
     $db_name               = DB_NAME;
-	$key_name              = ""fk_{info.DataStructure.Plugin.Name}_{info.DataStructure.Name}_{info.Name}_id"";
+	$key_name              = ""fk_{info.DataStructure.Plugin.Slug}_{info.DataStructure.Name}_{info.Name}_id"";
 	$sql                   = ""SELECT CONSTRAINT_NAME FROM information_schema.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = '$db_name' AND CONSTRAINT_NAME = '$key_name' AND CONSTRAINT_TYPE = 'FOREIGN KEY';"";
 
 	if ( is_null( $wpdb->get_var( $sql ) ) ) {{

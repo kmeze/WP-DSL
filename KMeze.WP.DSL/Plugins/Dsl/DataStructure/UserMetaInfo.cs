@@ -18,13 +18,13 @@ namespace KMeze.WP.DSL
             {
                 Plugin = conceptInfo.Plugin,
                 Name = $@"{conceptInfo.Name}_register_rest_field",
-                Script = $@"register_rest_field( 'user', '{conceptInfo.Plugin.Name}_{conceptInfo.Name}', array(
+                Script = $@"register_rest_field( 'user', '{conceptInfo.Plugin.Slug}_{conceptInfo.Name}', array(
             'get_callback' => function ( $user, $key ) {{
                 $meta = get_user_meta( $user['id'], $key, true );
 
-                if ( empty ( $meta ) ) return new {conceptInfo.Plugin.Name}_{conceptInfo.Name}();
+                if ( empty ( $meta ) ) return new {conceptInfo.Plugin.Slug}_{conceptInfo.Name}();
 
-                return {conceptInfo.Plugin.Name}_{conceptInfo.Name}::parse( (object) $meta );;
+                return {conceptInfo.Plugin.Slug}_{conceptInfo.Name}::parse( (object) $meta );;
             }},
             'update_callback' => function ( $value, $user, $key ) {{
                 return update_user_meta( $user->id, $key, $value );

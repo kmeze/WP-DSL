@@ -30,7 +30,7 @@ namespace KMeze.WP.DSL
             codeBuilder.InsertCodeToFile(
 $@"<?php
 /**
- * Plugin Name: {info.Name}
+ * Plugin Name: {info.Slug}
  */
 
 // Exit if accessed directly
@@ -50,7 +50,7 @@ defined( 'ABSPATH' ) || exit;
  * Callbacks
  */
 {CallbacksTag.Evaluate(info)}
-function {info.Name}_uninstall() {{
+function {info.Slug}_uninstall() {{
     {UninstallHookTag.Evaluate(info)}
 }}
 
@@ -73,8 +73,8 @@ register_activation_hook( __FILE__, function () {{
 register_deactivation_hook( __FILE__, function () {{
     {DeactivationHookTag.Evaluate(info)}
 }} );
-register_uninstall_hook( __FILE__, '{info.Name}_uninstall' ); // NOTE: register_uninstall_hook callback cannot be anonymous function"
-        , $"{Path.Combine(Path.Combine("WordPress", info.Name), info.Name)}");
+register_uninstall_hook( __FILE__, '{info.Slug}_uninstall' ); // NOTE: register_uninstall_hook callback cannot be anonymous function"
+        , $"{Path.Combine(Path.Combine("WordPress", info.Slug), info.Slug)}");
         }
     }
 }

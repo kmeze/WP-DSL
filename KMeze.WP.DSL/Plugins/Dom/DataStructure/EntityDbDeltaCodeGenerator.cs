@@ -21,7 +21,7 @@ namespace KMeze.WP.DSL
 
             string snippet = $@"require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
     global $wpdb;
-    $table_name = $wpdb->prefix . '{info.Plugin.Name}_{info.Name}';
+    $table_name = $wpdb->prefix . '{info.Plugin.Slug}_{info.Name}';
     dbDelta( ""CREATE TABLE {{$table_name}} (
                         ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT
                         {DbDeltaColumnTag.Evaluate(info)}

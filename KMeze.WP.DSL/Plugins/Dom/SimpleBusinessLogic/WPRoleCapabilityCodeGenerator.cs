@@ -16,13 +16,13 @@ namespace KMeze.WP.DSL
             var info = (WPRoleCapabilityInfo)conceptInfo;
 
             string snippet = $@"    $role = get_role( '{info.Role.Slug.Trim().ToLower()}' );
-    if ( isset( $role ) ) $role->add_cap( '{info.Role.Plugin.Name}_{info.Capability.Slug}', true );
+    if ( isset( $role ) ) $role->add_cap( '{info.Role.Plugin.Slug}_{info.Capability.Slug}', true );
 
     ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationHookTag, info.Role.Plugin);
 
             snippet = $@"    $role = get_role( '{info.Role.Slug.Trim().ToLower()}' );
-    if ( isset( $role ) ) $role->remove_cap( '{info.Role.Plugin.Name}_{info.Capability.Slug}' );
+    if ( isset( $role ) ) $role->remove_cap( '{info.Role.Plugin.Slug}_{info.Capability.Slug}' );
 
     ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DeactivationHookTag, info.Role.Plugin);

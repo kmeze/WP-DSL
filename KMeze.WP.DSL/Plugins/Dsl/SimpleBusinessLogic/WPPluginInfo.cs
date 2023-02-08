@@ -9,7 +9,7 @@ namespace KMeze.WP.DSL
     public class WPPluginInfo : IConceptInfo
     {
         [ConceptKey]
-        public string Name { get; set; }
+        public string Slug { get; set; }
     }
 
     [Export(typeof(IConceptMacro))]

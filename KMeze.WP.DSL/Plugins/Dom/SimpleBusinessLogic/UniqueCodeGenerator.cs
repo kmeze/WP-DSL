@@ -16,7 +16,7 @@ namespace KMeze.WP.DSL
             var info = (UniqueInfo)conceptInfo;
 
             // Fast hack for to enable Unique key for reference (ignores NULL)
-            string keyName = $@"ukey_{info.Property.DataStructure.Plugin.Name}_{info.Property.DataStructure.Name}_{info.Property.Name}"; 
+            string keyName = $@"ukey_{info.Property.DataStructure.Plugin.Slug}_{info.Property.DataStructure.Name}_{info.Property.Name}"; 
             string column = $@"{info.Property.Name}";
             if (info.Property is ReferencePropertyInfo)
             {

@@ -27,7 +27,7 @@ namespace KMeze.WP.DSL
             var info = (DataStructureInfo)conceptInfo;
 
             // Generate DataStructure_Repository
-            string snippet = $@"class {info.Plugin.Name}_{info.Name}_Repository {{
+            string snippet = $@"class {info.Plugin.Slug}_{info.Name}_Repository {{
     protected ?wpdb $wpdb = null;
     {RepositoryClassPropertyTag.Evaluate(info)}
 
@@ -38,7 +38,7 @@ namespace KMeze.WP.DSL
     }}
 
     protected function parse_result( array $result ): array {{
-        return array_map( fn( $row ) => {info.Plugin.Name}_{info.Name}::parse( $row ), $result );
+        return array_map( fn( $row ) => {info.Plugin.Slug}_{info.Name}::parse( $row ), $result );
     }}
 
     protected function transform_conditions($conditions) {{
@@ -78,13 +78,13 @@ namespace KMeze.WP.DSL
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DataStructureClassesTag, info.Plugin);
 
             // Generate DataStructure_REST_Controller class
-            snippet = $@"class {info.Plugin.Name}_{info.Name}_REST_Controller {{
+            snippet = $@"class {info.Plugin.Slug}_{info.Name}_REST_Controller {{
     protected ?string $namespace = null;
     protected ?string $resource_name = null;
     {RestControllerClassPropertyTag.Evaluate(info)}
 
     public function __construct() {{
-        $this->namespace     = '/{info.Plugin.Name}/v1';
+        $this->namespace     = '/{info.Plugin.Slug}/v1';
         $this->resource_name = '/{info.Name}';
         {RestControllerClassConstructorTag.Evaluate(info)}
     }}
