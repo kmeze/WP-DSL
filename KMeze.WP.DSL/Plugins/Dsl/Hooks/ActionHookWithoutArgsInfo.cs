@@ -8,10 +8,10 @@ namespace KMeze.WP.DSL
     public class ActionHookWithoutArgsInfo : IConceptInfo
     {
         [ConceptKey]
-        public WPPluginInfo WPPlugin { get; set; }
+        public WPPluginInfo Plugin { get; set; }
 
         [ConceptKey]
-        public string HookName { get; set; }
+        public string Hook { get; set; }
 
         [ConceptKey]
         public CallbackInfo Callback { get; set; }
@@ -29,8 +29,8 @@ namespace KMeze.WP.DSL
 
             newConcepts.Add(new ActionHookInfo
             {
-                Plugin = conceptInfo.WPPlugin,
-                Hook = conceptInfo.HookName,
+                Plugin = conceptInfo.Plugin,
+                Hook = conceptInfo.Hook,
                 Callback = conceptInfo.Callback,
                 Priority = conceptInfo.Priority,
                 Args = "",
