@@ -20,7 +20,7 @@ namespace KMeze.WP.DSL
             var priority = info.Priority;
             if (priority.Trim().ToLower() == "defaultpriority") priority = "10";
 
-            var args = info.Args;
+            var args = info.AcceptedArgs;
             var acceptedArgs = args.Split(",", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
             string snippet = $@"add_action( '{info.Hook}', {info.Script}, {priority}, {acceptedArgs.Count()});

@@ -18,7 +18,7 @@ namespace KMeze.WP.DSL
 
         public string Priority { get; set; }
 
-        public string Args { get; set; }
+        public string AcceptedArgs { get; set; }
     }
 
     [Export(typeof(IConceptInfo))]
@@ -50,7 +50,7 @@ namespace KMeze.WP.DSL
                 Hook = conceptInfo.Hook,
                 Script = conceptInfo.Script,
                 Priority = conceptInfo.Priority,
-                Args = "",
+                AcceptedArgs = "0",
             });
 
             return newConcepts;
@@ -84,7 +84,7 @@ namespace KMeze.WP.DSL
                 Hook = conceptInfo.Hook,
                 Script = conceptInfo.Script,
                 Priority = "DefaultPriority",
-                Args = "",
+                AcceptedArgs = "0",
             });
 
             return newConcepts;
