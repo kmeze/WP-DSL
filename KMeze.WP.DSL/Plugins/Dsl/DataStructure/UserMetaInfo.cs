@@ -35,8 +35,8 @@ namespace KMeze.WP.DSL
 
             var actionHook = new ActionHookWithDefaultPriorityInfo
             {
-                WPPlugin = conceptInfo.WPPlugin,
-                HookName = "rest_api_init",
+                Plugin = conceptInfo.WPPlugin,
+                Hook = "rest_api_init",
                 Callback = callback,
             };
 
