@@ -22,17 +22,17 @@ namespace KMeze.WP.DSL
             var info = (DataStructureInfo)conceptInfo;
 
             // Generate DataStructure class
-            string snippet = $@"class {info.WPPlugin.Name}_{info.Name} {{
+            string snippet = $@"class {info.Plugin.Name}_{info.Name} {{
     {ClassPropertyTag.Evaluate(info)}
 
     public function __construct() {{
         {ClassConstructorTag.Evaluate(info)}
     }}
 
-    public static function parse( $object ):?{info.WPPlugin.Name}_{info.Name} {{
+    public static function parse( $object ):?{info.Plugin.Name}_{info.Name} {{
         if (! isset( $object ) ) return null;
         
-        $dataStructure = new {info.WPPlugin.Name}_{info.Name}();
+        $dataStructure = new {info.Plugin.Name}_{info.Name}();
         {ClassParsePropertyTag.Evaluate(info)}
 
         return $dataStructure;
@@ -41,7 +41,7 @@ namespace KMeze.WP.DSL
     {ClassMethodTag.Evaluate(info)}
 }}
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DataStructureClassesTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DataStructureClassesTag, info.Plugin);
         }
     }
 }

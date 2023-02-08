@@ -19,7 +19,7 @@ namespace KMeze.WP.DSL
     ";
             codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassPropertyTag, info.List);
 
-            snippet = $@"$this->join_{info.SourceReferencePropertyInfo.Name}_table_name = $this->wpdb->prefix . '{info.SourceReferencePropertyInfo.ReferencedDataStructure.WPPlugin.Name}_{info.SourceReferencePropertyInfo.ReferencedDataStructure.Name}';
+            snippet = $@"$this->join_{info.SourceReferencePropertyInfo.Name}_table_name = $this->wpdb->prefix . '{info.SourceReferencePropertyInfo.ReferencedDataStructure.Plugin.Name}_{info.SourceReferencePropertyInfo.ReferencedDataStructure.Name}';
         ";
             codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassConstructorTag, info.List);
 

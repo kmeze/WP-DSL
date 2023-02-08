@@ -16,15 +16,15 @@ namespace KMeze.WP.DSL
         {
             var callback = new CallbackInfo
             {
-                WPPlugin = conceptInfo.WPPlugin,
+                WPPlugin = conceptInfo.Plugin,
                 Name = $@"{conceptInfo.Name}_register_rest_field",
-                Script = $@"register_rest_field( 'user', '{conceptInfo.WPPlugin.Name}_{conceptInfo.Name}', array(
+                Script = $@"register_rest_field( 'user', '{conceptInfo.Plugin.Name}_{conceptInfo.Name}', array(
             'get_callback' => function ( $user, $key ) {{
                 $meta = get_user_meta( $user['id'], $key, true );
 
-                if ( empty ( $meta ) ) return new {conceptInfo.WPPlugin.Name}_{conceptInfo.Name}();
+                if ( empty ( $meta ) ) return new {conceptInfo.Plugin.Name}_{conceptInfo.Name}();
 
-                return {conceptInfo.WPPlugin.Name}_{conceptInfo.Name}::parse( (object) $meta );;
+                return {conceptInfo.Plugin.Name}_{conceptInfo.Name}::parse( (object) $meta );;
             }},
             'update_callback' => function ( $value, $user, $key ) {{
                 return update_user_meta( $user->id, $key, $value );
@@ -35,7 +35,7 @@ namespace KMeze.WP.DSL
 
             var actionHook = new ActionHookWithDefaultPriorityInfo
             {
-                Plugin = conceptInfo.WPPlugin,
+                Plugin = conceptInfo.Plugin,
                 Hook = "rest_api_init",
                 Callback = callback,
             };

@@ -31,7 +31,7 @@ namespace KMeze.WP.DSL
         {
             var callback = new CallbackInfo
             {
-                WPPlugin = conceptInfo.Entity.WPPlugin,
+                WPPlugin = conceptInfo.Entity.Plugin,
                 Name = conceptInfo.Name,
                 Script = $@"$conditions[] = array( 'Name' => '{conceptInfo.PropertyName}', 'Value' => '{conceptInfo.PropertyValue}', 'Format' => '{conceptInfo.Format}' );
 
@@ -41,8 +41,8 @@ namespace KMeze.WP.DSL
 
             var filterHook = new FilterHookInfo
             {
-                WPPlugin = conceptInfo.Entity.WPPlugin,
-                Hook = $@"{conceptInfo.Entity.WPPlugin.Name}_{conceptInfo.Entity.Name}_filter",
+                WPPlugin = conceptInfo.Entity.Plugin,
+                Hook = $@"{conceptInfo.Entity.Plugin.Name}_{conceptInfo.Entity.Name}_filter",
                 Callback = callback,
                 Priority = "DefaultPriority",
                 Args = "$conditions"

@@ -20,7 +20,7 @@ namespace KMeze.WP.DSL
             var newConcepts = new List<IConceptInfo>();
             newConcepts.Add(new WPDataStructureInfo
             {
-                WPPlugin = conceptInfo,
+                Plugin = conceptInfo,
                 Name = "User",
             });
 

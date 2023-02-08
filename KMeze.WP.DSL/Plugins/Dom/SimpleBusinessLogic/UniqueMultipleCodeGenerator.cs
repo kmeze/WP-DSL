@@ -15,7 +15,7 @@ namespace KMeze.WP.DSL
         {
             var info = (UniqueMultipleInfo)conceptInfo;
 
-            string snippet = $@",UNIQUE key_{info.Entity.WPPlugin.Name}_{info.Entity.Name}_{info.Columns.Trim().Replace(" ", "").Replace(",", "_")} ({info.Columns.Trim()})
+            string snippet = $@",UNIQUE key_{info.Entity.Plugin.Name}_{info.Entity.Name}_{info.Columns.Trim().Replace(" ", "").Replace(",", "_")} ({info.Columns.Trim()})
                         ";
             codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaKeyTag, info.Entity);
         }

@@ -23,7 +23,7 @@ namespace KMeze.WP.DSL
             {
                 var user = new WPDataStructureInfo
                 {
-                    WPPlugin = conceptInfo.DataStructure.WPPlugin,
+                    Plugin = conceptInfo.DataStructure.Plugin,
                     Name = "User",
                 };
 
@@ -59,15 +59,15 @@ namespace KMeze.WP.DSL
 
             var callback_filter = new CallbackInfo
             {
-                WPPlugin = conceptInfo.DataStructure.WPPlugin,
+                WPPlugin = conceptInfo.DataStructure.Plugin,
                 Name = $@"{conceptInfo.DataStructure.Name}_Filter_OwnerContext",
                 Script = $@"$conditions[] = array( 'Name' => 'owner_id', 'Value' => get_current_user_id(), 'Format' => '%d' ); return $conditions;"
             };
 
             var hook_filter = new FilterHookInfo
             {
-                WPPlugin = conceptInfo.DataStructure.WPPlugin,
-                Hook = $@"{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.DataStructure.Name}_filter",
+                WPPlugin = conceptInfo.DataStructure.Plugin,
+                Hook = $@"{conceptInfo.DataStructure.Plugin.Name}_{conceptInfo.DataStructure.Name}_filter",
                 Callback = callback_filter,
                 Priority = "20",
                 Args = "$conditions"
@@ -75,15 +75,15 @@ namespace KMeze.WP.DSL
 
             var callback_insert = new CallbackInfo
             {
-                WPPlugin = conceptInfo.DataStructure.WPPlugin,
+                WPPlugin = conceptInfo.DataStructure.Plugin,
                 Name = $@"{conceptInfo.DataStructure.Name}_Insert_OwnerContext",
                 Script = $@"$data['Owner_id'] = get_current_user_id(); return $data;"
             };
 
             var hook_insert = new FilterHookInfo
             {
-                WPPlugin = conceptInfo.DataStructure.WPPlugin,
-                Hook = $@"{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.DataStructure.Name}_insert",
+                WPPlugin = conceptInfo.DataStructure.Plugin,
+                Hook = $@"{conceptInfo.DataStructure.Plugin.Name}_{conceptInfo.DataStructure.Name}_insert",
                 Callback = callback_insert,
                 Priority = "10",
                 Args = "$data"
@@ -91,15 +91,15 @@ namespace KMeze.WP.DSL
 
             var callback_update = new CallbackInfo
             {
-                WPPlugin = conceptInfo.DataStructure.WPPlugin,
+                WPPlugin = conceptInfo.DataStructure.Plugin,
                 Name = $@"{conceptInfo.DataStructure.Name}_Update_OwnerContext",
                 Script = $@"unset($data['Owner_id']); return $data;"
             };
 
             var hook_update = new FilterHookInfo
             {
-                WPPlugin = conceptInfo.DataStructure.WPPlugin,
-                Hook = $@"{conceptInfo.DataStructure.WPPlugin.Name}_{conceptInfo.DataStructure.Name}_update",
+                WPPlugin = conceptInfo.DataStructure.Plugin,
+                Hook = $@"{conceptInfo.DataStructure.Plugin.Name}_{conceptInfo.DataStructure.Name}_update",
                 Callback = callback_update,
                 Priority = "10",
                 Args = "$data"

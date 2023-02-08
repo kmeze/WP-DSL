@@ -16,14 +16,14 @@ namespace KMeze.WP.DSL
         {
             var callback = new CallbackInfo
             {
-                WPPlugin = conceptInfo.WPPlugin,
+                WPPlugin = conceptInfo.Plugin,
                 Name = $@"{conceptInfo.Name}_register_routes",
-                Script = $@"( new {conceptInfo.WPPlugin.Name}_{conceptInfo.Name}_REST_Controller() )->register_routes();"
+                Script = $@"( new {conceptInfo.Plugin.Name}_{conceptInfo.Name}_REST_Controller() )->register_routes();"
             };
 
             var actionHook = new ActionHookWithDefaultPriorityInfo
             {
-                Plugin = conceptInfo.WPPlugin,
+                Plugin = conceptInfo.Plugin,
                 Hook = "rest_api_init",
                 Callback = callback,
             };

@@ -18,20 +18,20 @@ namespace KMeze.WP.DSL.Vue.Pinia
             // Generate entity state in Pinia store
             string snippet = $@"{info.Name}: [],
             ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreStateTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreStateTag, info.Plugin);
 
             // Generate entity actions in Pinia store
             snippet = $@"async fetch{info.Name}() {{
-            const res = await axios.get(`${{this.apiUrl}}/wp-json/{info.WPPlugin.Name}/v1/{info.Name}`).then(res => {{
+            const res = await axios.get(`${{this.apiUrl}}/wp-json/{info.Plugin.Name}/v1/{info.Name}`).then(res => {{
                 this.{info.Name} = res.data;
             }})
         }},
         ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreActionTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreActionTag, info.Plugin);
 
             snippet = $@"this.{info.Name} = []
             ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreCleanUpActionTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreCleanUpActionTag, info.Plugin);
         }
     }
 }

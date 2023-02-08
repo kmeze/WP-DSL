@@ -8,9 +8,9 @@ namespace KMeze.WP.DSL
     public class DeactivationHookInfo : IConceptInfo
     {
         [ConceptKey]
-        public WPPluginInfo WPPlugin { get; set; }
+        public WPPluginInfo Plugin { get; set; }
 
         [ConceptKey]
-        public CallbackInfo Action { get; set; }
+        public CallbackInfo Callback { get; set; }
     }
 }
