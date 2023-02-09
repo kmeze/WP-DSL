@@ -47,7 +47,7 @@ export const use{info.Slug}Store = defineStore('{info.Slug}', {{
                 res.data;
             }})
         }},
-        cleanUp() {{
+        async cleanUp() {{
             {PiniaStoreCleanUpActionTag.Evaluate(info)}
         }},
     }},
