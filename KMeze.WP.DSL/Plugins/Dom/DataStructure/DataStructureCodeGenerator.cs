@@ -29,7 +29,7 @@ namespace KMeze.WP.DSL
         {ClassConstructorTag.Evaluate(info)}
     }}
 
-    public static function parse( $object ):?{info.Plugin.Slug}_{info.Name} {{
+    public static function parse( object $object ):?{info.Plugin.Slug}_{info.Name} {{
         if (! isset( $object ) ) return null;
         
         $dataStructure = new {info.Plugin.Slug}_{info.Name}();

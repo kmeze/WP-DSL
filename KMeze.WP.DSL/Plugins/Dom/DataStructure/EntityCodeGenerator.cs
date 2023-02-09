@@ -130,16 +130,18 @@ namespace KMeze.WP.DSL
     }}
 
     public function create_item( $request ) {{
+        $obj        = {info.Plugin.Slug}_{info.Name}::parse((object) $request->get_json_params());
         $repository = new {info.Plugin.Slug}_{info.Name}_Repository();
-        $insert_id  = $repository->insert( $request->get_json_params() );
+        $insert_id  = $repository->insert( (array) $obj );
 
         return $repository->get_by_ID( $insert_id );
     }}
 
     public function update_item( $request ) {{
         $id         = $request->get_param( 'id' );
+        $obj        = {info.Plugin.Slug}_{info.Name}::parse((object) $request->get_json_params());
         $repository = new {info.Plugin.Slug}_{info.Name}_Repository();
-        $repository->update( $id, $request->get_json_params() );
+        $repository->update( $id, (array) $request->get_json_params() );
 
         return $repository->get_by_ID( $id );
     }}
