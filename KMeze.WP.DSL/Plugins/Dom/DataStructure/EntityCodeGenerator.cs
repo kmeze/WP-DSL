@@ -137,7 +137,11 @@ namespace KMeze.WP.DSL
     }}
 
     public function update_item( $request ) {{
-        return ( new {info.Plugin.Slug}_{info.Name}_Repository() )->update( $request->get_param( 'id' ), $request->get_json_params() );
+        $id         = $request->get_param( 'id' );
+        $repository = new {info.Plugin.Slug}_{info.Name}_Repository();
+        $repository->update( $id, $request->get_json_params() );
+
+        return $repository->get_by_ID( $id );
     }}
 
     public function delete_item( $request ) {{
