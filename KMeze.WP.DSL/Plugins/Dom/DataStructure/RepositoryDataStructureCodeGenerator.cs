@@ -79,13 +79,11 @@ namespace KMeze.WP.DSL
 
             // Generate DataStructure_REST_Controller class
             snippet = $@"class {info.Plugin.Slug}_{info.Name}_REST_Controller {{
-    protected ?string $namespace = null;
-    protected ?string $resource_name = null;
+    protected string $namespace = '/{info.Plugin.Slug}/v1';
+    protected string $resource_name = '/{info.Name}';
     {RestControllerClassPropertyTag.Evaluate(info)}
 
     public function __construct() {{
-        $this->namespace     = '/{info.Plugin.Slug}/v1';
-        $this->resource_name = '/{info.Name}';
         {RestControllerClassConstructorTag.Evaluate(info)}
     }}
 
