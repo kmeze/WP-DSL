@@ -65,7 +65,7 @@ namespace KMeze.WP.DSL.Vue.Pinia
             this.isLoggedIn = false
             axios.defaults.headers['Authorization'] = ``
             localStorage.removeItem(""token"")
-            this.cleanUp()
+            await this.cleanUp()
         }},
         ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreActionTag, info.WPPlugin);
