@@ -25,7 +25,6 @@ namespace KMeze.WP.DSL.Vue.Pinia
             snippet = $@"async tryToLogInUser() {{
             if (!localStorage.token) return false
 
-            let retVal = false
             const token = localStorage.token
             await axios.post(`${{this.apiUrl}}/wp-json/jwt-auth/v1/token/validate`, null, {{
                 headers: {{Authorization: `Bearer ${{token}}`}}
@@ -33,19 +32,16 @@ namespace KMeze.WP.DSL.Vue.Pinia
                 this.jwtAuthToken = token
                 this.isLoggedIn = true
                 axios.defaults.headers['Authorization'] = `Bearer ${{token}}`
-
-                retVal = true;
             }}).catch((error) => {{
-                retVal = false;
             }})
 
-            return retVal
+            return this.isLoggedIn
         }},
-        jwtLogIn(username, password, rememberMe = false) {{
+        async jwtLogIn(username, password, rememberMe = false) {{
             let token = ''
             let authorization = ''
             let loggedIn = false
-            const res = axios.post(`${{this.apiUrl}}/wp-json/jwt-auth/v1/token`, {{
+            await axios.post(`${{this.apiUrl}}/wp-json/jwt-auth/v1/token`, {{
                 ""username"": username,
                 ""password"": password,
             }}).then(res => {{
@@ -56,14 +52,15 @@ namespace KMeze.WP.DSL.Vue.Pinia
             }}).catch((error) => {{
                 localStorage.removeItem(""token"")
                 this.cleanUp()
-                console.log('%cError: %s', 'color: red;', error.message)
             }}).finally(() => {{
                 this.jwtAuthToken = token
                 this.isLoggedIn = loggedIn
                 axios.defaults.headers['Authorization'] = authorization
             }})
+
+            return this.isLoggedIn
         }},
-        jwtLogOut() {{
+        async jwtLogOut() {{
             this.jwtAuthToken = ''
             this.isLoggedIn = false
             axios.defaults.headers['Authorization'] = ``
