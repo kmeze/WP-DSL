@@ -15,7 +15,7 @@ namespace KMeze.WP.DSL
         {
             var info = (RoleCapabilityInfo)conceptInfo;
 
-            string snippet = $@"'{info.Role.WPPlugin.Name}_{info.Capability.Slug}' => true, ";
+            string snippet = $@"'{info.Role.Plugin.Slug}_{info.Capability.Slug}' => true, ";
             codeBuilder.InsertCode(snippet, RoleCodeGenerator.CapabilityTag, info.Role);
         }
     }

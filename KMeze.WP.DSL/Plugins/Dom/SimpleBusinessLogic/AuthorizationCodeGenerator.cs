@@ -15,10 +15,10 @@ namespace KMeze.WP.DSL
         {
             var info = (AuthorizationInfo)conceptInfo;
 
-            string snippet = $@"if ( (bool) {info.DataStructure.WPPlugin.Name}_{info.Action.Name} () ) return true;
+            string snippet = $@"if ( (bool) {info.DataStructure.Plugin.Slug}_{info.Callback.Name} () ) return true;
 
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerAuthorizationTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerAuthorizationTag, info.DataStructure);
         }
     }
 }

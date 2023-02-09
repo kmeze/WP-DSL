@@ -5,12 +5,12 @@ namespace KMeze.WP.DSL
 {
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("Action")]
-    public class DataStructureActionInfo : IConceptInfo
+    public class ActionInfo : IConceptInfo
     {
         [ConceptKey]
-        public DataStructureInfo DataStructure { get; set; }
+        public RepositoryDataStructureInfo DataStructure { get; set; }
 
         [ConceptKey]
-        public CallbackInfo Action { get; set; }
+        public CallbackInfo Callback { get; set; }
     }
 }

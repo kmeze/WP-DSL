@@ -18,7 +18,7 @@ namespace KMeze.WP.DSL
             string snippet = $@"{info.Script}
 
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.CodeTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.CodeTag, info.Plugin);
         }
     }
 }

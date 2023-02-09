@@ -24,18 +24,18 @@ namespace KMeze.WP.DSL
 
             snippet = $@"$dataStructure->id = (int) $object->ID;
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataClassParsePropertyTag, info);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassParsePropertyTag, info);
 
             snippet = $@"protected ?string $source_table_name = null;
     ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassPropertyTag, info);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassPropertyTag, info);
 
-            snippet = $@"$this->source_table_name = $this->wpdb->prefix . '{info.Source.WPPlugin.Name}_{info.Source.Name}';
+            snippet = $@"$this->source_table_name = $this->wpdb->prefix . '{info.Source.Plugin.Slug}_{info.Source.Name}';
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassConstructorTag, info);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassConstructorTag, info);
 
             snippet = $@"public function get($conditions = []) {{
-                $conditions = apply_filters( '{info.WPPlugin.Name}_{info.Name}_filter', $conditions );
+                $conditions = apply_filters( '{info.Plugin.Slug}_{info.Name}_filter', $conditions );
                 $transformed = $this->transform_conditions($conditions);
                 $where_part = ! empty( $transformed['SEGMENTS'] ) ? 'AND ' . implode( ' AND ', $transformed['SEGMENTS'] ) : '';
                 $sql = $this->wpdb->prepare( ""SELECT $this->source_table_name.ID AS ID
@@ -48,7 +48,7 @@ namespace KMeze.WP.DSL
     }}
 
 ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RepositoryClassMethodTag, info);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RepositoryClassMethodTag, info);
 
             snippet = $@"register_rest_route( $this->namespace, $this->resource_name, array(
             'methods'             => 'GET',
@@ -57,17 +57,17 @@ namespace KMeze.WP.DSL
         ) );
 
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerClassRegisterRoutesTag, info);
 
             snippet = $@"public function get_items( $request ) {{
         $parameters = $request->get_params();
 		$conditions = $this->request_parameters_to_condition( $parameters );
 
-        return ( new {info.WPPlugin.Name}_{info.Name}_Repository() )->get($conditions);
+        return ( new {info.Plugin.Slug}_{info.Name}_Repository() )->get($conditions);
     }}
 
 ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassMethodTag, info);
+            codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerClassMethodTag, info);
         }
     }
 }

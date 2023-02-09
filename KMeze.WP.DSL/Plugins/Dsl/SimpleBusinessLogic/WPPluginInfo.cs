@@ -9,7 +9,7 @@ namespace KMeze.WP.DSL
     public class WPPluginInfo : IConceptInfo
     {
         [ConceptKey]
-        public string Name { get; set; }
+        public string Slug { get; set; }
     }
 
     [Export(typeof(IConceptMacro))]
@@ -20,7 +20,7 @@ namespace KMeze.WP.DSL
             var newConcepts = new List<IConceptInfo>();
             newConcepts.Add(new WPDataStructureInfo
             {
-                WPPlugin = conceptInfo,
+                Plugin = conceptInfo,
                 Name = "User",
             });
 

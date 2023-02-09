@@ -21,12 +21,14 @@ namespace KMeze.WP.DSL
 
             snippet = $@"$dataStructure->{info.Name} = is_null($object->{info.Name}) ? null : (int) $object->{info.Name};
         ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.DataClassParsePropertyTag, info.DataStructure);
+            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.ClassParsePropertyTag, info.DataStructure);
 
-            snippet = $@"if ( $params['{info.Name}'] !== null ) $conditions[] = array( 'Name' => '{info.Name}', 'Value' => $params['{info.Name}'] === strtolower('null') ? 'null' : (int) $params['{info.Name}'], 'Format' => '%d' );
+            if (info.DataStructure is RepositoryDataStructureInfo)
+            {
+                snippet = $@"if ( $params['{info.Name}'] !== null ) $conditions[] = array( 'Name' => '{info.Name}', 'Value' => $params['{info.Name}'] === strtolower('null') ? 'null' : (int) $params['{info.Name}'], 'Format' => '%d' );
             ";
-            codeBuilder.InsertCode(snippet, DataStructureCodeGenerator.RestControllerClassParamToConditionTag, info.DataStructure);
-
+                codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerClassParamToConditionTag, info.DataStructure);
+            }
 
             if (info.DataStructure is EntityInfo)
             {

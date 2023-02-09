@@ -15,10 +15,10 @@ namespace KMeze.WP.DSL
         {
             var info = (DeactivationHookInfo)conceptInfo;
 
-            string snippet = $@"{info.WPPlugin.Name}_{info.Action.Name} ();
+            string snippet = $@"{info.Plugin.Slug}_{info.Callback.Name} ();
 
     ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DeactivationHookTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DeactivationHookTag, info.Plugin);
         }
     }
 }

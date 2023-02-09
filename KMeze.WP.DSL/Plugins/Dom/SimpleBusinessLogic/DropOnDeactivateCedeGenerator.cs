@@ -16,11 +16,11 @@ namespace KMeze.WP.DSL
             var info = (DropOnDeactivateInfo)conceptInfo;
 
             string snippet = $@"global $wpdb;
-    $table_name = $wpdb->prefix . '{info.Entity.WPPlugin.Name}_{info.Entity.Name}';
+    $table_name = $wpdb->prefix . '{info.Entity.Plugin.Slug}_{info.Entity.Name}';
     $wpdb->query( ""DROP TABLE IF EXISTS {{$table_name}}"" );
 
     ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DeactivationHookTag, info.Entity.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DeactivationHookTag, info.Entity.Plugin);
         }
     }
 }

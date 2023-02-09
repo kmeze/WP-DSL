@@ -8,32 +8,9 @@ namespace KMeze.WP.DSL
     public class DataStructureInfo : IConceptInfo
     {
         [ConceptKey]
-        public WPPluginInfo WPPlugin { get; set; }
+        public WPPluginInfo Plugin { get; set; }
 
         [ConceptKey]
         public string Name { get; set; }
-    }
-
-    [Export(typeof(IConceptMacro))]
-    public class DataStructureMacro : IConceptMacro<DataStructureInfo>
-    {
-        public IEnumerable<IConceptInfo> CreateNewConcepts(DataStructureInfo conceptInfo, IDslModel existingConcepts)
-        {
-            var callback = new CallbackInfo
-            {
-                WPPlugin = conceptInfo.WPPlugin,
-                Name = $@"{conceptInfo.Name}_register_routes",
-                Script = $@"( new {conceptInfo.WPPlugin.Name}_{conceptInfo.Name}_REST_Controller() )->register_routes();"
-            };
-
-            var actionHook = new ActionHookWithDefaultPriorityInfo
-            {
-                WPPlugin = conceptInfo.WPPlugin,
-                HookName = "rest_api_init",
-                Callback = callback,
-            };
-
-            return new IConceptInfo[] { callback, actionHook };
-        }
     }
 }

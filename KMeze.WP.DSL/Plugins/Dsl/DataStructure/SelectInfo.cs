@@ -5,7 +5,7 @@ namespace KMeze.WP.DSL
 {
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("Select")]
-    public class SelectInfo : DataStructureInfo
+    public class SelectInfo : RepositoryDataStructureInfo
     {
         public string Query { get; set; }
     }

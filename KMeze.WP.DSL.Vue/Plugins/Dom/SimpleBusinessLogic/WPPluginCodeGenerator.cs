@@ -24,7 +24,7 @@ namespace KMeze.WP.DSL.Vue.Pinia
 $@"import {{defineStore}} from 'pinia'
 import axios from 'axios'
 
-export const use{info.Name}Store = defineStore('{info.Name}', {{
+export const use{info.Slug}Store = defineStore('{info.Slug}', {{
     state: () => {{
         return {{
             apiUrl: '',
@@ -51,7 +51,7 @@ export const use{info.Name}Store = defineStore('{info.Name}', {{
             {PiniaStoreCleanUpActionTag.Evaluate(info)}
         }},
     }},
-}})", $"{Path.Combine(Path.Combine(Path.Combine(Path.Combine("WordPress", info.Name), "src"), "stores"), info.Name + "Store")}");
+}})", $"{Path.Combine(Path.Combine(Path.Combine(Path.Combine("WordPress", info.Slug), "src"), "stores"), info.Slug + "Store")}");
         }
     }
 }

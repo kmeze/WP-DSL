@@ -29,7 +29,7 @@ namespace KMeze.WP.DSL
             {
                 snippet = $@"{DbDeltaPropertyColumnNameTag.Evaluate(info)}{DbDeltaPropertyColumnLengthTag.Evaluate(info)}{DbDeltaPropertyColumnAttributesTag.Evaluate(info)}
                         ";
-                codeBuilder.InsertCode(snippet, EntityDbDeltaCodeGenerator.DbDeltaColumnTag, info.DataStructure);
+                codeBuilder.InsertCode(snippet, EntityCodeGenerator.DbDeltaColumnTag, (EntityInfo) info.DataStructure);
             }
         }
     }

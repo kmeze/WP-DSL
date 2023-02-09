@@ -5,7 +5,7 @@ namespace KMeze.WP.DSL
 {
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("ActionHook")]
-    public class ActionHookInfo : IConceptInfo
+    public class ActionHookWithAnonymousCallbackInfo : IConceptInfo
     {
         [ConceptKey]
         public WPPluginInfo Plugin { get; set; }
@@ -14,16 +14,16 @@ namespace KMeze.WP.DSL
         public string Hook { get; set; }
 
         [ConceptKey]
-        public CallbackInfo Callback { get; set; }
+        public string Script { get; set; }
 
         public string Priority { get; set; }
 
-        public string Args { get; set; }
+        public string AcceptedArgs { get; set; }
     }
 
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("ActionHook")]
-    public class ActionHookWithoutArgsInfo : IConceptInfo
+    public class ActionHookWithAnonymousCallbackWithoutArgsInfo : IConceptInfo
     {
         [ConceptKey]
         public WPPluginInfo Plugin { get; set; }
@@ -32,25 +32,25 @@ namespace KMeze.WP.DSL
         public string Hook { get; set; }
 
         [ConceptKey]
-        public CallbackInfo Callback { get; set; }
+        public string Script { get; set; }
 
         public string Priority { get; set; }
     }
 
     [Export(typeof(IConceptMacro))]
-    public class ActionHookWithoutArgsMacro : IConceptMacro<ActionHookWithoutArgsInfo>
+    public class ActionHookWithAnonymousCallbackWithoutArgsMacro : IConceptMacro<ActionHookWithAnonymousCallbackWithoutArgsInfo>
     {
-        public IEnumerable<IConceptInfo> CreateNewConcepts(ActionHookWithoutArgsInfo conceptInfo, IDslModel existingConcepts)
+        public IEnumerable<IConceptInfo> CreateNewConcepts(ActionHookWithAnonymousCallbackWithoutArgsInfo conceptInfo, IDslModel existingConcepts)
         {
             var newConcepts = new List<IConceptInfo>();
 
-            newConcepts.Add(new ActionHookInfo
+            newConcepts.Add(new ActionHookWithAnonymousCallbackInfo
             {
                 Plugin = conceptInfo.Plugin,
                 Hook = conceptInfo.Hook,
-                Callback = conceptInfo.Callback,
+                Script = conceptInfo.Script,
                 Priority = conceptInfo.Priority,
-                Args = "",
+                AcceptedArgs = "0",
             });
 
             return newConcepts;
@@ -59,7 +59,7 @@ namespace KMeze.WP.DSL
 
     [Export(typeof(IConceptInfo))]
     [ConceptKeyword("ActionHook")]
-    public class ActionHookWithDefaultPriorityInfo : IConceptInfo
+    public class ActionHookWithAnonymousCallbackWithDefaultPriorityInfo : IConceptInfo
     {
         [ConceptKey]
         public WPPluginInfo Plugin { get; set; }
@@ -68,23 +68,23 @@ namespace KMeze.WP.DSL
         public string Hook { get; set; }
 
         [ConceptKey]
-        public CallbackInfo Callback { get; set; }
+        public string Script { get; set; }
     }
 
     [Export(typeof(IConceptMacro))]
-    public class ActionHookWithDefaultPriorityMacro : IConceptMacro<ActionHookWithDefaultPriorityInfo>
+    public class ActionHookWithAnonymousCallbackWithDefaultPriorityMacro : IConceptMacro<ActionHookWithAnonymousCallbackWithDefaultPriorityInfo>
     {
-        public IEnumerable<IConceptInfo> CreateNewConcepts(ActionHookWithDefaultPriorityInfo conceptInfo, IDslModel existingConcepts)
+        public IEnumerable<IConceptInfo> CreateNewConcepts(ActionHookWithAnonymousCallbackWithDefaultPriorityInfo conceptInfo, IDslModel existingConcepts)
         {
             var newConcepts = new List<IConceptInfo>();
 
-            newConcepts.Add(new ActionHookInfo
+            newConcepts.Add(new ActionHookWithAnonymousCallbackInfo
             {
                 Plugin = conceptInfo.Plugin,
                 Hook = conceptInfo.Hook,
-                Callback = conceptInfo.Callback,
+                Script = conceptInfo.Script,
                 Priority = "DefaultPriority",
-                Args = "",
+                AcceptedArgs = "0",
             });
 
             return newConcepts;

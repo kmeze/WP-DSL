@@ -15,15 +15,15 @@ namespace KMeze.WP.DSL
         {
             var info = (DefaultRoleInfo)conceptInfo;
 
-            string snippet = $@"update_option(' default_role', '{info.WPPlugin.Name}_{info.Role.Slug}' );
+            string snippet = $@"update_option(' default_role', '{info.Plugin.Slug}_{info.Role.Slug}' );
 
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationHookTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.ActivationHookTag, info.Plugin);
 
             snippet = $@"update_option( 'default_role', 'subscriber' );
 
 ";
-            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DeactivationHookTag, info.WPPlugin);
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.DeactivationHookTag, info.Plugin);
         }
     }
 }
