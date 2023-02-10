@@ -15,8 +15,15 @@ namespace KMeze.WP.DSL.Vue.Pinia
         {
             var info = (UserMetaInfo)conceptInfo;
 
-            string snippet = $@",'{info.Plugin.Slug}_{info.Name}'";
+            // Generate user meta in state Me in Pinia store
+            string snippet = $@",{info.Plugin.Slug}_{info.Name}: {{}}
+                ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreMeFieldsTag, info.Plugin);
+
+            // Generate user meta in state Me in /me api
+            snippet = $@",'{info.Plugin.Slug}_{info.Name}'
+                ";
+            codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreMeUrlFieldsTag, info.Plugin);
         }
     }
 }
