@@ -15,6 +15,7 @@ namespace KMeze.WP.DSL.Vue.Pinia
         public static readonly CsTag<WPPluginInfo> PiniaStoreGettersTag = "PiniaStoreGetters";
         public static readonly CsTag<WPPluginInfo> PiniaStoreActionTag = "PiniaStoreAction";
         public static readonly CsTag<WPPluginInfo> PiniaStoreMeFieldsTag = "PiniaStoreMeFields";
+        public static readonly CsTag<WPPluginInfo> PiniaStoreMeUrlFieldsTag = "PiniaStoreMeUrlFields";
         public static readonly CsTag<WPPluginInfo> PiniaStoreCleanUpActionTag = "PiniaStoreActionCleanUp";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
@@ -30,7 +31,11 @@ export const use{info.Slug}Store = defineStore('{info.Slug}', {{
         return {{
             apiUrl: '',
             isLoggedIn: false,
-            me: {{}},
+            me: {{
+                id: null
+                ,username: null
+                {PiniaStoreMeFieldsTag.Evaluate(info)}
+            }},
             {PiniaStoreStateTag.Evaluate(info)}
         }}
     }},
@@ -43,7 +48,7 @@ export const use{info.Slug}Store = defineStore('{info.Slug}', {{
             const fields = [
                 'id'
                 ,'username'
-                {PiniaStoreMeFieldsTag.Evaluate(info)}
+                {PiniaStoreMeUrlFieldsTag.Evaluate(info)}
             ]
 
             const queryString = fields.join(',')
