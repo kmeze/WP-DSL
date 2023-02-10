@@ -14,7 +14,7 @@ namespace KMeze.WP.DSL.Vue.Pinia
         public static readonly CsTag<WPPluginInfo> PiniaStoreStateTag = "PiniaStoreState";
         public static readonly CsTag<WPPluginInfo> PiniaStoreGettersTag = "PiniaStoreGetters";
         public static readonly CsTag<WPPluginInfo> PiniaStoreActionTag = "PiniaStoreAction";
-        public static readonly CsTag<WPPluginInfo> PiniaStoreFetchMeTag = "PiniaStoreFetchMeTag";
+        public static readonly CsTag<WPPluginInfo> PiniaStoreMeFieldsTag = "PiniaStoreMeFields";
         public static readonly CsTag<WPPluginInfo> PiniaStoreCleanUpActionTag = "PiniaStoreActionCleanUp";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
@@ -40,15 +40,16 @@ export const use{info.Slug}Store = defineStore('{info.Slug}', {{
     actions: {{
         {PiniaStoreActionTag.Evaluate(info)}
         async fetchMe() {{
-            await axios.get(`${{this.apiUrl}}/wp-json/wp/v2/users/me?context=edit&_fields=id,username`).then(res => {{
-                this.me = {{
-                    id: res.data.id,
-                    username: res.data.username,
-                }}
-                res.data;
-            }})
+            const fields = [
+                'id'
+                ,'username'
+                {PiniaStoreMeFieldsTag.Evaluate(info)}
+            ]
 
-            {PiniaStoreFetchMeTag.Evaluate(info)}
+            const queryString = fields.join(',')
+            await axios.get(`${{this.apiUrl}}/wp-json/wp/v2/users/me?context=edit&_fields=${{queryString}}`).then(res => {{
+                this.me = res.data
+            }})
 
             return this.me
         }},
