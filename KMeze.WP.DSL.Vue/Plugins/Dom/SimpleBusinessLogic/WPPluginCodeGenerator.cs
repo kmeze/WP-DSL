@@ -14,6 +14,7 @@ namespace KMeze.WP.DSL.Vue.Pinia
         public static readonly CsTag<WPPluginInfo> PiniaStoreStateTag = "PiniaStoreState";
         public static readonly CsTag<WPPluginInfo> PiniaStoreGettersTag = "PiniaStoreGetters";
         public static readonly CsTag<WPPluginInfo> PiniaStoreActionTag = "PiniaStoreAction";
+        public static readonly CsTag<WPPluginInfo> PiniaStoreFetchMeTag = "PiniaStoreFetchMeTag";
         public static readonly CsTag<WPPluginInfo> PiniaStoreCleanUpActionTag = "PiniaStoreActionCleanUp";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
@@ -46,6 +47,8 @@ export const use{info.Slug}Store = defineStore('{info.Slug}', {{
                 }}
                 res.data;
             }})
+
+            {PiniaStoreFetchMeTag.Evaluate(info)}
 
             return this.me
         }},
