@@ -14,6 +14,8 @@ namespace KMeze.WP.DSL.Vue.Pinia
         public static readonly CsTag<WPPluginInfo> PiniaStoreStateTag = "PiniaStoreState";
         public static readonly CsTag<WPPluginInfo> PiniaStoreGettersTag = "PiniaStoreGetters";
         public static readonly CsTag<WPPluginInfo> PiniaStoreActionTag = "PiniaStoreAction";
+        public static readonly CsTag<WPPluginInfo> PiniaStoreMeFieldsTag = "PiniaStoreMeFields";
+        public static readonly CsTag<WPPluginInfo> PiniaStoreMeUrlFieldsTag = "PiniaStoreMeUrlFields";
         public static readonly CsTag<WPPluginInfo> PiniaStoreCleanUpActionTag = "PiniaStoreActionCleanUp";
 
         public void GenerateCode(IConceptInfo conceptInfo, ICodeBuilder codeBuilder)
@@ -29,7 +31,11 @@ export const use{info.Slug}Store = defineStore('{info.Slug}', {{
         return {{
             apiUrl: '',
             isLoggedIn: false,
-            me: {{}},
+            me: {{
+                id: null
+                ,username: null
+                {PiniaStoreMeFieldsTag.Evaluate(info)}
+            }},
             {PiniaStoreStateTag.Evaluate(info)}
         }}
     }},
@@ -39,13 +45,18 @@ export const use{info.Slug}Store = defineStore('{info.Slug}', {{
     actions: {{
         {PiniaStoreActionTag.Evaluate(info)}
         async fetchMe() {{
-            const res = await axios.get(`${{this.apiUrl}}/wp-json/wp/v2/users/me?context=edit&_fields=id,username`).then(res => {{
-                this.me = {{
-                    id: res.data.id,
-                    username: res.data.username,
-                }}
-                res.data;
+            const fields = [
+                'id'
+                ,'username'
+                {PiniaStoreMeUrlFieldsTag.Evaluate(info)}
+            ]
+
+            const queryString = fields.join(',')
+            await axios.get(`${{this.apiUrl}}/wp-json/wp/v2/users/me?context=edit&_fields=${{queryString}}`).then(res => {{
+                this.me = res.data
             }})
+
+            return this.me
         }},
         async cleanUp() {{
             {PiniaStoreCleanUpActionTag.Evaluate(info)}
