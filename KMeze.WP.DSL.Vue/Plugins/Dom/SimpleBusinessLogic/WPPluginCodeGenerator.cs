@@ -23,8 +23,8 @@ namespace KMeze.WP.DSL.Vue.Pinia
             var info = (WPPluginInfo)conceptInfo;
 
             codeBuilder.InsertCodeToFile(
-$@"import {{defineStore}} from 'pinia'
-import axios from 'axios'
+$@"import {{defineStore}} from '@/../node_modules/pinia'
+import axios from '@/../node_modules/axios'
 
 export const use{info.Slug}Store = defineStore('{info.Slug}', {{
     state: () => {{
