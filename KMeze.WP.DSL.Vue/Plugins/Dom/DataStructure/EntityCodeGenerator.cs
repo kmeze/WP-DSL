@@ -47,6 +47,15 @@ namespace KMeze.WP.DSL.Vue.Pinia
 
             return ret
         }},
+        async delete{ti.ToTitleCase(info.Name)}(id) {{
+            let ret = null
+            await axios.delete(`${{this.apiUrl}}/wp-json/{info.Plugin.Slug}/v1/{info.Name}/${{id}}`).then(res => {{
+                ret = res.data
+                this.{info.Name} = this.{info.Name}.filter(e => e.id !== id)
+            }})
+
+            return ret
+        }},
         ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreActionTag, info.Plugin);
 
