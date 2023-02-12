@@ -44,9 +44,10 @@ namespace KMeze.WP.DSL.Vue.Pinia
         }},
         async put{ti.ToTitleCase(info.Name)}({info.Name}) {{
             let ret = null
-            await axios.put(`${{this.apiUrl}}/wp-json/{info.Plugin.Slug}/v1/{info.Name}`, {info.Name}).then(res => {{
+            await axios.put(`${{this.apiUrl}}/wp-json/{info.Plugin.Slug}/v1/{info.Name}/${{{info.Name}.id}}`, {info.Name}).then(res => {{
                 ret = res.data
-                this.{info.Name}.push(ret)
+                const index = this.{info.Name}.findIndex(i => i.id === ret.id)
+                if (index !== -1) this.{info.Name}.splice(index, 1, ret)
             }})
 
             return ret
