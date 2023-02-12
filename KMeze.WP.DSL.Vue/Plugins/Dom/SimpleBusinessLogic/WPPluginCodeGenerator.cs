@@ -61,6 +61,20 @@ export const use{ti.ToTitleCase(info.Slug)}Store = defineStore('{info.Slug}', {{
 
             return this.me
         }},
+        async postMe() {{
+            const fields = [
+                'id'
+                ,'username'
+                {PiniaStoreMeUrlFieldsTag.Evaluate(info)}
+            ]
+
+            const queryString = fields.join(',')
+            await axios.post(`${{this.apiUrl}}/wp-json/wp/v2/users/me?context=edit&_fields=${{queryString}}`, this.me).then(res => {{
+                this.me = res.data
+            }})
+
+            return this.me
+        }},
         async cleanUp() {{
             {PiniaStoreCleanUpActionTag.Evaluate(info)}
         }},
