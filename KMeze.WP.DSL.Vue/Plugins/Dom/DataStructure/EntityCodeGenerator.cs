@@ -29,6 +29,15 @@ namespace KMeze.WP.DSL.Vue.Pinia
                 this.{info.Name} = res.data;
             }})
         }},
+        async post{ti.ToTitleCase(info.Name)}({info.Name}) {{
+            let ret = null
+            await axios.post(`${{this.apiUrl}}/wp-json/{info.Plugin.Slug}/v1/{info.Name}`, {info.Name}).then(res => {{
+                ret = res.data
+                this.{info.Name}.push(ret);
+            }})
+
+            return ret
+        }},
         ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreActionTag, info.Plugin);
 
