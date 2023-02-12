@@ -33,7 +33,7 @@ namespace KMeze.WP.DSL.Vue.Pinia
             let ret = null
             await axios.post(`${{this.apiUrl}}/wp-json/{info.Plugin.Slug}/v1/{info.Name}`, {info.Name}).then(res => {{
                 ret = res.data
-                this.{info.Name}.push(ret);
+                this.{info.Name}.push(ret)
             }})
 
             return ret
