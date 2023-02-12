@@ -25,9 +25,13 @@ namespace KMeze.WP.DSL.Vue.Pinia
 
             // Generate entity actions in Pinia store
             snippet = $@"async get{ti.ToTitleCase(info.Name)}() {{
-            const res = await axios.get(`${{this.apiUrl}}/wp-json/{info.Plugin.Slug}/v1/{info.Name}`).then(res => {{
-                this.{info.Name} = res.data;
+            let ret = null
+            await axios.get(`${{this.apiUrl}}/wp-json/{info.Plugin.Slug}/v1/{info.Name}`).then(res => {{
+                let ret = res.data
+                this.{info.Name} = ret
             }})
+
+            return ret
         }},
         async post{ti.ToTitleCase(info.Name)}({info.Name}) {{
             let ret = null
