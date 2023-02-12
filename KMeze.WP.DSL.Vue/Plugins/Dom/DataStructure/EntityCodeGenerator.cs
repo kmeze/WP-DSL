@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.ComponentModel.Composition;
 using Rhetos.Compiler;
 using Rhetos.Dom.DefaultConcepts;
@@ -20,8 +21,10 @@ namespace KMeze.WP.DSL.Vue.Pinia
             ";
             codeBuilder.InsertCode(snippet, WPPluginCodeGenerator.PiniaStoreStateTag, info.Plugin);
 
+            TextInfo ti = CultureInfo.CurrentCulture.TextInfo;
+
             // Generate entity actions in Pinia store
-            snippet = $@"async fetch{info.Name}() {{
+            snippet = $@"async get{ti.ToTitleCase(info.Name)}() {{
             const res = await axios.get(`${{this.apiUrl}}/wp-json/{info.Plugin.Slug}/v1/{info.Name}`).then(res => {{
                 this.{info.Name} = res.data;
             }})

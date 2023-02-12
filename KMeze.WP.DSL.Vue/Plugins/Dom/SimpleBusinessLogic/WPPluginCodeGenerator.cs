@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Globalization;
 using Rhetos.Compiler;
 using Rhetos.Dom.DefaultConcepts;
 using Rhetos.Dsl;
@@ -22,11 +23,13 @@ namespace KMeze.WP.DSL.Vue.Pinia
         {
             var info = (WPPluginInfo)conceptInfo;
 
+            TextInfo ti = CultureInfo.CurrentCulture.TextInfo;
+
             codeBuilder.InsertCodeToFile(
 $@"import {{defineStore}} from '@/../node_modules/pinia'
 import axios from '@/../node_modules/axios'
 
-export const use{info.Slug}Store = defineStore('{info.Slug}', {{
+export const use{ti.ToTitleCase(info.Slug)}Store = defineStore('{info.Slug}', {{
     state: () => {{
         return {{
             apiUrl: '',
@@ -44,7 +47,7 @@ export const use{info.Slug}Store = defineStore('{info.Slug}', {{
     }},
     actions: {{
         {PiniaStoreActionTag.Evaluate(info)}
-        async fetchMe() {{
+        async getMe() {{
             const fields = [
                 'id'
                 ,'username'
