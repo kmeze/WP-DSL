@@ -24,9 +24,9 @@ namespace KMeze.WP.DSL.Vue.Pinia
             TextInfo ti = CultureInfo.CurrentCulture.TextInfo;
 
             // Generate entity actions in Pinia store
-            snippet = $@"async get{ti.ToTitleCase(info.Name)}() {{
+            snippet = $@"async get{ti.ToTitleCase(info.Name)}(query) {{
             let ret = null
-            await axios.get(`${{this.apiUrl}}/wp-json/{info.Plugin.Slug}/v1/{info.Name}`).then(res => {{
+            await axios.get(`${{this.apiUrl}}/wp-json/{info.Plugin.Slug}/v1/{info.Name}?${{query}}`).then(res => {{
                 let ret = res.data
                 this.{info.Name} = ret
             }})
