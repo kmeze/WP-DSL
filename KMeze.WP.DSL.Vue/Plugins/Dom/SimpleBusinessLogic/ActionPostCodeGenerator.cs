@@ -21,7 +21,7 @@ namespace KMeze.WP.DSL.Vue.Pinia
             // Generate entity actions in Pinia store
             string snippet = $@"async post{ti.ToTitleCase(info.DataStructure.Name)}_{info.Callback.Name}(query, data) {{
             let ret = null
-            await axios.post(`${{this.apiUrl}}/wp-json/{info.Callback.Name}/v1/{info.DataStructure.Name}/{info.Callback.Name}?${{query}}`, data).then(res => {{
+            await axios.post(`${{this.apiUrl}}/wp-json/{info.Callback.Plugin.Slug}/v1/{info.DataStructure.Name}/{info.Callback.Name}?${{query}}`, data).then(res => {{
                 ret = res.data
             }})
 
