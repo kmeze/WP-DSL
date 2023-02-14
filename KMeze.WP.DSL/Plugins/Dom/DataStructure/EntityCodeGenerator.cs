@@ -150,7 +150,7 @@ namespace KMeze.WP.DSL
         return ( new {info.Plugin.Slug}_{info.Name}_Repository() )->delete( $request->get_param( 'id' ) );
     }}
 
-";
+    ";
             codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerClassMethodTag, info);
 
             snippet = $@"require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
