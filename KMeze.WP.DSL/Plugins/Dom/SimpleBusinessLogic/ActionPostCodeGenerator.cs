@@ -31,7 +31,7 @@ namespace KMeze.WP.DSL
     ";
             codeBuilder.InsertCode(snippet, RepositoryDataStructureCodeGenerator.RestControllerClassMethodTag, info.DataStructure);
 
-            snippet = $@" $request ";
+            snippet = $@"$request";
             codeBuilder.InsertCode(snippet, CallbackCodeGenerator.CallbackArgTag, info.Callback);
         }
     }

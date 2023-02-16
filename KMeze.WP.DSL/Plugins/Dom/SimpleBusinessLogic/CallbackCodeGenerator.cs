@@ -17,7 +17,7 @@ namespace KMeze.WP.DSL
         {
             var info = (CallbackInfo)conceptInfo;
 
-            string snippet = $@"function {info.Plugin.Slug}_{info.Name} ( {CallbackArgTag.Evaluate(info)} ) {{
+            string snippet = $@"function {info.Plugin.Slug}_{info.Name}( {CallbackArgTag.Evaluate(info)} ) {{
     {info.Script}
 }}
 ";
