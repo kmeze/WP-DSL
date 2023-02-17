@@ -18,6 +18,14 @@ namespace KMeze.WP.DSL
         public IEnumerable<IConceptInfo> CreateNewConcepts(WPPluginInfo conceptInfo, IDslModel existingConcepts)
         {
             var newConcepts = new List<IConceptInfo>();
+
+            newConcepts.Add(new PluginInfoInfo
+            {
+                Plugin = conceptInfo,
+                Key = "Text Domain:",
+                Value = conceptInfo.Slug,
+            });
+
             newConcepts.Add(new WPDataStructureInfo
             {
                 Plugin = conceptInfo,
