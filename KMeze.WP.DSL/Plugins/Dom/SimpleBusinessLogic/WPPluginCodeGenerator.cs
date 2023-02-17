@@ -11,6 +11,7 @@ namespace KMeze.WP.DSL
     [ExportMetadata(MefProvider.Implements, typeof(WPPluginInfo))]
     public class WPPluginCodeGenerator : IWPPluginConceptCodeGenerator
     {
+        public static readonly CsTag<WPPluginInfo> PluginHeaderTag = "PluginHeaderTag";
         public static readonly CsTag<WPPluginInfo> ActionHooksTag = "ActionHooks";
         public static readonly CsTag<WPPluginInfo> FilterHooksTag = "FilterHooks";
         public static readonly CsTag<WPPluginInfo> CallbacksTag = "Callbacks";
@@ -30,8 +31,7 @@ namespace KMeze.WP.DSL
             codeBuilder.InsertCodeToFile(
 $@"<?php
 /**
- * Plugin Name: {info.Slug}
- */
+{PluginHeaderTag.Evaluate(info)}
 
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
