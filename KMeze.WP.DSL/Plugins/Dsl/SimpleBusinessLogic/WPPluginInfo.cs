@@ -22,7 +22,7 @@ namespace KMeze.WP.DSL
             newConcepts.Add(new PluginInfoInfo
             {
                 Plugin = conceptInfo,
-                Key = "Text Domain:",
+                Key = "Text Domain",
                 Value = conceptInfo.Slug,
             });
 
