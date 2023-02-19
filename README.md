@@ -41,6 +41,7 @@ In a low-level concept, you can do anything you need because you a writing commo
     dotnet new classlib
     dotnet add package KMeze.WP.DSL --prerelease
     dotnet add package Rhetos.MSBuild
+    dotnet add package Microsoft.Extensions.Configuration
     ```
 
 3. Create new file with `.rhe` extension (e.g. MyPlugin.rhe) and paste following code:
