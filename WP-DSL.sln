@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMeze.WP.DSL", "KMeze.WP.DS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMeze.WP.DSL.Vue", "KMeze.WP.DSL.Vue\KMeze.WP.DSL.Vue.csproj", "{C83A5505-86A0-4736-9C17-7B053436BDE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMeze.WP.DSL.Neo4j", "KMeze.WP.DSL.Neo4j\KMeze.WP.DSL.Neo4j.csproj", "{8950D514-6D8C-4256-A47C-52B7FDE4877C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{C83A5505-86A0-4736-9C17-7B053436BDE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C83A5505-86A0-4736-9C17-7B053436BDE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C83A5505-86A0-4736-9C17-7B053436BDE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8950D514-6D8C-4256-A47C-52B7FDE4877C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8950D514-6D8C-4256-A47C-52B7FDE4877C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8950D514-6D8C-4256-A47C-52B7FDE4877C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8950D514-6D8C-4256-A47C-52B7FDE4877C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
