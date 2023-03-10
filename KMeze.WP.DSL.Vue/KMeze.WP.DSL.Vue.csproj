@@ -1,9 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <ProjectReference Include="..\KMeze.WP.DSL\KMeze.WP.DSL.csproj" />
-  </ItemGroup>
-
   <PropertyGroup>
     <PackageId>KMeze.WP.DSL.Vue</PackageId>
      <Version>1.0.0-alpha.4</Version>
@@ -12,5 +8,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KMeze.WP.DSL\KMeze.WP.DSL.csproj" />
+  </ItemGroup>
 
 </Project>
