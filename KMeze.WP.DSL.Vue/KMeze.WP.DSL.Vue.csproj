@@ -5,6 +5,9 @@
   </ItemGroup>
 
   <PropertyGroup>
+    <PackageId>KMeze.WP.DSL.Vue</PackageId>
+     <Version>1.0.0-alpha.4</Version>
+     <Authors>Krešimir Meze</Authors>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
